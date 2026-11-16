@@ -35,18 +35,18 @@ Version 1.0.0 removed every guard and the rules a session used to be handed at i
 
 [Maintain app repos](maintain-app-repos.md) lists what a repo from an older version still carries.
 
-## Moving from kaizn or raizen-norms
+## Moving from an earlier name
 
-Until 1.2.0 the plugin was `kaizn`, from the marketplace `kaizn`; until 0.106.0 it was `raizen-norms`, from the marketplace `raizen`. An update in place keeps the marketplace under its old name, so move once instead:
+An update in place keeps a machine on the marketplace it was installed from, under the name it had then. A machine that installed this plugin under an earlier name moves once:
 
-1. **Remove the old marketplace:** `claude plugin marketplace remove kaizn`, or `raizen` on a machine that never moved. It uninstalls the old plugin with it.
+1. **Remove the old marketplace.** `claude plugin marketplace list` names it; `claude plugin marketplace remove <name>` uninstalls its plugin with it.
 2. **Add the new one and install:** `claude plugin marketplace add rapidkaizen-cloud/kaizen`, then `claude plugin install kaizen@kaizen`.
 3. **Turn `autoUpdate` back on**, for `kaizen` this time, as in [Install](../start/install.md). The old entry's setting left with it.
-4. **In every app repo whose `.claude/settings.json` names `kaizn@kaizn` or `raizen-norms@raizen`**, change the key to `kaizen@kaizen` and commit it, so a teammate's machine enables the plugin there too.
-5. **On Antigravity:** `agy plugin uninstall kaizn`, or `raizen-norms`, then install from the new URL as above.
-6. **Change `/kaizn:` to `/kaizen:`** in anything of yours that invokes a skill: notes, aliases, scripts.
+4. **In every app repo whose `.claude/settings.json` names the old plugin key**, change it to `kaizen@kaizen` and commit it, so a teammate's machine enables the plugin there too.
+5. **On Antigravity:** `agy plugin list` names the old copy; uninstall it, then install from the new URL as above.
+6. **Change the old prefix to `/kaizen:`** in anything of yours that invokes a skill: notes, aliases, scripts.
 
-Then restart the host. The new clone fetches `main`, so the move also mends a machine whose clone still fetches `master`, the branch before 0.109.0, where updates stop without an error.
+Then restart the host. The new clone fetches `main`, so the move also mends a clone that still fetches `master`, where updates stop without an error.
 
 ## Check what you are running
 
