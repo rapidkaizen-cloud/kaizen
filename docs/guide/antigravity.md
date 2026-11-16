@@ -25,7 +25,6 @@ The copy lands in `~/.gemini/config/plugins/kaizn`.
 
 ## What is absent there
 
-- **The context reminder.** No hook ships on Antigravity.
 - **The `Quota` row** of `design-settle`: it reads `not read`.
 - **The working rules, unless the repo has an `AGENTS.md`.** `norms-config` writes its block into `CLAUDE.md`, and into `AGENTS.md` only where the repo already has one. Whether a session there then follows the block has not been verified.
 

@@ -2,6 +2,14 @@
 
 All notable changes to the `kaizn` plugin — named `raizen-norms` until 0.106.0, and `raizen-hub` until 0.70.0 merged it in — newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before these are in `git log`.
 
+## [kaizn 1.1.0] - 2026-11-16
+
+The plugin ships no hook. The context reminder's note made a session end its turn at 200k, 500k and 800k tokens, and that interrupted the work more than it saved.
+
+### Removed
+
+- The context reminder: `scripts/remind_context.py`, its self-check, `hooks/hooks.json` and the page `docs/reference/context-reminder.md`. Nothing tells a session its context passed a milestone: watch the size with `/context` and the quota with `/usage`.
+
 ## [kaizn 1.0.0] - 2026-11-16
 
 Every skill was rewritten to stand alone and to be short, and every guard was removed. The steps of the old skills drove a session's context to 300k–860k tokens, and one redesign took 8 windows of a Pro plan; and a hook cannot ask — it refuses, the case that should have passed included. The plugin is now nine skills of one file each, about 36,000 characters where it was 428,000 in 55 files, and one hook that only hands the session a note. Rules are text in the app repo's own `CLAUDE.md`, and you can waive any of them in chat.

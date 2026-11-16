@@ -7,7 +7,7 @@ Two commands in Claude Code and a restart. For Antigravity, see [Run on Antigrav
 | Needs | Why |
 |---|---|
 | Claude Code | The host the commands below are typed into |
-| `python3` | The context reminder and `norms-help` call it. With only `python` on the machine the reminder silently never runs |
+| `python3` | `norms-help` calls it |
 | Node.js | The script `design-settle` checks a page with runs on it |
 
 ## Install the plugin

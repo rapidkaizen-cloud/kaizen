@@ -1,15 +1,14 @@
 # Hosts
 
-The same nine skills install on Claude Code and on Antigravity; the working rules and the one hook do not reach both the same way.
+The same nine skills install on Claude Code and on Antigravity; the working rules do not reach both the same way.
 
 | | Claude Code | Antigravity |
 |---|---|---|
-| Manifest | `.claude-plugin/plugin.json`, `hooks/hooks.json` | `plugin.json` at the repo root |
+| Manifest | `.claude-plugin/plugin.json` | `plugin.json` at the repo root |
 | Install | `/plugin marketplace add`, then `/plugin install` | `agy plugin install <URL>` |
 | Update | By itself with `autoUpdate` on | Uninstall, then install again: the install is a copy |
 | Skills | All nine | All nine |
 | Working rules | Read from the repo's `CLAUDE.md` by the host | Not verified: the block is written into `AGENTS.md` where the repo has one |
-| Context reminder | Yes | None: the plugin ships no hook there |
 | `Quota` row of `design-settle` | Read from `claude -p "/usage"` | Printed as `not read` |
 
 > [!NOTE]

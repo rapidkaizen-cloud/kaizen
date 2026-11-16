@@ -2,7 +2,7 @@
 
 `kaizn` is one plugin of nine standalone skills for building an app with an agent, plus eight working rules a repo keeps in its own `CLAUDE.md`.
 
-Nothing in it is enforced. A skill is text a session reads when the work calls for it, and a working rule is a line you can waive in chat. The plugin ships one hook, and it only hands the session a note.
+Nothing in it is enforced. A skill is text a session reads when the work calls for it, and a working rule is a line you can waive in chat. The plugin ships no hook.
 
 ## The parts
 
@@ -13,7 +13,6 @@ Nothing in it is enforced. A skill is text a session reads when the work calls f
 | `build-flow`, `docs-format`, `ui-build`, `db-ops`, `logic-build` | Carry the rules for building a page, a document, UI, SQL and application logic | By themselves, when the work matches their description |
 | `norms-config` | Writes the eight working rules into the repo's `CLAUDE.md` | When you invoke it, once per repo |
 | `norms-help` | Prints the commands, these pages, the version and its last change | When you ask |
-| The context reminder | Tells a session once that its context passed 200k, 500k or 800k tokens | By itself, on Claude Code |
 
 ## Every skill stands alone
 

@@ -48,12 +48,6 @@ New here: [Overview](start/overview.md), then [Install](start/install.md), then 
 | [db-ops](reference/db-ops.md) | Migrations, destructive operations and the RLS role test |
 | [logic-build](reference/logic-build.md) | Keys, business rules, queries and their tests |
 
-## Reference: hooks
-
-| Page | Holds |
-|---|---|
-| [context-reminder](reference/context-reminder.md) | The one hook: a note when a session's context passes 200k, 500k or 800k tokens |
-
 ## Project
 
 | Page | Holds |

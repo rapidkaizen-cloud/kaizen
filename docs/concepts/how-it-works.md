@@ -1,6 +1,6 @@
 # How it works
 
-`kaizn` puts text in front of a session at three moments, and enforces none of it.
+`kaizn` puts text in front of a session at two moments, and enforces none of it.
 
 ## What loads when
 
@@ -9,7 +9,6 @@
 | A session starts | The repo's `CLAUDE.md`, the [working rules](working-rules.md) included where the repo has them | The repo; the host reads it |
 | A session starts | The plugin's skills in the host's skill list | The plugin |
 | The work matches a skill, or you run its command | That skill's one file | The plugin |
-| The context passes 200k, 500k or 800k tokens | One note, once per milestone, on Claude Code | The plugin's [one hook](../reference/context-reminder.md) |
 
 The plugin prints nothing of its own when a session starts, and a skill that never loads costs its line in the skill list and nothing more.
 
@@ -19,7 +18,7 @@ A skill reads `CLAUDE.md`, `docs/` and `DESIGN.md` where the repo has them, and 
 
 ## Why nothing is enforced
 
-Until 1.0.0 the plugin shipped hooks that refused a command: a push, a destructive statement, a file written to the wrong folder. A hook cannot ask: it can only refuse, the case that should have passed included, and each refusal costs one more call. The rules are now text, and you can waive any of them in chat.
+Until 1.0.0 the plugin shipped hooks that refused a command: a push, a destructive statement, a file written to the wrong folder. A hook cannot ask: it can only refuse, the case that should have passed included, and each refusal costs one more call. The rules are now text, and you can waive any of them in chat. The context reminder, the last hook, was removed in 1.1.0: watch a session's size with `/context` and the quota with `/usage`.
 
 What that costs you:
 

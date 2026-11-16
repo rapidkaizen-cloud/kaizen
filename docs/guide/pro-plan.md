@@ -15,4 +15,3 @@ Before 1.0.0, one redesign of the proof app took 8 windows of a Pro plan: about 
 ## Related
 
 - [Redesign the look](redesign.md) — the run these steps prepare.
-- [Context reminder](../reference/context-reminder.md) — the note a session gets as its context grows.
