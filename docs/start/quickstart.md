@@ -1,46 +1,39 @@
 # Quickstart
 
-Pick the case that matches your repo, run the command, and answer what the session asks.
+Pick the case that matches your repo, run the commands, and answer what the session asks.
 
 ## A new app
 
 1. **Open Claude Code in an empty directory.**
-2. **Run `/kaizn:app-settle`.** It reads the directory, finds it empty, and bootstraps the app: an interview, the documents, a scaffold, `git init`.
-3. **In the new repo, run `/kaizn:logic-settle`**, then **`/kaizn:design-settle`**.
-4. **Ask for the first page.** `build-flow` needs no command; it loads in every app session and builds from `docs/queue.md`.
+2. **Run `/kaizn:app-settle`.** It finds no app code, interviews you, asks one round about the stack, shows what it will write and waits for your yes. It then writes `CLAUDE.md` and the documents, and commits.
+3. **Run `/kaizn:norms-config`.** It adds the eight working rules to `CLAUDE.md`.
+4. **Run `/kaizn:design-settle`**, where the app has a UI.
+5. **Ask for the first page.**
 
 The long version: [Start a new app](../guide/new-app.md).
 
-## An app that already exists
+## An app that already runs
 
-1. **Open Claude Code in the repo and run `/kaizn:app-settle`.** It reads the repo and runs the one mode it owes next:
-
-   | It finds | It does |
-   |---|---|
-   | Code, no documents | Documents the app, changing nothing about it |
-   | A root `PRD.md` | Migrates it to the `docs/` form, in one commit |
-   | Documents in place | Audits the repo against the rules and fixes what you pick, one finding per commit |
-   | Documents in place, and you ask for a change | Reworks the app's decisions, keeping first |
-
-2. **Then run `logic-settle` and `design-settle`**, or only the one whose layer you want settled.
-
-> [!WARNING]
-> The migrate and align modes have never run in a real app. Run them on a copy first. See [What is proven](../reference/status.md).
+1. **Open Claude Code in the repo and run `/kaizn:norms-config`.** One commit; nothing about the app changes.
+2. **Run `/kaizn:app-settle`** where the repo has no documents. It records the stack as it finds it and changes no code.
+3. **Run `/kaizn:design-settle`** only when you want the look settled or changed.
 
 The long version: [Bring in an existing app](../guide/existing-app.md).
 
-## Which model to build on
+## One of them alone
 
-**Run `design-settle` and the sessions that build pages on Opus.** One session on Opus ran every step a new page owes — the todo list, the proposal, the craft material, the audit offer; on Sonnet, two sessions each skipped at least one. At `design-settle`'s close, the session on Opus read the motion against `review-animations`, looked again after its last edits and wrote a queue line for the check it could not run; the one on Sonnet did none of the three. See [What is proven](../reference/status.md).
+Each command works without the others. A repo with only the working rules, or only a `DESIGN.md`, is a complete use of the plugin.
 
-## What you will notice in every session after
+## What you will notice afterwards
 
-- **It starts already knowing the norms.** Language, scope, git, asking and decisions are printed before your first message. See [Session norms](../concepts/session-norms.md).
-- **It commits by itself.** A finished scope item is committed in the same turn, with named paths.
-- **It does not publish by itself.** A push runs when you ask for it; any other push, and the merge of a pull request, wait for your reply in chat; a pull request is opened only when you ask.
-- **It does not destroy data by itself.** Destructive SQL waits for a number you approve.
+In a repo that carries the working rules, a session:
 
-The last two are the [gates](../concepts/gates.md).
+- **Commits a finished item in the same turn**, naming the files.
+- **Pushes and merges only on your word.**
+- **Counts the rows before a statement that deletes or rewrites them**, shows the number and waits for your yes.
+- **Puts a decision to you as options with one recommendation**, and runs commands itself.
+
+These are lines of text the session follows, never locks. See [Working rules](../concepts/working-rules.md).
 
 ## Stuck?
 

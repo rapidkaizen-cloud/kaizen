@@ -24,7 +24,7 @@ Nothing on the card is written for the card alone: each part is printed as its f
 
 ## Asking a question with it
 
-Ask "how does the push stop work" and the session answers from the page that covers it, and names the file. Where no page does, it answers from the skill itself and says that no page does. Where neither covers it, it says so.
+Ask "how do I waive a working rule" and the session answers from the page that covers it, and names the file. Where no page does, it answers from the skill itself and says that no page does. Where neither covers it, it says so.
 
 ## What you can rely on
 

@@ -5,7 +5,7 @@ description: Evaluate an app that was built under these skills in order to find 
 
 # app-eval — the app is the evidence, the toolkit is the defendant
 
-Every gate in this toolkit measures an app against itself. `build-flow` judges a page against the proving page *of the same app*; the session audit checks accessibility, states, and click paths — none of which fail in an app that is merely bland. So an app can pass every gate, session after session, and still come out worse than it should be.
+Every check in this toolkit measures an app against itself. `build-flow` walks a page as its role, and `design-settle` checks the proving page for console errors, accessibility, contrast and overflow — none of which fail in an app that is merely bland. So an app can pass every check, session after session, and still come out worse than it should be.
 
 This skill is the only thing that looks at the finished result and asks whether the rules produced it. It changes no code. Its output is findings.
 
@@ -16,13 +16,13 @@ This skill is the only thing that looks at the finished result and asks whether 
 Two reasons, and the second is the one that matters:
 
 - **The installed plugin copy drifts from this repo.** `kaizn` needs a version bump and `/plugin update` before a change reaches a machine, so a session in an app repo reads rules that may already be fixed here. A trace against the wrong text is a void trace.
-- **An agent inside a ruleset is the worst judge of that ruleset.** A session in an app repo has the `kaizn` block printed and the guards live: it is being *governed* by the thing under review, and it reads every constraint as the definition of correct. Here the skills are text under review instead. That posture is the whole method — without it this skill reproduces, one level up, exactly the self-referential bar described above.
+- **An agent inside a ruleset is the worst judge of that ruleset.** A session in an app repo carries the working rules of that repo's `CLAUDE.md` and loads the skills as its instructions: it is being *governed* by the thing under review, and it reads every constraint as the definition of correct. Here the skills are text under review instead. That posture is the whole method — without it this skill reproduces, one level up, exactly the self-referential bar described above.
 
-The primary working directory is not this repo → **STOP** and say so. The `kaizn` session block is no signal either way — its hook is installed globally and prints in every session, this one included.
+The primary working directory is not this repo → **STOP** and say so.
 
-**Nothing in the app repo is written, moved, or deleted.** Fixing the app and fixing the toolkit are separate jobs, and the second may never quietly do the first. A defect worth fixing in the app is reported as a finding, and `app-settle`'s align mode is what acts on it — in the app repo, in another session.
+**Nothing in the app repo is written, moved, or deleted.** Fixing the app and fixing the toolkit are separate jobs, and the second may never quietly do the first. A defect worth fixing in the app is reported as a finding, and a session in the app repo is what acts on it.
 
-No hook pins a Supabase call to the app's project. Name the project ref explicitly before any database read, and read only.
+Nothing pins a database call to the app's project. Name the project explicitly before any database read, and read only.
 
 ## 1 — The input is mandatory
 
@@ -36,11 +36,11 @@ Refusing is not the same as demanding a brief. The user often feels something is
 2. **Compared to what** — another product, an earlier version, a picture in their head → this is the external bar
 3. **What did you expect to see instead** → this is the target
 
-Question 2 may be answered *I don't know, it just feels off*. Then propose candidates the way `design-settle`'s reference search does — real products of this app's type, with links — and let the user point at one. A reference the user selects is evidence; a reference invented on their behalf is not.
+Question 2 may be answered *I don't know, it just feels off*. Then propose candidates — real products of this app's type, with links — and let the user point at one. A reference the user selects is evidence; a reference invented on their behalf is not.
 
 The input may be a complaint or a direction — *"I want this app to feel more like X"* is as usable as *"this looks dead"*.
 
-**The input sets the scope, never the verdict.** A run that can only ever confirm the user's complaint is a yes-machine. Concluding *the complaint is real, and the cause is a decision you took yourself in the `design-settle` interview* is a legitimate outcome, and so is *the complaint does not reproduce*.
+**The input sets the scope, never the verdict.** A run that can only ever confirm the user's complaint is a yes-machine. Concluding *the complaint is real, and the cause is a decision you took yourself in `design-settle`* is a legitimate outcome, and so is *the complaint does not reproduce*.
 
 ## 2 — What is read
 
@@ -48,7 +48,7 @@ The input may be a complaint or a direction — *"I want this app to feel more l
 |---|---|
 | The rules under review | This repo. The source, never the installed plugin |
 | The app: routes, components, styling files, the design-system route | The app repo working directory |
-| What the app was supposed to be | Its documents, `DESIGN.md` above all — through `docs-format`'s legacy map where the app has a root `PRD.md` |
+| What the app was supposed to be | Its documents, `DESIGN.md` above all — a root `PRD.md` read as it is where the app has one |
 | What was built when, and what is still owed | `git log`, and `git log` of its queue file |
 | What happened while it was built | The app's session transcripts under `~/.claude/projects/<app-slug>/` |
 | The external bar | The reference the user pointed at, plus product-type research run live |
@@ -73,7 +73,7 @@ And it carries a **Not checked** section, always, even where the answer is *noth
 
 *"This dashboard is boring"* names nothing. What follows is a finding:
 
-> Every card carries the library's default padding and radius, in 12 of 14 pages, because `ui-build`'s Library defaults test can only be satisfied by a line in `DESIGN.md`, and `DESIGN.md` holds no line about visual emphasis. The rule has no route to an intentional departure.
+> Every card carries the library's default padding and radius, in 12 of 14 pages, because `ui-build` allows a new component only when nothing fits — "looking slightly different is not a reason" — and `DESIGN.md` holds no line about visual emphasis. The rule has no route to an intentional departure.
 
 Each finding carries five things, and none is optional:
 
@@ -91,7 +91,7 @@ Then one of three verdicts, and every finding gets exactly one:
 |---|---|---|
 | **The rule caused it** | Following the rule produces this result | A toolkit patch |
 | **The rule allowed it; the session did not take the route** | A route existed and went unused | An app fix, not a toolkit one — *unless* the route is buried deep enough that no session finds it, which is a weaker toolkit finding, marked as such |
-| **The rule is right; `DESIGN.md` is too thin** | The rule correctly refused, because nothing ever authorised the departure | Upstream: the `design-settle` interview never asked the question |
+| **The rule is right; `DESIGN.md` is too thin** | The rule correctly refused, because nothing ever authorised the departure | Upstream: `design-settle` never asked the question |
 
 The third is the one most often mistaken for the first. A rule refusing correctly is not a defective rule — the defect is that nothing upstream could ever have granted permission. Patching the refusing rule there loosens a constraint that was doing its job.
 
@@ -118,7 +118,7 @@ Shape: findings first, decidable in one read; raw evidence in an appendix behind
 Delivered twice, one job each:
 
 - **Inline, in full** — this is what gets read and decided here
-- **`~/.claude/kaizn-evals/<app>-<YYYY-MM-DD>/`** — `report.md` plus the screenshots, which have to be files. Outside both repos: the app repo keeps only `docs-format`'s closed list, and this repo does not need a second copy of a decision its commit messages already record
+- **`~/.claude/kaizn-evals/<app>-<YYYY-MM-DD>/`** — `report.md` plus the screenshots, which have to be files. Outside both repos: the app repo keeps only the documents `docs-format` names, and this repo does not need a second copy of a decision its commit messages already record
 
 ## 7 — This skill does not patch the toolkit
 

@@ -1,67 +1,34 @@
 # What is proven
 
-What has run for real, on which host, and what has not. A line under "Not yet verified" is behaviour the skills describe that nobody has watched happen.
+What has been seen working, and what has only been written — so you know which parts of `kaizn` 1.0.0 you are the first to run.
+
+Version 1.0.0 rewrote every skill. What earlier versions proved was proved on text that no longer exists, so it is not carried here.
 
 ## Proven on Claude Code
 
-All of it on paper or in throwaway copies of apps with no database, by sessions run headless or scripted through the Agent SDK, except where a line says otherwise: none ran in Orca, and none was answered by a person.
-
-- **`design-settle`'s interview** has been simulated on an existing-UI scenario with a legacy `PRD.md`, in Full, and every decision landed.
-- **`app-settle`'s migrate mode** ran twice on copies of two legacy apps, by a session that read only the skill: every sentence of the PRD's six sections arrived word for word, `DESIGN.md` linted clean, one commit each.
-- **A session building a new page** ran every step on Opus at 0.87.0, in a copy of a settled app with no sign-in: `build-flow`'s todo list, its proposal with both lists and its audit offer, and all of `ui-build`'s craft material read before the page.
-- **`design-settle`'s verification and close** ran on Opus at 0.87.0, on a copy of a finished run with no UI, rewound to before its close commit: the checks in a subagent with a browser, the motion read against `review-animations`, the raw values, the detector's hit, the lint floor and the fixtures' numbers fixed and checked again, `docs/queue.md` written with a line per page still on fixtures, and one commit.
-- **`design-settle`'s audit under a scope** ran once at 0.90.0 in a real app on its local database, behind a sign-in, as a Sonnet subagent handed the brief, a scope of 8 page files out of 696 and an account: it read the 8 page files and none outside them, opened 7 routes — 2 inside the scope, 5 outside — wrote `places.md` by a command, 10,149 lines, and finished in 24 minutes. It took 111 calls and 23.3 million input tokens, its context growing from 45k to 350k; half of that was paid in the last 40 calls, the counts and the three files, written after the walk. Split in two subagents at 0.91.0, it ran once more on the same scope: the source in 55 calls and 10.4 million tokens, the walk in 85 calls and 10.9 million, 37 minutes together, neither reading a page file outside the scope and the walk reading none at all; it opened 6 routes and measured 118 contrast pairs where the one subagent had measured 61. Two counts differed between the runs — the files a token change touches, 793 and 616, and the stray spacings, 175 and 232 — so those rows were not read the same way twice. With the two scripts of 0.92.0 it ran a third time on that scope: the source in 58 calls and 9.9 million tokens, the walk in 70 calls and 7.9 million, 29 minutes together; the counts were copied as `audit_count.py` printed them, and `audit_measure.js` was pasted once and called from `window.name` on every later route, no page refusing `eval`. It measured 122 distinct pairs, the dark mode on one route only, and the source subagent still wrote four scripts of its own, for the rows the shipped one does not count — token health, label lengths, icon sizes.
+| What | How it was seen |
+|---|---|
+| The context reminder's logic | Its self-check passes: milestones, the once-per-milestone rule, silence after a compaction, an unreadable transcript |
+| `verify_pages.js` | Its self-check passes, and it was run in headless Chrome against two scratch pages |
+| `norms-help` | Its self-check passes: the card is built from the files of this version |
+| `Quota` | `claude -p "/usage"` was read on a Max plan |
 
 ## Proven on Antigravity
 
-On the CLI — `agy` 1.2.16, Windows, headless, installed from this repo's URL with `agy plugin install`:
-
-- The nine skills are listed, `hooks.json` is kept as written, the norms and the `HOST` block are injected, `git add -A` is refused, and a push is held.
-- `design-settle` ran end to end at 0.70.0, Fast, on a new app with no UI, one question per headless turn: the Step 0 block, the reference search, `ui-ux-pro-max`'s generator, the install gate, frames and canvas with browser screenshots at both widths, `DESIGN.md`, the decision records, promotion, verification, and a commit with named paths.
-- That run read no `impeccable` or `frontend-design` file and ran no detector. A run at 0.72.1 read `impeccable`'s craft floor and operational register and `frontend-design` before the first frame, and ran the detector in every round.
-
-At 0.76.1 on `agy` 1.2.17, headless, installed from a folder, in a throwaway app on the `docs/` form with a bare local remote:
-
-- The session ended its turn on the push command unprompted, a typed yes let it through once, a no with a question published nothing, and a push attempted without the stop was held.
-- The document reminder arrived once after the conversation's own commit, and not after another conversation's.
-
-Proven before 0.70.0 only, registered by path: an interactive session, and the hand-over block.
+Nothing at 1.0.0. The plugin has not been installed there since the rewrite.
 
 ## Not yet verified
 
-- A session building a new page on Sonnet: two sessions at 0.87.0 each dropped at least one of the todo list, the proposal's two lists and the audit offer, and neither read all of the craft material. Two rounds of tighter wording did not change that — build on Opus.
-- `design-settle`'s close on the rules of 0.88.0. At 0.87.0, on Opus and on Sonnet, the structural diff failed for differences promotion itself makes, reduced motion was `not verified` because the browser tool cannot emulate it, and on Opus a fix changed pages already ratified. 0.88.0 answers the three and no session has run it; the lint floor's local plugin file alone was seen refusing its planted violations, on oxlint 1.87.0.
-- The two cost cuts of 0.89.0 — `design-settle` ending its turn at two seams for a new session, and Step 8's mechanical checks in three subagents — have not run. Their saving is an estimate from one close at 0.87.0, where the one subagent's context grew from 32k to 267k tokens over 120 calls.
-- The context cuts of 0.114.0 — `design-settle`'s new seams after the pick, before a canvas redraw, after the proving page and after each page group, the context note making a seam at your message, and a message held after an hour idle — have run in no session. They answer one redesign of a real app, where the context averaged 249k tokens over 1,914 calls, a remix ran at 484k, and messages sent after a pause rewrote 1.59M tokens. That Orca shows a held message's reason was read from Orca 1.4.249's code, and `claude -p` was seen sending it, not seen on screen.
-- The cuts of 0.115.0 — `design-settle` handing searches across the repo, builds, lint and test runs and each page's promotion to a subagent, every capture read by the subagent that takes it with only the flagged ones opened by the session, and each frame and canvas round captured at the desktop width alone, the lowest width added after approval — have run in no session. They answer the same redesign, where reads, builds, git and browser calls took about 68% of the main model's tokens and the main session read 252 screenshots.
-- The cuts of 0.116.0 — the `/design-system` route's size asked at the install gate, `minimal` recommended; the audit measuring from source unless the user asks for the walk, each line that compares with an audit screenshot reading `not walked`; and above 12 pages in scope, the canvas and Step 8 on the proving page and one page per kind, the pass building the rest on their kind's promoted page — have run in no session. The first answers the same redesign, where the route ran to 3,043 lines for one operator. The threshold of 12 was chosen over 20 and 30 against the page counts of real apps, 4 to 61 and one of 696, not from a run.
-- Step 8 on the surface the user gets (0.117.0): `verify_pages.js` ran on Windows in headless Chrome on two pages of a scratch folder — a clean page passed at both widths, a page with a console error, an image without alt text, faint text, a spinning element and a 900px block failed on exactly those columns, and a selector that matched nothing was `n/v`. It has not attached to an app's own build in WebView2 or Electron, and the `Native build` row, its question and the proving page shown in the app's window have run in no session. They answer one redesign of the proof app, a desktop app whose checks ran on a mock in a browser and whose user first saw the real window after the pass.
-- The `Model` row and its question, and the rules for another writer (0.118.0) — the `External writer` line, a brief ending in its scan as commands, a review by a cheaper subagent, two runs per brief — have run in no session. They answer one redesign of the proof app, where a revision another model took over was rejected and redone, and where 8 of 12 canvas runs by another agent were fix runs costing twice the briefs they fixed.
-- A material part read alone by its heading (0.120.0) — `impeccable`'s calibrations for new work out of its new-work playbook, named in `Material loaded:` — has run in no session.
-- `design-settle`'s `Quota` row and its close line (0.119.0) have run in no session. Only the command was seen, on Claude Code on Windows with a Max plan: `claude -p "/usage"` printed the week's percent and what drove it, with no model call, in 92 seconds, and in 39 with `--strict-mcp-config`; a Pro plan's window line has not been seen.
-- The scope of 0.90.0 beyond its audit — `design-settle` asking which page groups a run redraws, the stack kept, the gate's first lines, the queue lines and the captures outside the scope — has run in no session. It was written from the size of one real app: 696 page files, where an audit of every route cannot finish.
-- The three rows `audit_count.py` prints since 0.94.0 — token health, icon sizes, label lengths — have been copied by no audit, so what they save is not measured. The script alone ran on the real app of the scoped audit: the same 2,203 icon elements, 192 strings and repeats per file that audit's own scans had counted, and the one token nothing reads printed among two for the subagent to check.
-- `design-settle` on Sonnet: none of three sessions printed the Step 0 block, and at the close one session at 0.87.0 wrote no queue line for the checks it could not run, left its last edits unchecked and never read the motion against `review-animations` — run it on Opus.
-- `design-settle` from its first step with no UI, at 0.87.0 or later: the pass writing a `docs/queue.md` line as it promotes each page has not been seen.
-- The rules of 0.85.1 to 0.87.0 on Opus: beyond one build session, `design-settle`'s Step 0 and its close, each ran on Sonnet alone.
-- `design-settle` behind a sign-in, with a person: its audits walked signed out and read every signed-in route from source, the account question was asked in six sessions and no account was made, and no person has picked a frame on screen.
-- In a real app with its database: database steps arriving as one command, `build-flow`'s backend batch, `logic-settle`'s migration, and a walk behind a sign-in with an account made for it.
-- A dialog answered by a person: every one was answered by a script through the Agent SDK, never in Orca. No session has written `.claude/settings.json`.
-- The four `logic-build` rules of 0.93.0 — uniqueness by a constraint, a returned error read at the call site, a list read paged, a test left by a bug fix — have been read by no build session. A check that refused new unused exports, type escapes, unread errors and long comments at commit was replayed over the last 100 commits of the app they came from and would have refused 51, 34 of them for a comment block alone; it was dropped, and no version shipped it.
-- The UI and logic lint floors and the rule tests have never been written in a real app. `logic-settle`'s floor names ESLint alone; on another linter it has not run.
-- The `docs/` form has never been bootstrapped in a real app.
-- `app-settle`'s migrate mode and its align mode have never run in an app. Run migrate on a copy of a legacy app before a real one.
-- Whether a cloud session installs this marketplace; until then, cloud sessions do frontend work only.
-- The account-wide Supabase MCP endpoint end to end: its first-use login.
-- The document reminder after a commit: received on Antigravity only. On Claude Code no session has received it — whether a plugin's `PostToolUse` text reaches the model on an SDK host is unobserved. Both sessions that received it answered `Docs: none`, in an app with no UI; none has answered by writing a document.
-- A held push passing on a chat reply: run end to end on Antigravity. On Claude Code one session in a real app at 0.99.0 pushed and opened its pull request on one reply; a question typed between the stop and the yes brought a second stop there.
-- The publishing stop of 0.101.0 — a push passing on a yes that follows an answered question, `gh pr create` unheld, a merge still held to the reply itself: the hook's self-check replays the conversation that showed the second stop, on both hosts. No session has run with it installed.
-- A push the user's own message asks for, run with no stop (0.110.0): the hook's self-check passes it on both hosts. No session has run with it installed; it follows a real app where "push dan create PR" still brought a stop.
-- Several destructive operations at one stop (0.96.0): the hook's self-check passes them in one guarded block. No session has shown two `DESTRUCTIVE` blocks at one stop, and none was seen stopping once per operation before the rule said so.
-- The context reminder (0.99.0): its self-check passes, and read against one real transcript of 259k tokens it named the 200k milestone. No session has run with it installed, so the line a session then tells the user has not been seen.
-- Align's destructive findings at one stop (0.97.0): no session has run Align with two destructive findings picked, before or after the rule.
-- The page spec of 0.102.0 — three tests per wired page, `page.route` for `failed` and `empty`, and Align's `C8 page specs` row: no session has written one or run the row. Only its browser was seen, on Windows: Playwright 1.62.1 launched the installed Chrome 154 headless on its own temporary profile beside a running Chrome, whose main process stayed as it was.
-- `norms-help`: no session has loaded it from an installed copy, on either host.
-- The switches of 0.105.0: the self-checks pass with each mode written to `switches.json` in a temporary data folder handed to the scripts as `CLAUDE_PLUGIN_DATA`, and `norms_config.py` was run on temporary folders only. Not seen in any live session: the file in the plugin's real data folder, the first-session line, the sentence a refusal ends on, a guard's `advice` reaching the model — `additionalContext` with no decision is a documented `PreToolUse` output — and `norms-config` run by a person. That Claude Code fills `${CLAUDE_PLUGIN_DATA}` into a skill's text is documented, not seen; nor whether Antigravity hands its hooks a `CLAUDE_PLUGIN_DATA` of its own.
-- The output folder of 0.103.0: the hook's self-check passes, and the `OUTPUT` block was printed for a real main checkout, a real linked worktree and a folder outside any repo. Since 0.107.0 the first session runs `norms-config` once and it writes the folder to `switches.json`: the self-checks pass on temporary data folders, and no live session has run that first-session pass or seen a folder set that way reach the hook or the `OUTPUT` block. On Antigravity no session has run with it.
-- On Antigravity: `design-settle` in Full and where UI exists — its audit subagent, its gate; `app-settle` and `logic-settle`; a question asked through `ask_question` in an interactive session; the IDE and Antigravity 2.0. `design-settle`'s `Material loaded:` line is self-reported there, and one run listed a file its transcript shows it never read. Gemini CLI is not ported.
+- **Every rebuilt skill.** `app-settle`, `design-settle`, `norms-config`, `build-flow`, `docs-format`, `ui-build`, `db-ops` and `logic-build` at 1.0.0 have run in no session, on no model.
+- **Loading by itself.** Whether a session loads a rule skill without being asked depends on the host listing its description; where it lists the name only, name the skill or keep the working rules' last line.
+- **The working rules as text.** How well a session keeps a rule nothing enforces has not been measured.
+- **What a run costs.** Every figure in [Run on a Pro plan](../guide/pro-plan.md) was measured on the flow before 1.0.0.
+- **The context reminder in a live session** on the rewritten script.
+- **`verify_pages.js` against a desktop build**: not yet attached to a WebView2 or Electron app.
+- **`Quota` on a Pro plan.**
+- **`AGENTS.md` on Antigravity**: whether the block written there reaches a session.
+
+## Related
+
+- [How it works](../concepts/how-it-works.md)
+- [Antigravity](../guide/antigravity.md)

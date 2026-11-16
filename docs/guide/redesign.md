@@ -1,40 +1,30 @@
 # Redesign the look
 
-`design-settle` alone, on an app that already has a look or on one that has none yet.
+One `design-settle` session settles the direction and proves it on one page; every other page follows later, one per session.
 
-Before you start: `impeccable`, `frontend-design` and `ui-ux-pro-max` are installed ([Install](../start/install.md)), and a browser MCP server is connected. On a Pro plan, first [Run on a Pro plan](pro-plan.md).
+## Before you start
+
+- **A dev server the session can reach**, or let it start its own on a free port. It never stops a process it did not start.
+- **On a Pro plan**, read [Run on a Pro plan](pro-plan.md) first.
+- **Design skills are optional.** Where `impeccable`, `frontend-design` or `ui-ux-pro-max` is installed, the session reads the part it needs; none is required. See [Install](../start/install.md).
 
 ## Steps
 
-1. **Run `/kaizn:design-settle`** — by name, because `impeccable`'s description overlaps it.
-2. **Choose Fast or Full.** It is asked with the first question, on a new app and on a redesign alike.
+1. **Run `/kaizn:design-settle`.** It reads the repo and prints a block: the build, the model, the quota, the documents and components it found. Then it gives its reading of the app in one sentence. Correct it before anything is asked or drawn.
+2. **Answer one round of questions**, two at most: a direction out of three named ones or `decide for me`, a reference product, what stays (logo, brand colour, font, component library), theme and widths, the proving page, the copy voice. What your documents already answer is not asked. Where a `DESIGN.md` exists, the question is what must change, and the rest stays.
+3. **Open the two frames.** The session draws the proving page twice, as two files you open in a browser. They differ in structure, never only in colour, and hold your app's real content.
+4. **Pick `A`, `B`, a mix, or neither.** A mix or a correction is applied and shown again until you ratify it; `neither` gets one new pair.
+5. **Read the lines it decided for you.** While it writes `DESIGN.md`, each value the picked frame does not show — the other theme, the focus ring, motion, the contrast pairs — is printed as one line with its basis. Cancel any of them in chat.
+6. **Let it build the proving page.** The tokens go into the styling files, and that one page is built or restyled with the shared components it needs.
+7. **Read the check rows.** One script run measures the proving page at both widths: console errors, fonts, accessibility, contrast, motion, overflow. You see only the rows that failed or could not be verified.
+8. **Read the close.** The frames are deleted, the pages still on the old design are listed in `docs/queue.md`, and everything is committed once. Nothing is pushed.
+9. **Restyle the pages left, one per session**: ask for one by its queue line.
 
-   | | Who answers the design dialogs | The rest |
-   |---|---|---|
-   | Full | You, one dialog at a time | The frames, the pick, the gate and every check |
-   | Fast | The skill's own recommendation, shown as one block you cancel line by line | The same, unchanged |
-
-   `/kaizn:design-settle fast` skips the question.
-3. **Read the first block.** It prints what it found: the documents, whether `DESIGN.md` is written, how many UI components exist, the platform, the design material present, the quota used, and the flow it will follow.
-4. **Answer the non-visual dialogs**, or in Fast cancel the lines you disagree with.
-5. **Pick a direction on screen.** It draws two to four direction frames and you choose.
-6. **Approve the canvas once.** Every page is built in production-grade code on a canvas — above 12 pages, the proving page and one page per kind; your approval promotes it into the app, and the pass builds the rest on the pages you approved.
-7. **Start a new session when it asks, twice** — before the pages are promoted and before they are checked. Run `/kaizn:design-settle` again and choose to continue; it costs far less than one long session.
-
-## Where UI already exists
-
-- **You are asked the scope first**, where the app has more than one page group: the whole app, or the groups this run redraws. Every page in scope is read, drawn, promoted and checked, so a large app is redesigned one group at a time; above 12 pages only one page per kind is drawn.
-- **The existing UI is audited next**, from its source, and today's look is one of the candidates. Name `walk` at invocation or in your scope reply to have the audit open the running app too.
-- **Where `DESIGN.md` is already written**, you are also offered a fix of the drift only, instead of a redesign.
-- **Removals are shown at a gate** before anything is taken out.
-
-## Afterwards
-
-`design-settle` commits once, when it closes. Where UI exists the pass runs on its own branch and the commit lands there; merging it is yours.
-
-`DESIGN.md` is the design source, and `design-settle` is the only skill that edits it. A later session that finds it absent or finds code deviating from it stops and points you back here. Deviating code is a finding, never a new norm.
+> [!WARNING]
+> In an app that already has pages, the tokens reach every page at once: colour, type and spacing change everywhere the moment the styling files are written, while the layout changes only on the proving page. The session says so before you pick.
 
 ## Related
 
-- [design-settle](../reference/design-settle.md) — every step in detail.
-- [ui-build](../reference/ui-build.md) — what holds the UI to `DESIGN.md` afterwards.
+- [design-settle](../reference/design-settle.md) — every stop, and what the check covers.
+- [ui-build](../reference/ui-build.md) — the rules a later page is built by.
+- [What is proven](../reference/status.md) — this flow has not yet run in a real app.

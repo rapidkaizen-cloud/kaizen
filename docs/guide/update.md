@@ -23,6 +23,18 @@ agy plugin install https://github.com/rapidkaizen-cloud/kaizn
 
 The install is a copy, and nothing refreshes it.
 
+## Moving to 1.0.0
+
+Version 1.0.0 removed every guard and the rules a session used to be handed at its start. Nothing breaks on update, but an app repo is under no rule until you give it one.
+
+1. **Run `/kaizn:norms-config` once in each app repo.** It writes the working rules into that repo's `CLAUDE.md`; before that, a session there follows none of them. See [Working rules](../concepts/working-rules.md).
+2. **Protect what the guards protected, yourself.** Nothing holds a push, a merge or a destructive SQL statement any more: turn on branch protection, keep database backups, and give sessions a database login that is not the owner.
+3. **Say where your files go, if you used the output folder.** The plugin no longer prints or guards one. Name the folder when you run `norms-config`, and it becomes a line of the block.
+4. **Leave or delete the old settings.** `switches.json` and the marker `onboarded-output` in the plugin's data folder, and `.claude/destructive-gate.off` in a repo, are read by nothing.
+5. **Stop asking for what is gone**: `/kaizn:logic-settle`, and `app-settle`'s modes `migrate`, `align`, `rework` and `seed`. `app-settle` now writes documents only — it scaffolds no app.
+
+[Maintain app repos](maintain-app-repos.md) lists what a repo from an older version still carries.
+
 ## Moving from raizen-norms
 
 Until 0.106.0 the plugin was `raizen-norms`, from the marketplace `raizen`. An update in place keeps the marketplace under its old name, so move once instead:
@@ -47,7 +59,7 @@ git -C ~/.claude/plugins/marketplaces/kaizn branch -u origin/main main
 claude plugin marketplace update kaizn
 ```
 
-Then restart Claude Code. Removing the marketplace and adding it again works too, but it uninstalls the plugin and takes its switches and output folder with it. Antigravity is not affected: its install is a copy, made again from the URL.
+Then restart Claude Code. Removing the marketplace and adding it again works too, and takes one more step: the removal uninstalls the plugin, so install it again. Antigravity is not affected: its install is a copy, made again from the URL.
 
 ## Check what you are running
 

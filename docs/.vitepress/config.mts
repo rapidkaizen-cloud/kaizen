@@ -22,7 +22,7 @@ function sidebar() {
 
 export default defineConfig({
   title: 'kaizn',
-  description: 'kaizn settles an app one layer at a time and holds every later session to what was settled.',
+  description: 'kaizn is nine standalone skills for building an app with an agent, and eight working rules a repo keeps in its own CLAUDE.md.',
   // Served as a project site: https://rapidkaizen-cloud.github.io/kaizn/
   base: '/kaizn/',
   cleanUrls: true,

@@ -1,39 +1,24 @@
 # Start a new app
 
-From an empty directory to the first page built, in three interviews and one request.
-
-Before you start: the plugin and its [companion skills](../start/install.md) are installed, and a browser MCP server is connected — `design-settle` uses it for every screenshot and browser check.
+From an empty directory to the first page, in sessions you start yourself.
 
 ## Steps
 
-1. **Open Claude Code in an empty directory.**
-2. **Run `/kaizn:app-settle`.** It reads the directory and reports the mode it found: empty means bootstrap. It interviews you about the problem domain and the stack, writes the documents, scaffolds the app and runs `git init`. See [app-settle](../reference/app-settle.md).
-3. **Open the new repo and run `/kaizn:logic-settle`.** It settles the layer between the database and the UI, and the one folder every database call lives in. See [logic-settle](../reference/logic-settle.md).
-4. **Run `/kaizn:design-settle`.** Its first question asks Fast or Full. It then draws two to four direction frames, you pick one on screen, and it builds a canvas of every page — above 12 pages, one page per kind — that you approve once. `/kaizn:design-settle fast` skips the first question. See [design-settle](../reference/design-settle.md).
-5. **Ask for the first page.** `build-flow` loads by itself and builds from `docs/queue.md`. A finished page is committed in the same turn and reported with its route. See [build-flow](../reference/build-flow.md).
-6. **Reply when it asks to publish.** A push you did not ask for waits for your answer in chat. See [Gates](../concepts/gates.md).
+1. **Open Claude Code in an empty directory and run `/kaizn:app-settle`.** It prints a short block: the mode — `Bootstrap` here — and what it found.
+2. **Describe the app in your own words.** The session gives its reading in one paragraph and waits for your correction. It then asks about six themes: the problem, who uses the app and how they work today, what each role must finish, the business rules and the reason behind each number, the terms that are easy to misread, and what the app is not for. `none` is an answer.
+3. **Answer one round about the stack**: platform, frontend, database with auth, hosting. Each comes with a recommendation and its trade-off, and `decide for me` takes it.
+4. **Read the summary and say yes.** It lists each file and what it will hold, with every `[needs verification]` marked. Nothing is written before your yes.
+5. **Let it write and commit.** `CLAUDE.md`, `README.md`, and under `docs/`: `product.md`, `rules.md`, `changelog.md`, `queue.md` and `README.md`. It runs `git init` where the directory is no repo yet, commits once, and pushes nothing.
+6. **Run `/kaizn:norms-config`.** It adds the working rules to `CLAUDE.md`, in one commit.
+7. **Run `/kaizn:design-settle`** where the app has a UI. You pick between two frames of one page, and that page is built first. [Redesign the look](redesign.md) walks through the run.
+8. **Ask for the next page**, by its line in `docs/queue.md`. A session builds one page, or one batch of pages of the same kind, and queues the rest.
 
 > [!NOTE]
-> `logic-settle` and `design-settle` each commit what they wrote when they close. One that stopped before its close leaves the working tree dirty, and `app-settle`'s migrate and align modes stop on a tree that is not clean.
-
-## What the repo holds afterwards
-
-| File | Holds |
-|---|---|
-| `docs/` | The app's documents, for the developer and the agent: the index, the product, the rules, the glossary, the architecture map, the runbook, the changelog, the queue, one record per decision |
-| `DESIGN.md` | The design system — written by `design-settle` alone |
-| `README.md` | What the app is and how to run it |
-| `CLAUDE.md`, `AGENTS.md` | Instructions for agents; they record nothing about the app |
-
-The full list, and what gets each one written: [Documents](../concepts/documents.md).
-
-## If something goes wrong
-
-- **The directory is not empty, but holds no application code and no PRD** — a stray `README`, a `.git` and nothing else. `app-settle` stops and asks whether to continue there or move. It overwrites nothing.
-- **The branch is `main`.** A session never works on `main`. Where no `development` branch exists, `app-settle` offers to create it from `main` and switch to it.
-- **A companion skill is missing.** The session asks before continuing, and names what is lost without it.
+> `app-settle` writes documents, never code: it scaffolds nothing. The app's code starts with the session that builds the first page.
 
 ## Related
 
-- [Quickstart](../start/quickstart.md)
-- [Bring in an existing app](existing-app.md)
+- [app-settle](../reference/app-settle.md)
+- [norms-config](../reference/norms-config.md)
+- [build-flow](../reference/build-flow.md) — how a page is built, and where a session stops.
+- [Documents](../concepts/documents.md)

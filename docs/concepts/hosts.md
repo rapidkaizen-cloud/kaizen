@@ -1,34 +1,26 @@
-# Hosts — Claude Code and Antigravity
+# Hosts
 
-The repo root is the plugin for both hosts: the same skills, the same norms, the same guards.
-
-Each host reads its own manifest and its own hook file. `.claude-plugin/` and `hooks/` are Claude Code's; `plugin.json` and `hooks.json` at the root are Antigravity's.
-
-## What differs
+The same nine skills install on Claude Code and on Antigravity; the working rules and the one hook do not reach both the same way.
 
 | | Claude Code | Antigravity |
 |---|---|---|
-| Install | `/plugin marketplace add`, then `/plugin install` — see [Install](../start/install.md) | `agy plugin install <repo URL>` — see [Run on Antigravity](../guide/antigravity.md) |
-| Update | By itself with `autoUpdate`, or two commands | Uninstall, then install again: the install is a copy, and nothing refreshes it |
-| Norms and documents | Printed at `SessionStart` | Injected before the first model call of a conversation, with the app's `CLAUDE.md` and a `HOST` block mapping the tool names |
-| Where the norms run | Wherever the plugin is enabled | Every folder `agy` opens |
-| The document reminder | With the result of a commit that touched no document | Before the model call that follows such a commit, once per commit — a hook there cannot hand the model text after a tool has run |
-| The context reminder | At the first message or commit after the context passes 200k, 500k or 800k tokens, and a message held after an hour idle above 100k | None — a hook there can neither hand the model text after a tool has run nor hold a message |
-| A question to you | `AskUserQuestion` | `ask_question` |
-| The output folder | Set with `norms-config`, which the first session on a machine runs once | None: never set |
-| The [switches](../reference/norms-config.md) | Set with `norms-config`, kept in the plugin's data folder; the first session on a machine runs it once | None: every rule `on` |
+| Manifest | `.claude-plugin/plugin.json`, `hooks/hooks.json` | `plugin.json` at the repo root |
+| Install | `/plugin marketplace add`, then `/plugin install` | `agy plugin install <URL>` |
+| Update | By itself with `autoUpdate` on | Uninstall, then install again: the install is a copy |
+| Skills | All nine | All nine |
+| Working rules | Read from the repo's `CLAUDE.md` by the host | Not verified: the block is written into `AGENTS.md` where the repo has one |
+| Context reminder | Yes | None: the plugin ships no hook there |
+| `Quota` row of `design-settle` | Read from `claude -p "/usage"` | Printed as `not read` |
 
-## What is the same
-
-- **A held push or merge.** The session ends its turn on the command and its commits, and runs it once when a reply typed in chat is a yes. The guard holds the command until a reply exists; reading it as a yes is the session's.
-- **A refusal.** A guard that refuses stops the tool on both hosts.
-- **The skills.** They are written in Claude Code's vocabulary; on Antigravity the `HOST` block is the one place the tool names are mapped.
+> [!NOTE]
+> 1.0.0 has not been installed or run on Antigravity. Every row of that column describes what the plugin ships, never what was seen. See [What is proven](../reference/status.md).
 
 ## Switching hosts mid-work
 
-When the working tree is dirty and the other host ran the last session in the repo, the session start prints a hand-over block: that session's last request, the answers you gave, its todo list, and the last thing it said. It is read from the other host's transcript, so it works on the same machine only.
+Nothing a skill writes belongs to one host: `CLAUDE.md`, `docs/`, `DESIGN.md` and the commits are the whole hand-over. A session on the other host reads the same files.
 
 ## Related
 
-- [What is proven](../reference/status.md) — what has run for real on each host.
-- [session-start](../reference/session-start.md) — the hand-over block and the `HOST` block in detail.
+- [Install](../start/install.md) — Claude Code.
+- [Run on Antigravity](../guide/antigravity.md)
+- [Update the plugin](../guide/update.md)

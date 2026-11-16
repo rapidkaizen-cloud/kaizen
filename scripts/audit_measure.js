@@ -1,8 +1,8 @@
 function (mode) {
-  // audit_measure.js - what the open page renders, for design-settle's audit walk
-  // (skills/design-settle/references/audit-walk.md). Not a script to load: one function,
-  // pasted as `const M = <this file>` inside an evaluate call, kept in window.name, and
-  // called once per route and theme mode, so two walks measure the same things.
+  // audit_measure.js - what the open page renders, read by verify_pages.js from its own
+  // folder. Not a script to load: one function, pasted as `const M = <this file>` inside
+  // an evaluate call, kept in window.name, and called once per route and theme mode, so
+  // two runs measure the same things.
   // mode: none = contrast pairs and components · 'pairs' = pairs only · 'focus' = the
   // focus ring of the first field and button · 'selftest' = the colour arithmetic.
   const cache = new Map();

@@ -7,8 +7,8 @@ Two commands in Claude Code and a restart. For Antigravity, see [Run on Antigrav
 | Needs | Why |
 |---|---|
 | Claude Code | The host the commands below are typed into |
-| `python3` | Every `kaizn` hook calls it. With only `python` on the machine the guards silently never run |
-| Node.js | The companion skills install through `npx` |
+| `python3` | The context reminder and `norms-help` call it. With only `python` on the machine the reminder silently never runs |
+| Node.js | The script `design-settle` checks a page with runs on it |
 
 ## Install the plugin
 
@@ -21,45 +21,31 @@ Two commands in Claude Code and a restart. For Antigravity, see [Run on Antigrav
 2. **Turn on `autoUpdate`.** In `~/.claude/settings.json`, set `"autoUpdate": true` on `kaizn` under `extraKnownMarketplaces`, so a new version reaches the machine at its next start.
 3. **Restart Claude Code.**
 
-Nothing is asked: every rule starts `on`. The first session, once your task is done, runs `/kaizn:norms-config` once: which rules to switch, and where the reports and files sessions make for you go. Run it again any time; a guard that refuses also tells the session it can be switched. See [norms-config](../reference/norms-config.md).
+The plugin asks nothing and prints nothing when a session starts. To give a repo the working rules, run `/kaizn:norms-config` once in it: see [Working rules](../concepts/working-rules.md).
 
-## Companion skills
+## Optional design skills
 
-Required. A session missing any of them asks before continuing.
+None is required, and a session never asks for one. Where one is installed, `design-settle` and `ui-build` read the part of it the work at hand needs.
 
-| Skill | Install | What it is for |
-|---|---|---|
-| `impeccable` | `npx impeccable install` | The craft rules a session reads before it writes any component, and the detector `design-settle` runs on each round |
-| `frontend-design` | `/plugin` | Craft rules read before any component, beside `impeccable`'s |
-| `ui-ux-pro-max` | `/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill`, then `/plugin install ui-ux-pro-max@ui-ux-pro-max-skill` | The UX floor level with `impeccable`, and the style, palette and type results `design-settle` mixes into its frames |
-| Playwright MCP | `claude mcp add playwright -s user -- npx @playwright/mcp@latest --browser chrome --headless --isolated --output-dir "$(node -p "require('os').tmpdir()")/playwright-mcp"` | The browser every walk, screenshot and check runs in: your installed Chrome, headless, on a temporary profile, so your own Chrome is never touched. An MCP server, not a skill; needs Chrome installed |
+| Skill | Install |
+|---|---|
+| `impeccable` | `npx impeccable install` |
+| `frontend-design` | `/plugin` |
+| `ui-ux-pro-max` | `/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill`, then `/plugin install ui-ux-pro-max@ui-ux-pro-max-skill` |
 
-> [!NOTE]
-> Invoke `/design-settle` by name: `impeccable`'s description overlaps it. `ui-build` forbids `ui-ux-pro-max`'s `--persist` and every script of its sub-skills.
+## A browser
 
-Optional, never asked for when absent:
-
-- **`review-animations`** — the motion floor on web Surfaces. Installed alone: `npx skills add emilkowalski/skills --skill review-animations -g -a claude-code`.
-- **`apple-design`** — Apple's guideline pages `design-settle` reads for a macOS Surface: `npx skills add dickwu/apple-design-skill --skill apple-design -g -a claude-code --copy`. Then add `disable-model-invocation: true` to the frontmatter of `~/.claude/skills/apple-design/SKILL.md`: its description matches any design review, and it must never load as a reviewer. `npx skills update` drops the line; add it again.
-
-Recommended: `npx skills add supabase/agent-skills` (Postgres guidance for `db-ops`) and `ponytail`.
-
-> [!WARNING]
-> Do not install the `supabase` plugin: it adds a second Supabase MCP server. Connect the Supabase MCP once at user scope, with no query parameters in its URL.
-
-## Two conventions every app inherits
-
-- **An agent account.** Sessions sign in and seed test data through it. `db-ops` creates it by SQL on Supabase Auth, taking its email and password from the session's own instructions — your `~/.claude/CLAUDE.md`, for example. The toolkit stores neither.
-- **The `[CLAUDE]` prefix.** Every row a session creates for a test opens with it. Only a `DELETE` narrowed to that prefix passes `guard_destructive` unguarded; any other delete goes through the [destructive gate](../concepts/gates.md).
+- **For `design-settle`'s check**: Chrome installed on the machine, and Playwright in the app repo's own `node_modules`. Nothing is installed for you: where the repo has no Playwright, the check is reported `not verified`.
+- **For walking a page a session built**: any browser tool the session has, an MCP server for example. Without one the page is reported `not walked`.
 
 ## Check that it loaded
 
 - `/plugin` lists `kaizn`.
 - `/kaizn:norms-help` prints the running version, the commands and the last change, in any session.
-- `design-settle` prints the running build as `Skill build` in its Step 0 block.
+- `design-settle` prints the running build as `Skill build` in the block it opens with.
 
 ## Next
 
 - [Quickstart](quickstart.md) — the first run.
-- [Update the plugin](../guide/update.md) — on a machine without `autoUpdate`.
+- [Update the plugin](../guide/update.md) — on a machine without `autoUpdate`, and moving to 1.0.0.
 - [Run on a Pro plan](../guide/pro-plan.md) — what to turn off before a redesign on a Pro plan.

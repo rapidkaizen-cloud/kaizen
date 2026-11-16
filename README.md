@@ -1,6 +1,6 @@
 # kaizn
 
-`kaizn` is a plugin for Claude Code and Antigravity. Three interview skills decide with you an app's scope and stack, its logic layer and its look, and write the answers into the repo; rule skills, session norms and guard hooks hold every later session to those answers.
+`kaizn` is a plugin for Claude Code and Antigravity: nine standalone skills for building an app with an agent. Two interviews write an app's documents and its design, five sets of rules load as a session builds, one skill writes eight working rules into the repo's own `CLAUDE.md`, and one prints help. Nothing is enforced: every rule is text you can waive in chat.
 
 The name is *kaizen*, Japanese for continuous improvement, without its `e`: every command below spells it `kaizn`.
 
@@ -19,11 +19,11 @@ Antigravity:
 agy plugin install https://github.com/rapidkaizen-cloud/kaizn
 ```
 
-Requirements and companion skills: [Claude Code](docs/start/install.md), [Antigravity](docs/guide/antigravity.md).
+Requirements and optional design skills: [Claude Code](docs/start/install.md), [Antigravity](docs/guide/antigravity.md).
 
 ## Use
 
-In an empty folder, run `/kaizn:app-settle`, then `/kaizn:logic-settle` and `/kaizn:design-settle` in the repo it creates. After that, ask for a page; the rule skills load by themselves.
+In an empty folder, run `/kaizn:app-settle`, then `/kaizn:norms-config`, and `/kaizn:design-settle` where the app has a UI. After that, ask for a page. Each skill stands alone: run any one without the others.
 
 An app that already exists: [Quickstart](docs/start/quickstart.md). Every command: [Commands](docs/reference/commands.md).
 

@@ -1,49 +1,36 @@
 # How it works
 
-Settle, then hold: three interviews decide what is yours to decide, and everything else keeps later sessions to the answers.
-
-## Settle — decided with you, once per layer
-
-| Skill | Settles | Run it |
-|---|---|---|
-| [`app-settle`](../reference/app-settle.md) | The problem domain, the stack, the documents that record them — and existing code brought back onto the installed rules | First, in an empty directory or in a running app |
-| [`logic-settle`](../reference/logic-settle.md) | The layer between database and UI: server-state cache, boundary validator, date handling, error reporting, scheduled jobs, change attribution, the one folder every database call lives in, and the lint floor that holds the layer there | After `app-settle`, before `design-settle` |
-| [`design-settle`](../reference/design-settle.md) | The visual direction and the component library, written into `DESIGN.md` | Before the first UI component is written, and whenever you want a redesign |
-
-A settle skill runs only when you invoke it. Each answer you give is written into the repo; a decision is recorded once under `docs/decisions/` and never edited afterwards.
-
-## Hold — every session after
-
-| What holds | How |
-|---|---|
-| [Session norms](session-norms.md) | Printed at every session start, the same text in every repo |
-| The app's documents | `docs/README.md`, `docs/product.md` and `docs/queue.md` are printed at every session start, so a session reads them without being told. One too long to fit is named there instead, with an order to read it |
-| Rule skills | `build-flow`, `docs-format`, `ui-build`, `db-ops` and `logic-build` load by their descriptions when the work touches what they govern |
-| Hooks | Stand in front of the commands that cannot be taken back, and refuse or hold them whatever the session intends. See [Gates](gates.md) |
-
-Each block of the norms, each guard and each reminder can be switched to advice or off, for every repo at once, when it gets in your way — nothing asks at install: see [norms-config](../reference/norms-config.md).
+`kaizn` puts text in front of a session at three moments, and enforces none of it.
 
 ## What loads when
 
-| Part | Loaded |
-|---|---|
-| `app-settle`, `logic-settle`, `design-settle` | When invoked |
-| `build-flow`, `docs-format`, `ui-build`, `db-ops`, `logic-build` | By their descriptions |
-| `norms-help` | When asked for help, which command to run, the version, or what changed |
-| `norms-config` | When asked to switch a norm, a guard or a reminder on, to advice, or off |
-| Session norms, guard hooks | Every session where the plugin is enabled — installed at user scope, that is every folder on the machine. `app-settle` writes the `enabledPlugins` line into each app repo |
+| When | What the session gets | From |
+|---|---|---|
+| A session starts | The repo's `CLAUDE.md`, the [working rules](working-rules.md) included where the repo has them | The repo; the host reads it |
+| A session starts | The plugin's skills in the host's skill list | The plugin |
+| The work matches a skill, or you run its command | That skill's one file | The plugin |
+| The context passes 200k, 500k or 800k tokens | One note, once per milestone, on Claude Code | The plugin's [one hook](../reference/context-reminder.md) |
 
-## A repo that was never settled
+The plugin prints nothing of its own when a session starts, and a skill that never loads costs its line in the skill list and nothing more.
 
-A repo with neither a root `PRD.md` nor `docs/PRD.md` has never been through `app-settle`, and the documents the build skills measure code against do not exist. Its sessions get the norms in their `NOT SETTLED` form:
+## Every skill stands alone
 
-- **`build-flow` and `docs-format` do not apply.** There is no queue to build from and no document list to keep.
-- **`ui-build`, `db-ops` and `logic-build` still apply**, without the rules that read `docs/` or `DESIGN.md`.
-- **UI is built only from the components and tokens the repo already has**, and no new styling value is written. A repo with no UI yet is not bound by this.
-- **The session says once**, when the work is done, that `app-settle` has not run there.
+A skill reads `CLAUDE.md`, `docs/` and `DESIGN.md` where the repo has them, and runs where it does not: the page a skill would have read simply binds nothing. No skill sends the session to another, so the order is yours. [Quickstart](../start/quickstart.md) gives one that suits a new app.
+
+## Why nothing is enforced
+
+Until 1.0.0 the plugin shipped hooks that refused a command: a push, a destructive statement, a file written to the wrong folder. A hook cannot ask: it can only refuse, the case that should have passed included, and each refusal costs one more call. The rules are now text, and you can waive any of them in chat.
+
+What that costs you:
+
+- **A session that skips a line is stopped by nothing.** The plugin has no second check behind the text.
+- **A push and a destructive statement are held by a sentence**, the `Git` and `Data` lines of the working rules. A session that reads them stops and waits; nothing refuses the command if it does not.
+- **A repo carries the rules only after `/kaizn:norms-config` ran in it.** Until then a session works by the host's own defaults.
+
+For an app that runs in production, keep the protections that do not depend on a session: branch protection on the remote, backups of the database, and a database login with less than owner rights for everyday work.
 
 ## Related
 
-- [Overview](../start/overview.md)
-- [Documents](documents.md) — what an app repo keeps, and what gets it written.
-- [session-start](../reference/session-start.md) — exactly what is printed, and when.
+- [Working rules](working-rules.md) — the eight lines, and how to waive or change one.
+- [Documents](documents.md) — the files a skill reads where they exist.
+- [What is proven](../reference/status.md) — what has run for real since the rebuild.
