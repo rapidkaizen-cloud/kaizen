@@ -1,37 +1,32 @@
 # Maintain app repos
 
-What an app repo started under an older version still carries, and how to clear it.
+A repo started under an older version still carries files and sections that 1.0.0 neither reads nor maintains; nothing breaks while they stay.
 
-## Old sections in an app's `CLAUDE.md`
+## After an update that changes the working rules
 
-An older app's `CLAUDE.md` may still carry a norm that has since moved into the plugin. The two then contradict each other silently, so the session start names every such section it finds. Delete them:
+Run `/kaizen:norms-config` in each repo. A version's changelog entry says when the block changed. See [Working rules](../concepts/working-rules.md).
 
-- the git paragraph under *Before touching anything*
-- the `GIT` block under *Closing a session*
-- the *Pointers* table
-- the *Scope* section
-- the closing report (*Report per scope item…* and the `PRD` block)
-- *Read `PRD.md` at the start of a session*
+## What a repo from before 1.0.0 still carries
 
-Where the two disagree, the plugin's norms are the newer.
+| Found | Where | What to do |
+|---|---|---|
+| No working rules | `CLAUDE.md` | Run `/kaizen:norms-config` once. Until then none of the old session norms reaches a session there: they are no longer printed at session start |
+| `switches.json`, the marker `onboarded-output` | The plugin's data folder on the machine | Nothing reads them. Delete them or leave them |
+| `.claude/destructive-gate.off` | The repo | Nothing reads it. Delete it |
+| An output folder set through the old `norms-config` | `switches.json` | No longer printed or guarded. Name the folder to `/kaizen:norms-config` to get it as a line of the working rules |
+| Sections an older `app-settle` wrote | `CLAUDE.md` | Kept as they are. `app-settle` adds only what the file lacks |
+| A root `PRD.md` or `docs/PRD.md` | The repo | Read as it is. It no longer marks a repo as settled, and no skill moves it unless you ask |
+| Lint floors and rule tests | The repo's lint config and tests | They are the repo's own and keep running. No skill maintains them |
+| Documents beyond `product.md`, `rules.md`, `queue.md`, `changelog.md` | `docs/` | Kept, and kept true. No skill writes a new one unless you ask |
+| The plugin installed at project scope | The repo's `.claude/settings.json` | It updates separately from the user-scope install and falls behind: see [Update the plugin](update.md) |
 
-## A root `PRD.md`
+## What is gone, with nothing in its place
 
-An app started before the `docs/` form keeps its root `PRD.md` and `QUEUE.md` until `app-settle` runs in it and migrates them, in one commit. Until then every skill reads it through `docs-format`'s legacy map. See [Bring in an existing app](existing-app.md).
-
-## A project-scoped `.mcp.json`
-
-An app with a project-scoped `.mcp.json` shadows the user-scope Supabase server. Delete the file, commit, and restart.
-
-## A plugin entry at project scope
-
-A project-scope entry updates separately from the user-scope one and falls behind, so sessions in that repo can run an older version than the rest of the machine. [norms-help](../reference/norms-help.md) shows which version a session loaded. Install at user scope only.
-
-## Retiring another section
-
-When a section moves from the apps' `CLAUDE.md` into the plugin, add its distinctive phrase to `STALE` in `scripts/session_norms.py`, and a line to the list above.
+- **The audit and the modes `migrate`, `align`, `rework` and `seed`** of `app-settle`. It has two modes: `Bootstrap` and `Document`.
+- **`logic-settle`.** A need with no recorded choice — a cache, a validator, where errors go — is asked once by the session that first meets it, and recorded in the Stack table of `CLAUDE.md`.
+- **Every guard.** See [How it works](../concepts/how-it-works.md) for what holds a push or a destructive statement now.
 
 ## Related
 
-- [session-start](../reference/session-start.md) — the notes a session start adds.
-- [Update the plugin](update.md)
+- [Update the plugin](update.md) — moving to 1.0.0.
+- [Documents](../concepts/documents.md)

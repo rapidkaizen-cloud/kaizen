@@ -1,180 +1,116 @@
 ---
 name: design-settle
-description: Settle the visual direction and component library of an app, with or without existing UI — non-visual dialogs, a search for real products, 2-4 direction frames picked on screen, then a canvas of every page in production-grade code, approved once and promoted into the app. Existing UI is audited first and today's look is one candidate; a written DESIGN.md adds the offer to fix only the drift. Fast or Full changes only who answers the dialogs. Use before the first UI component of a repo is written, and whenever the user wants to redesign, restyle, or overhaul the look of an app that already has one.
+description: Settles an app's visual direction in one session — a reading, one round of questions, two direction frames drawn as real pages for the user to pick on screen, then `DESIGN.md` and one proving page. Use only when the user asks to design, redesign or restyle an app, or to settle its design system.
 ---
 
-# design-settle — the visual direction, from nothing or from what exists
+# design-settle — direction, DESIGN.md, one proving page
 
-`app-settle` writes the documents, `logic-settle` the layer under the UI; this skill decides how the app looks and alone writes **`DESIGN.md`**. Documents are named by their `docs/` path; a repo with a root `PRD.md` reads each through `docs-format`'s legacy map.
-
-**One path, two facts**: Step 0 reads whether **UI components exist** and whether **`DESIGN.md` is written**.
-
-| UI components | `DESIGN.md` | What switches on |
-|---|---|---|
-| none | absent | The shortest path: reading → interview → frames → canvas → ratify → promote in place → verify |
-| present | absent | The scope, the audit, the function and frame inventories, `Keep — today's look` as one candidate, the gate before any real page moves, the pass on its own branch, parity checks |
-| present | written | All of the above, plus the fix-or-redesign question before the interview and the `DESIGN.md` diff at the gate |
-| none | written | STOP — ask whether the user really means to redesign an app whose UI was removed, and treat the answer as the row above |
-
-A rule marked *UI exists* or *`DESIGN.md` written* runs only under that fact; an unmarked one runs on every repo.
-
-## What a run costs — six rules
-
-- **Read a step's file when the flow reaches that step, never earlier** — the table under Step 2 names each. Never read a file for a switch that is off; read a section named from another step alone, by its heading.
-- **Run a step's independent reads, searches and commands in one turn** — parallel calls or one chained command — because every extra model call re-reads the whole session.
-- **Hand non-taste work to one subagent on a cheaper model than the session's** (`sonnet` on Claude Code), **and keep every decision here**: the stack verification, the reference search, the platform research, every search across the repo, every build, lint and test run — the audit in the two Step 1 names, each page's promotion in the one `pass.md` names, Step 8's mechanical checks in the three `verify.md` names. Brief it with the file that rules the job and take back only the compact result that file names, never its raw results. No subagent → run it here and say so; no model choice → the session's model.
-- **Have every capture taken by a subagent that reads it and returns each defect with the capture's path, and open only the captures it flags** — a round's with its render scan (`frames.md`), a page's with its promotion, Step 8's with its group — handing the user every path, because an image read here is re-read by every later call.
-- **Never re-read what the session start printed** — the documents and the two listings.
-- **End the turn at every seam and tell the user to run this skill again in a new session, with the price of staying in one clause** — the last context note's size, else that every later call re-reads all this session holds. The seams: after the pick and its refine round · after a canvas judgement that asks for any redraw, before redrawing · once the documents are written — after Step 6 where no UI exists, after the pass's first act where it does · after the proving page, then after each page group — the scope's (Step 1), or the archetype table's where no UI exists · after the pass's last point, before Step 8 · wherever the context note (`context-reminder`) arrives. First write `.design-audit/resume.md` with what the steps ahead need and the repo does not show: the path taken, the scope, the account held, every line answered or cancelled, the canvas rounds and the answers a redraw still owes, what Step 9's block owes from the steps behind. A reply in the same session continues there.
+One session settles the direction and proves it on one page. Every other page is later work, one page per session, built from `DESIGN.md`.
 
 ## Hard limits
 
-**The confirmed reading is the precondition, not the documents**: missing documents or an off-shape legacy `PRD.md` stop nothing, and nothing about the look is asked or drawn before the user confirms the Step 1 reading.
+- **Run only when the user asks for it.** A product with no UI → say the skill does not apply, and stop.
+- **Rank sources user → code → documents.** Never write `DESIGN.md` from existing code: a finding becomes a line only once the user ratifies it.
+- **Keeping everything as it is is a valid ending**: manufacture no change.
+- **Nothing the user did not choose is silent**: each value you decide beyond the picked frame is one line with its basis, which the user can cancel. Decided by nobody → `[needs verification]`.
+- **Frame files live only under `src/design-canvas/`.**
+- **Never write a second design file**: no `MASTER.md`, no `design-system/` folder, no staging document.
+- **A code-minimizing mode of the session governs how the code is written, never what the design holds.**
+- **Commit once, at the close.** Never push, merge or open a pull request.
 
-**`DESIGN.md` is never written from existing code**: the audit produces findings, and a finding becomes a line only once the user ratifies it, line by line.
+## Step 0 — read, print, read back
 
-**`DESIGN.md` and the decision records are written once, never before their stop** — at Step 6 where no UI exists; where it does, as the pass's first act on its own branch once the gate approves. No draft stands in for them; a rejected gate leaves every document as it was.
+Read in one round: `CLAUDE.md`, `docs/README.md` and the files it links, `DESIGN.md`, the styling files, the listing of the component folder, the routes. A file that is absent is a row that says so, never a stop.
 
-**Decisions are written in four places and no fifth:** `DESIGN.md` (`references/design-md.md`), with any sidecar `impeccable`'s schema puts beside it — in a legacy repo, Section 5 and the `DESIGN.md` generated from it · `docs/decisions/`, one record per stack part settled (`ratify.md`) — none in a legacy repo · the Component library row of `CLAUDE.md` when the library answer is not *keep* or the row names none · the `## UI` part of `AGENTS.md` — paths and a command, never a value.
-
-**Every other write is on this closed list and records no decision:** the styling files and the library's theme file · the `/design-system` route · the linter config, the one local plugin file it loads (`pass.md`, The lint floor) and its suppression baseline · a whole `AGENTS.md` where none exists · `docs/queue.md` lines, and the file where none exists, in the shape `build-flow`'s `references/new-queue.md` gives an app that never split its work, with no approval stop since the gate and the close show its lines · the `docs/README.md` line for `DESIGN.md`, and for `docs/decisions/` where the folder is new · the `docs/guide/` pages quoting a label the pass changed · the dependency and lock files, through an approved install · everything under `src/design-canvas/` and `.design-audit/` · the files the pass writes — the approved file plan where UI exists, the promoted pages, contracts and routes where none does. Anything else is a finding. Never create `MASTER.md`, the `design-system/` folder `ui-ux-pro-max` persists, a staging document, or a `DESIGN.md` written from code. A document another skill produces in this session is neither committed nor referenced.
-
-**The canvas is the final front-end, staged**: production-grade files that promotion relocates, differing from the live page only in data. The canvas phase only adds files under `src/design-canvas/`, which no other session touches; where UI exists the pass runs isolated on its own branch or worktree, otherwise in place.
-
-**Blindness — where UI exists, the current design is not an input, and `DESIGN.md`'s prose is the current design.** Its visual-direction prose, signature, ornament rules and archetype shell column constrain nothing; a signature is redrawn only because the new direction earns it, tagged. The audit's numbers price the pass and power the before/after, never anchor the direction. **It is enforced by distance**: only the audit's subagents open the old UI; the drawing session works from `.design-audit/handover.md` and the answers, opens no file of the app beyond `docs/product.md`, `docs/rules.md`, `docs/glossary.md`, `CLAUDE.md` and the data-layer files `handover.md` names, and never reads the dependency file. **The one exception is a value the user chose to keep**, read alone from the styling files. A value meets the one it replaces only at the Step 6 gate, where the blindness ends.
-
-**Keeping everything is a valid ending.** All *keep*, `Keep — today's look`, or a revert redraws nothing: the code changes only by a repair approved at the gate, and `DESIGN.md` only by what that gate ratifies — a Keep that finds none writes it whole, from the ratified measured values, as the pass's first act (`gate.md`). Say so, report the findings, manufacture no change.
-
-**A code-minimizing session mode governs the how, never the what**: write every file lean, but never remove what this skill requests — the full product draft with its proposals tagged, every state drawn, the fixtures file that closes, the two-layer palette and the component-token table, the `/design-system` route, the compare page, the signature, and every engine or library approved at the install gate, used where it covers the job.
-
-**Commit once, at the close, by the session norms' `GIT` block** — on the pass's branch where UI exists, on the current branch where none does (`verify.md`, Step 9). Nothing is committed before it, so a pass stopped at a seam leaves its tree dirty. Never push, merge, or open a PR.
-
-**Research what the session does not know with confidence by WebSearch, at the step that needs it, source named** — platform guidelines, a package's current API or version, a product's current screens, a standard's wording — never recalled, never written into this toolkit. Load a search tool the harness defers before use: unavailable means the load itself failed, never that the name was absent from the tool list; then say so and mark the finding unverified.
-
-**Not decided by the user → `[needs verification]`.**
-
-**Every question goes through AskUserQuestion, never prose**, in auto mode too — recommendation first and marked "(Recommended)", each option's consequence in its description, everything needed inside the dialog, up to four per call, every label in the user's words and never this skill's (*ratify*, *seam*, *archetype*, *departure*, *escalate*). Two questions mark no recommendation: Fast or Full, and a round's verdict — the session does not grade its own drawing. The exceptions are the chat stops, each ending the turn until a reply: the scope (Step 1), the install gate, the one-line package approvals (font, linter), the Step 6 gate and its REPAIR list, the proving page in a shell or desktop Surface's own window (`pass.md`), the Step 8 deletion.
-
-**Nothing the user did not choose is silent**: every value decided beyond the picked frame surfaces as one cancellable line with its basis (`interview.md`, What the designer settles).
-
-## Fast or Full
-
-**Ask Fast or Full on every repo, as a second question in the reading's call, neither option recommended** — skipped when the user named one at invocation (`/design-settle fast`), asked again in a resumed session's re-entry call. Full runs every step as written. Fast changes who answers, never what is decided, drawn or checked, and skips no step — the search, the frames and the pick, every scan and floor, the gate's removals and every Step 8 check run as in Full:
-
-- **Answer every dialog with its recommendation** — the stack, the four product calls, the triggered engines, the archetype grouping — **and the direction question with `Decide for me` alone**, because its recommended direction is one tick, never a set. Compose and verify only the recommendation; the other options are composed when its line is cancelled.
-- **Where UI exists, still ask a stack dialog whose recommendation is not *keep***, because a replaced library or styling rewrites every component.
-- **Put Step 2's question in the reading's call where Fast was named at invocation**; chosen in that call, ask it alone in the next.
-- **Show every pre-answer as one cancellable line with its basis, above the install gate's lines, in the same chat stop** — held even when nothing installs. A cancelled line opens that dialog alone, several cancelled in one reply in one call; every line that read its answer — the styling, the icon pack and the install lines after a cancelled library — is answered again from the new one, then the block is shown again.
-- **Where UI exists, say in the direction line that cancelling it offers `Keep — today's look`**, because Fast never asks the question that names it.
-- **Ask the canvas judgement in one call: the verdict and the signature question**, with the features, assumptions, hand-rolled controls, shells and departures printed above it as cancellable lines. A line named under the verdict's Other or in chat is cancelled and opens the question Full asks for it (`canvas.md`, Judging), several in one call; the verdict is then asked again.
-- **Fix a failing contrast pair to the nearest step that passes**, reported as a floor-forced line (`interview.md`, What the designer settles).
-- **Where UI exists, put the font's install line in the Step 6 gate.**
-
-## Step 0 — Preconditions
+Print the block whole:
 
 ```
-Skill build     : [kaizn x.y.z — read from this plugin's own .claude-plugin/plugin.json]
-Model           : [the model this session runs on, as the host names it — proven on Opus]
-Quota           : [the `used` lines `claude -p "/usage" --strict-mcp-config` prints, run with the
-                   reads — on Claude Code only; `not read — <host>` on any other host]
-Documents       : [docs/ form / legacy PRD.md / legacy PRD.md, off-shape / none]
-DESIGN.md       : [written / absent / product without UI — written or absent from its presence
-                   alone; product without UI from the Surface row naming a CLI or a service
-                   nobody looks at, never from `DESIGN.md` being absent; in a legacy repo from
-                   Section 5's heading and `[needs verification]` markers, never from its
-                   prose: that is the old look]
-UI components   : [file count — 0 on a repo with no UI]
-Scope           : [the whole app / the page groups named, n pages of n — settled before the
-                   audit where UI exists (Step 1); in a resumed session from
-                   .design-audit/resume.md; `whole app` on a repo with no UI]
-Kind of app     : [from docs/product.md, else read from the code, else asked at Step 1 — a label, never a branch]
-Register        : [first visit / tenth use / both, per page group — from the Roles, else from the routes]
-Platform        : [from the Surface row, else from the manifest and platform files — web, or the
-                   platform found; a non-web value routes every browser-named check to that
-                   Surface's Proof profile line, or to the platform's own tooling where none is written]
-Native build    : [n/a — web / ready / missing — <tool> — on a Surface that ships a binary, each
-                   tool its build command needs found on this machine, never by running the build]
-Primary role    : [from the Roles, else from the roles the code enforces, else asked at Step 1]
-Design material : [impeccable · frontend-design · ui-ux-pro-max present/absent — Required ·
-                   Playwright MCP present/absent, from the session's tool list — Required ·
-                   review-animations present/absent, found on disk per ui-build, never from
-                   the skill list — Optional.
-                   Presence only: read from Step 5, ui-ux-pro-max from Step 3]
-Logic layer     : [settled — CLAUDE.md carries a Data layer row / not settled]
-Branch          : [name · clean or has uncommitted changes]
-Leftover        : [none / canvas alive / pass partly applied / pass applied — from
-                   src/design-canvas/, .design-audit/gate.md and git state]
-Switches        : [UI exists: yes/no · DESIGN.md written: yes/no]
-Answers         : [Fast / Full — named at invocation, else asked in the reading's call]
-Reading         : [one sentence — see Step 1]
-Flow            : reading + Fast or Full (+ scope, then audit in two subagents, where UI exists)
-                  → fix or redesign (where DESIGN.md written)
-                  → non-visual dialogs, answers locked → reference search → direction question
-                  → install gate → material loaded → 2–4 direction frames → pick → refine
-                  → design plan → canvas rounds → ratify (+ gate where UI exists)
-                  → pass → verify → close
+DESIGN-SETTLE
+Skill build     : kaizen [version, from .claude-plugin/plugin.json two levels above this file]
+Model           : [the model this session runs on, as the host names it]
+Quota           : [the `used` lines of `claude -p "/usage" --strict-mcp-config`, on Claude Code] | not read — [host]
+Documents       : [the files read] | none
+DESIGN.md       : written | absent
+UI components   : [count of component files]
+Kind of app     : [...]
+Platform        : [web | desktop | mobile]
+Primary role    : [who uses it most]
+Design material : [the design skills installed] | none
 ```
 
-**Print the block on every invocation**, before any work beyond the reads that fill it, in one turn of parallel reads. Ask a Required `Design material` absence or a `missing` Native build right after it (Step 1); show a stale `Skill build`, never block on it.
+Then one sentence, and stop for correction before anything is asked or drawn:
 
-**A `Model` other than Opus is asked once through AskUserQuestion, right after the block, in Fast too** — stop and run this skill on Opus, recommended, or continue — because other models dropped whole steps of this skill, and one redesign another model took over was redone.
+*"I read this as [kind of app] on [platform] for [who uses it], leaning [the feel that fits], because [reason from the documents or the code]."*
 
-**Re-entry is a gate, never an inference.** When `Leftover` is not `none`, one mandatory AskUserQuestion follows the block, before any other work, however obvious the state looks:
+## Step 1 — one round of questions
 
-- **Continue** — resume at the step the state shows, reading `.design-audit/resume.md` where it stands, then that step's file: pass applied but unverified → Step 8; pass partly applied → Step 7 at the next seam point, `.design-audit/gate.md` read first where UI exists; canvas ratified but not promoted → Step 7; canvas mid-rounds → Step 5; frames drawn but not picked → the pick. Announce the resumed step and what remains before touching anything.
-- **Start over** — the full path from Step 1. The leftover canvas is an audit finding; its deletion is proposed at Step 8's chat stop, never assumed.
-- **Stop** — report the detected state in one block and close.
+Ask in one round, two at most, and skip what the documents already answer:
 
-Documents missing, or a legacy `PRD.md` off-shape → **not a stop**: say so in the block, read around it as Step 1 describes, and name at the close what `app-settle` still owes. Product without UI → **STOP**, this skill does not apply. Branch `main` → **STOP**. Working tree not clean, where UI exists → name the dirty paths in one line and carry on, noting that uncommitted work does not reach the pass's branch until committed.
+- **Direction**: three named directions that fit the reading, one sentence each, plus `decide for me`. A tick is a leaning, never a specification.
+- **Reference**: a real product whose look the user wants, or refuses.
+- **What stays**: logo, brand colour, font, the component library in use.
+- **Theme and widths**: light, dark or both; the desktop breakpoint and the lowest supported width.
+- **Proving page**: the page the primary role uses most, unless the user names another.
+- **Copy voice**: formal or casual, in the app's language.
 
-## Step 1 — The reading, and the audit where UI exists
+- **No styling stack recorded → ask it in the same round**, recommending the frontend's own default.
+- **A `DESIGN.md` already written → ask what must change.** What the user does not name stays.
 
-**Sources, in rank: the user, then the code, then the documents.** Where the user was silent, read what exists from the code — router for pages, manifest and platform files for the platform, auth and guard code for roles, rendered strings for the locale, dependency file for the stack; where UI exists, through `.design-audit/handover.md`, never the files themselves (Blindness) — then `docs/product.md` where readable. A gap all three leave is named inside the reading and settled at its correction, never as its own question. **A conflict is a finding named in the reading, never a silent pick**: a user statement against the code is followed and reported; between code and documents, the code wins on what exists, the documents on what ought to be, and the loser is reported.
+## Step 2 — two frames
 
-**The reading** is one sentence, your own conclusion before asking anything: *"I read this as [kind of app] on [platform] for [who uses it], leaning [the feel that fits], because [reason from the documents]."* The platform slot is mandatory — from the Surface row where it holds one, else read from the code and confirmed inside the reading.
+Draw the proving page twice, as `src/design-canvas/frame-a.html` and `frame-b.html`: each one file, self-contained, opened in a browser by its path.
 
-**Ask for correction through AskUserQuestion, the full sentence inside the question field itself**, Fast or Full in the same call: the reading as written first and recommended, then up to three others, each the reading with one slot changed — a slot the sources left open or in conflict first, else the one the reading rests on least; any other correction arrives under Other. Nothing runs before it is answered: no dialog, no search, no frame.
+- **Make the two differ in structure** — layout, navigation, density — never only in colour or font.
+- **Fill them with the app's real content**: its labels, its roles, rows that could exist. No placeholder text.
+- **Draw what the platform's own apps look like**: a desktop tool is a tool window, a mobile app a phone screen. Never a web dashboard unless the work is monitoring.
+- **Make each frame hold at both widths of Step 1.**
+- **Name every CSS variable as the token it will become.**
+- **A design skill is installed (`impeccable`, `frontend-design`, `ui-ux-pro-max`) → read only its part for what you are drawing.** None is required, and none may write a file.
 
-**One Required install absent, or a `missing` Native build, is asked through AskUserQuestion, never merely reported**, naming what is lost — `impeccable`'s ban list, display-face and convergence calibrations, the Operate register, every later detector count; `frontend-design`'s direction method and restraint; `ui-ux-pro-max`'s UX floor, every later UX-floor check, and its frame ingredients; the Playwright MCP's page between browser steps, so every step runs as its own script, signed in again; the native build's every check `verify.md` runs on the built app — with continue-without or stop-to-install (the README's install lines), continuing recommended where installing is unavailable here. The answer rides every canvas round and the ratification report as its own line. An Optional skill absent is only shown in the row.
+Give both paths with one line of rationale each, and stop: `A`, `B`, a mix, or neither.
 
-### The audit — where UI exists
+- **A mix or a correction → apply it to the picked file and show it again**, until the user ratifies it.
+- **Neither → ask what both miss, then draw one new pair.**
+- **In an app that already has pages, say at this stop that the tokens reach every page at once**, while the layout changes only on the proving page.
 
-**Run it before the reading is put for correction, in two subagents, one after the other**, because a walk run by the subagent that read the source re-reads all of it on every call: the first reads the source, its whole brief `references/audit.md`; the second measures the components and colour pairs, its whole brief `references/audit-walk.md`, **walking the running app only where the user asked for the walk**, at invocation or in the scope's reply, and from source otherwise. Hand each its file's path, the repo root and the scope — the first also the page-group list, the second the account that signs in, or that the walk was not asked — and never read either file here. **The session that draws never opens the old UI** (Hard limits, Blindness).
+## Step 3 — `DESIGN.md`
 
-- **Settle the scope before the launch.** List the app's page groups — the top folders its page files sit in, a module package as one — each with its page count, by one command that prints names and counts and nothing of a file. One group → the scope is the whole app, not asked. More → print the list with its total and end the turn on it, a chat stop, in Fast too, saying that every page in scope is read, drawn, promoted and checked — above 12 pages, drawn and fully checked on one page per kind alone (`canvas.md`, The canvas file) — and that the running app is walked only if the reply asks for it; the reply names the groups this run redraws, or the whole app. **From here on `every page`, `every route` and `the whole app` mean the scope and the chrome its pages share, in every file of this skill.** What still reaches the whole app is named where it stands: the audit's counts and its walk outside the scope (`audit.md`), the stack (`interview.md`), the gate's first lines (`gate.md`), the queue lines (`pass.md`), Step 8's captures outside the scope (`verify.md`).
-- **Settle the account before the launch, where the walk runs and the app signs its users in.** Hand over an account for this app that the session's own instructions carry. None → ask once, in Fast too: create one under `db-ops` (`references/agent-account.md`), recommended — a login and a role row written to the app's database, its sign-in proven by the audit's walk and never here · wait for one the user supplies · walk signed out, every route behind the sign-in then measured `from source`.
-- **Their reports carry only counts, names and paths, never a word on the look**: what prices the pass, the pages holding too little, any logic-layer bleeding, what it indicts — in `DESIGN.md` where it is written, in the stack — whether the running app was walked, the path of `.design-audit/audit.md`, and the screenshot paths. The user reads `audit.md` now; this session opens it only at Step 6.
-- **`Components affected` sizes the pass**; show it before the user decides anything.
-- **What the subagents cannot do runs here, after their reports and the confirmed reading**: the archetype grouping's ratify-or-correct (`interview.md`, The archetype table) — where `DESIGN.md` is written and carries no archetype table, that absence is a finding — then, only where Step 0's Logic layer row reads `not settled`, the `logic-settle` offer for logic-layer bleeding, under that skill's rule; bleeding that skill already priced and baselined is a report line. Declined → continue. Accepted → close here, run `logic-settle` in its own session, then `design-settle` from Step 0, because its pass reads every page and would end this session's blindness.
-- **No subagent available → say so, run both here from those files, and report the redesign as drawn with the old UI in context.**
-- **Walk not asked, app could not be run, or no credentials → say so here and at Step 6**, whose removals group then opens `not walked — every part read from source`; every later line that compares with an audit screenshot reads `not walked`.
+1. **Read the format live**: `npx -p @google/design.md designmd spec --rules`. Never from memory. The command fails → write by the order below and report `format not verified`.
+2. **Write the tokens as YAML frontmatter**: `name`, `version`, `colors` (ramp steps and semantic aliases), `typography`, `rounded`, `spacing`, `components`. A token's name is the name the styling files use.
+3. **Write the sections in this order, each heading once**:
 
-## Step 2 — Fix, or redesign — where `DESIGN.md` is written
+| Section | Holds |
+|---|---|
+| `## Overview` | direction, signature, reference, copy voice, what is not used |
+| `## Colors` · `## Typography` | the rules the tokens cannot say |
+| `## Layout` | spacing base, desktop breakpoint, lowest supported width, density |
+| `## Elevation & Depth` · `## Shapes` | as ratified |
+| `## Components` | a table of component tokens; one icon family |
+| `## Do's and Don'ts` | only what the user ratified |
+| `## Page Composition` | the shell, the proving page by route, a table of page kinds |
+| `## Contrast` | each pair against 4.5:1 for text and 3:1 for non-text |
 
-No `DESIGN.md` → not asked; continue at Step 3. Otherwise one question, two options, with a recommendation:
+4. **Tokens hold values, prose holds rules.**
+5. **Print each value the picked frame does not show** — the other theme, focus ring, motion, the pairs of `## Contrast` — as one line with its basis. Carry on; a line the user cancels is corrected in one edit.
+6. **Lint it**: `npx -p @google/design.md designmd lint DESIGN.md`, to zero errors. `orphaned-tokens` on a ramp step or an alias is expected.
 
-| Choice | What changes | Questions asked | Components touched |
-|---|---|---|---|
-| **Fix the drift** | No new norm — code is brought back in line with the existing `DESIGN.md`, or a departure kept on purpose is ratified as its exception | None about the look | Only the deviating ones |
-| **Redesign** | **`DESIGN.md` is rebuilt from zero** — every line re-decided, archetype shells and visual-direction prose included; today's values survive only as *keep* answers. The app looks redesigned afterwards, not retuned | The full interview, *keep* first on the stack and `Keep — today's look` among the directions; the gate names the value each replaces | Every page, replaced by its canvas file |
+## Step 4 — the proving page
 
-Offer no third, narrower option: *keep* answers, which every decision carries, narrow the change, and the scope narrows the pages (Step 1).
+- **Write the tokens into the styling files**, under the names `DESIGN.md` gives them.
+- **Build or restyle only the shared components the proving page needs**, then the page itself.
+- **Leave every other page's layout alone.**
 
-**Recommendation:** fix the drift unless the audit's indictment count is above zero.
+## Step 5 — one check run
 
-**Consequence, said in the question:** the affected-component count · a redesign re-opens the component library — a dialog where the audit indicts it, a cancellable `Keep` line where it does not — and a non-*keep* library answer rewrites every component and revokes `CLAUDE.md`'s stack lock · the app looks different afterwards · picking `Keep — today's look` at the frames turns a redesign into fix-the-drift · the pages holding too little, by name — drawn whole in a redesign, handed to `build-flow` Section 4 as one `docs/queue.md` line each in fix-the-drift.
+- **Use the dev server that is running, or start your own on a free port.** Never stop a process this session did not start.
+- **Run from the app repo**: `node <plugin folder>/scripts/verify_pages.js --url <dev server> --widths <desktop>,<lowest> --out src/design-canvas/verify <page>=<route>` — the plugin folder is two levels above this file, and the screenshots land where Step 6 deletes them. A desktop build takes `--app <built .exe>` in place of `--url`.
+- **Read only the rows marked `FAIL` or `n/v`.** Fix a `FAIL` on the proving page, and run once more.
+- **Exit 3 means the repo has no Playwright**: report every check `not verified`, and install nothing.
+- **Run the repo's lint command.**
 
-Fix the drift → straight to `references/gate.md`, whose REPAIR list shows the findings, then the pass. `DESIGN.md` changes only by what that gate ratifies at repair scale.
+## Step 6 — close
 
-## Steps 3 to 9 — one file each, read on arrival
-
-| Step | Read | What it runs |
-|---|---|---|
-| 3 — The interview · 4 — The install gate | `references/interview.md` | The stack and four product calls that only lock answers, the reference search, the direction question, then the one install block. Nothing is installed while it runs |
-| 5, first half — The frames | `references/frames.md` | The material loaded, 2–4 direction frames on two screens, the pick on screen, one refine round. No value of the look is asked after the pick |
-| 5, after the pick — The canvas | `references/canvas.md`, and the five-rules section of `references/ratify.md` | The design plan, every page drawn in production-grade code, the three scans, the judgement of what was drawn — two correction rounds, then the look re-opens |
-| 6 — Ratification | `references/ratify.md`, and `references/gate.md` where UI exists | `DESIGN.md`, the decision records, the styling files — and the single stop that authorizes changing existing UI |
-| 7 — The pass | `references/pass.md` | Every canvas page promoted, in a fixed order, then `/design-system` and the lint floor, across sessions where it must |
-| 8 — Verification · 9 — Close | `references/verify.md` | Every check with its evidence, the canvas deletion proposal, the closing block |
-
-The archetype table, the `/design-system` route and real running pages are produced whatever was picked.
+- **Delete `src/design-canvas/`.**
+- **List the pages still on the old design**: as lines `- <page> — <role> — restyle to DESIGN.md` in `docs/queue.md` where the repo keeps `docs/`, in the report otherwise.
+- **Commit once, naming the paths.**
+- **Report**: what the user chose · each value you decided, with its basis · every `[needs verification]` · the check rows that are not `pass` · the pages left · the `Quota` line read again.

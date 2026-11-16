@@ -1,31 +1,29 @@
 # Overview
 
-`kaizn` is one plugin, for Claude Code and for Antigravity, that settles an app one layer at a time and then holds every later session to what was settled.
+`kaizen` is one plugin of nine standalone skills for building an app with an agent, plus eight working rules a repo keeps in its own `CLAUDE.md`.
 
-It has two halves. The settle skills are interviews: they decide with you what is yours to decide and write the answers into the repo. Everything else — the rule skills, the session norms, the hooks — keeps the sessions that build afterwards to those answers.
+Nothing in it is enforced. A skill is text a session reads when the work calls for it, and a working rule is a line you can waive in chat. The plugin ships no hook.
 
-## The five parts
+## The parts
 
 | Part | What it does | When it runs |
 |---|---|---|
-| Three settle skills — `app-settle`, `logic-settle`, `design-settle` | Decide the problem domain, the stack and the documents; the layer between database and UI; the visual direction and `DESIGN.md` | When you invoke one |
-| Five rule skills — `build-flow`, `docs-format`, `ui-build`, `db-ops`, `logic-build` | Hold a building session to the build order and to the document, UI, database and logic rules | By themselves, when the work matches their description |
-| Session norms | Language, scope, git, asking, decisions and the closing report — the same text in every repo | At every session start |
-| Guard hooks | Refuse or hold what must not happen unasked: publishing, destructive SQL, a Supabase call aimed at another project | Before every shell command and every MCP call |
-| `norms-help`, `norms-config` | The commands, these pages, the version and its last change; each norm, guard and reminder switched on, to advice, or off | When you ask |
+| `app-settle` | Interviews you about the problem, the roles and the business rules, then writes the repo's `CLAUDE.md` and its core documents | When you invoke it |
+| `design-settle` | Settles the look: two direction frames you pick from on screen, then `DESIGN.md` and one proving page | When you invoke it |
+| `build-flow`, `docs-format`, `ui-build`, `db-ops`, `logic-build` | Carry the rules for building a page, a document, UI, SQL and application logic | By themselves, when the work matches their description |
+| `norms-config` | Writes the eight working rules into the repo's `CLAUDE.md` | When you invoke it, once per repo |
+| `norms-help` | Prints the commands, these pages, the version and its last change | When you ask |
 
-## How a repo moves through it
+## Every skill stands alone
 
-1. **Settle, once per layer.** `app-settle` first, then `logic-settle`, then `design-settle`. Each one interviews you, records every answer as a decision, and writes what the next sessions read.
-2. **Build, every session after.** You ask for a page; `build-flow` loads by itself and builds from the queue in `docs/queue.md`. The rule skills load when the work touches what they govern, and the hooks stand in front of the commands that cannot be taken back.
-3. **Check again, whenever you want.** `app-settle` run on a settled repo audits the code against the rules and fixes what you pick, one finding per commit.
+No skill requires another, and none starts another when it ends. Each one reads `CLAUDE.md`, `docs/` and `DESIGN.md` where the repo has them, and runs where it does not. Which skill to run, and in which order, is yours to choose; [Quickstart](quickstart.md) gives an order that suits a new app.
 
-## A repo that was never settled
+## What it adds to a session
 
-The plugin is installed for the whole machine, so its norms reach repos no settle skill has touched. A repo with no PRD in either form gets the norms in their `NOT SETTLED` form: no document gate, and UI built only from the components and tokens the repo already has. See [How it works](../concepts/how-it-works.md).
+Each skill is one file, read only when it loads; the nine together are under 40,000 characters. The plugin prints nothing when a session starts. A session meets it through the skill list, and through the working rules where a repo has them.
 
 ## Next
 
-- [Install](install.md) — the two commands and the companion skills.
+- [Install](install.md) — the two commands and the optional design skills.
 - [Quickstart](quickstart.md) — the first run on a new app or an existing one.
 - [Commands](../reference/commands.md) — what to run in which situation.

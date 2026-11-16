@@ -1,44 +1,24 @@
 # Bring in an existing app
 
-One command reads the repo and runs the mode it owes next: document it, migrate it, audit it, or rework it.
-
-> [!WARNING]
-> The migrate and align modes have never run in a real app. Run them on a copy of the app first. See [What is proven](../reference/status.md).
+Give an app that already runs the working rules and, where it has none, its documents — without changing the app.
 
 ## Steps
 
-1. **Commit or stash your own work.** Migrate and align stop on a dirty working tree and name the paths, because their commits must carry nobody else's changes.
-2. **Open Claude Code in the repo and run `/kaizn:app-settle`.** Its first block reports the mode, with the fact that produced it. You may overrule it in one line.
-3. **Answer what the mode asks.**
+1. **Open Claude Code in the repo and run `/kaizen:norms-config`.** It appends the working rules to `CLAUDE.md`, or creates the file holding only them, and commits. Text outside the block is left as it is.
+2. **Run `/kaizen:app-settle` where the repo has no documents.** It finds app code and names the mode `Document`.
+3. **Describe the app, then correct the session's reading.** It reads what the repo already says first and asks only what that leaves open, over the same six themes as on a [new app](new-app.md).
+4. **Let it record the stack as found.** Each row names the file it was read from; nothing is asked.
+5. **Read the summary and say yes.** A file that exists gets only what it lacks, and no line of an existing document is rewritten without your word.
+6. **Run `/kaizen:design-settle` only when you want the look settled or changed.** Keeping everything as it is is a valid ending of that run. See [Redesign the look](redesign.md).
 
-   | The repo has | Mode | What happens |
-   |---|---|---|
-   | Code, no documents | Document | The app is documented as it is. Nothing about the app changes |
-   | A root `PRD.md` | Migrate | `PRD.md`, `QUEUE.md` and their sections move to the `docs/` form, in one commit |
-   | Documents in place | Align | The repo is audited against the installed rules, the findings are ranked, and you pick what is fixed — one finding per commit |
-   | Documents in place, and you want the app itself to change | Rework | The decisions are reopened, keeping first, and the documents are edited to match |
+## What this does not do
 
-4. **Run `/kaizn:app-settle` again** when you want the next mode. It runs one mode per run.
-5. **Settle the other two layers**, or only the one you need:
-   - `/kaizn:logic-settle` — also the right command when a repo has grown handwritten data-fetching or validation and you want to know what to adopt. A session never starts it on a running app by itself.
-   - `/kaizn:design-settle` — existing UI is audited first, and today's look is one of the candidates. Where a `DESIGN.md` is already written, it also offers to fix only the drift.
-
-## Align or rework
-
-Which of the two runs is your word. A wish to change what the app does, whom it serves, or what it runs on makes it rework. With none stated it is align, and the first block says that asking for such a change is what turns it into rework.
-
-## An app on the old form
-
-An app started before the `docs/` form keeps its root `PRD.md` and `QUEUE.md` until `app-settle` migrates them. Until then every skill reads the repo through `docs-format`'s legacy map, and nothing breaks: the sessions there get the norms that name `PRD.md` and `QUEUE.md`.
-
-## If something goes wrong
-
-- **The repo is not a git repo.** `app-settle` says so and offers `git init`. Document continues either way; migrate and align stop without one, because their commits are what makes them undoable.
-- **The branch is `main`.** A session never works on `main`; `app-settle` offers to create `development`.
-- **The `PRD.md` does not have the expected shape.** It has no mechanical route and stays on the old form for that run.
+- **No audit.** Nothing compares the code to the documents or lists what deviates.
+- **No migration.** A root `PRD.md` and other documents from an older version stay where they are: see [Maintain app repos](maintain-app-repos.md).
+- **No change to the app.** `Document` mode touches no code, schema or config.
 
 ## Related
 
-- [app-settle](../reference/app-settle.md) — every mode in detail.
-- [Maintain app repos](maintain-app-repos.md) — old sections left in an app's `CLAUDE.md`.
-- [Documents](../concepts/documents.md)
+- [app-settle](../reference/app-settle.md)
+- [norms-config](../reference/norms-config.md)
+- [Working rules](../concepts/working-rules.md)

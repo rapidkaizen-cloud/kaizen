@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-// verify_pages.js - design-settle Step 8's rendered checks, one run for every promoted page
-// (skills/design-settle/references/verify.md). Prints one row per page and width; a reader
+// verify_pages.js - the rendered checks of a page, one run for every page named
+// (skills/design-settle/SKILL.md, Step 5). Prints one row per page and width; a reader
 // opens only the rows marked FAIL or n/v.
 //
 //   node verify_pages.js --url <dev server> --widths <w,w> [--storage <state.json>] [--out <dir>] <page>=<target> ...
 //   node verify_pages.js --app <built .exe> --widths <w,w> [--out <dir>] <page>=<target> ...
 //
-// --url  : headless Chrome on its own temporary profile (build-flow Section 5).
+// --url  : headless Chrome on its own temporary profile.
 // --app  : the app's own build, launched here with its webview's debugging port open and
 //          reached with connectOverCDP - WebView2 (Tauri) or Electron's Chromium, on Windows.
 // target : a path or hash (/settings, #/settings), opened against the start URL; anything

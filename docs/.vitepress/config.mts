@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { defineConfig } from 'vitepress'
 
-const REPO = 'https://github.com/rapidkaizen-cloud/kaizn'
+const REPO = 'https://github.com/rapidkaizen-cloud/kaizen'
 
 // The sidebar is docs/README.md: each `## ` heading is a group, each table row that links
 // a page of this folder is an item. One list serves the site, the GitHub folder view and
@@ -21,10 +21,10 @@ function sidebar() {
 }
 
 export default defineConfig({
-  title: 'kaizn',
-  description: 'kaizn settles an app one layer at a time and holds every later session to what was settled.',
-  // Served as a project site: https://rapidkaizen-cloud.github.io/kaizn/
-  base: '/kaizn/',
+  title: 'kaizen',
+  description: 'kaizen is nine standalone skills for building an app with an agent, and eight working rules a repo keeps in its own CLAUDE.md.',
+  // Served as a project site: https://rapidkaizen-cloud.github.io/kaizen/
+  base: '/kaizen/',
   cleanUrls: true,
   lastUpdated: true,
   // The queue is the toolkit's own work list, read on GitHub and by sessions here.

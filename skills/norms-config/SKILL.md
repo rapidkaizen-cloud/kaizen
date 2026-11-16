@@ -1,23 +1,36 @@
 ---
 name: norms-config
-description: Switch the kaizn session-norm blocks, guards and reminders on, to advice, or off, and set the output folder, for every repo on this machine — shows each rule, its mode now and what it does, asks which to change, and writes the answers itself. Use when the user wants a norm, a guard or a reminder of these skills turned off, made advisory or back on, asks which ones are switched, or wants the files sessions make for them written to another folder.
+description: Writes or refreshes the kaizen working-rules block in this repo's `CLAUDE.md` — eight short rules on scope, language, git, data, secrets, asking and closing, each one negotiable in chat. Use when the user asks to set up, install, refresh or change the working rules of a repo, or after a plugin update changed the block.
 ---
 
-# norms-config — the switches of the norms and the hooks
+# norms-config — the working-rules block
 
-**Run `python3 <plugin folder>/scripts/norms_config.py --data "${CLAUDE_PLUGIN_DATA}" show`.** The plugin folder is the one this skill is read from, two levels above this file. It prints, from the one switches file of this machine, each switch's key, its mode now, the modes it takes and what it does, then the output folder now.
+Write the block below into the `CLAUDE.md` at the repo root. The rules are text: nothing enforces them, and the user may waive or reword any line.
 
-**The folder after `--data` above opens with `$` → this host did not fill it in (Antigravity): tell the user in their language that switches are not available on this host, run nothing, and stop.** The script refuses such a folder too.
+1. **Read `CLAUDE.md`.** Absent → create it holding only the block.
+2. **No block yet → append it at the end of the file.** A block is everything from `<!-- kaizen:rules` to `<!-- /kaizen:rules -->`.
+3. **A block with an older version in its opening marker → replace it, markers included, and nothing outside it.**
+4. **A block with this version that differs from the text below → the user edited it.** Show the lines that differ and ask which to keep before writing; never restore a line the user removed without that answer.
+5. **`AGENTS.md` exists at the root → write the same block there by the same steps.** Never create `AGENTS.md`.
+6. **The user names a folder for the files made for them → add one line to the block**: ``- **Output** — a file made for the user to open goes to `<folder>`, never into the repo.`` Never ask for a folder, and never add the line without one.
+7. **Add nothing else to the block**: no key, no token, no URL that carries a credential.
+8. **Commit the files written, naming their paths**, then report which files changed and which lines the user kept.
 
-1. **Show one table in the user's language**: switch, mode now, what it does in one plain line, and `output_dir` last with its folder, or Claude Code's own behaviour where none is set. Keep every key, mode and path as printed.
-2. **The request already names the switch and the mode, or the folder → write it** (step 4) without asking.
-3. **Otherwise ask through AskUserQuestion, in two rounds.**
-   - **Round one**, one call of four multi-select questions, each with "boleh pilih lebih dari satu" in its text, one option per switch, its mode now in the label and what it does in the description: `norm_language`, `norm_pointers`, `norm_scope`, `norm_git` · `norm_asking`, `norm_decisions`, `norm_closing`, `norm_output` · `guard_git`, `guard_destructive`, `guard_output`, `output_dir` · `remind_docs`, `remind_context`.
-   - **Round two**, one single-select question per picked block, guard or `output_dir`, at most four per call: a block's or a guard's options are the modes it is not in now. Describe a block's mode as `on` printed and binding, `advice` printed but not binding, `off` not printed; a guard's as `on` refuses, `advice` lets every such call through in every repo and warns the session, `off` does nothing in every repo. `output_dir` always has two: Claude Code's own behaviour, no folder, files land where Claude Code puts them; and a folder of the user's own, one folder per repo inside it, shared by the repo's worktrees.
-   - **A picked reminder flips** to its other mode, unasked. **A folder of their own is asked in chat as a full path**, unless they typed it under Other. Nothing picked → write nothing and say so.
-4. **Write every answer in one call**: `python3 <plugin folder>/scripts/norms_config.py --data "${CLAUDE_PLUGIN_DATA}" set <key>=<mode> ...`, the folder as `"output_dir=<full path>"` or `output_dir=none`. It refuses an unknown key or mode, or a folder that is not a full path, and writes nothing; read its message and ask again. Never hand the user a command.
-5. **Say what changed and when it applies**: a guard's or a reminder's switch, and the folder `guard_output` guards, from its next call, in this session too; a block of the norms, and the folder the `OUTPUT` block names, from the next session start. Files already in the old folder stay there.
+Copy the block exactly, the version in its marker included — it names the plugin version the block last changed in.
 
-- **A block and its guard switch apart**: `norm_git` and `guard_git`, `norm_output` and `guard_output`. Say so when the user moves one of a pair.
-- **`.claude/destructive-gate.off` in a repo still turns `guard_destructive` off there**, whatever its switch says.
-- **Only these thirteen and the output folder are set here.** The rules inside the skills are not.
+```markdown
+<!-- kaizen:rules 1.2.0 -->
+## Working rules
+
+Each line holds until the user waives it in chat.
+
+- **Scope** — do only what was asked: no refactor, rename or document outside it.
+- **Language** — chat, docs and on-screen text in the user's language; identifiers, file names, routes and every database name in English.
+- **Git** — commit a finished item in the same turn, naming its paths in `git add` and in `git commit -- <paths>`. Push, merge, force-push and history rewrite only on the user's word.
+- **Data** — before `DROP`, `DELETE`, `TRUNCATE`, a rename, or an `UPDATE` with no narrow `WHERE`: count the rows, show the number, wait for a yes.
+- **Secrets** — name the variable, never its value, in code, docs, commits and chat.
+- **Asking** — put a decision as options with one recommendation and its trade-off; never hand the user a command to type.
+- **Closing** — report per item what changed or `UNTOUCHED`, each default you chose, and what the user must do by hand.
+- **Skills, where installed** — UI: `ui-build` · SQL: `db-ops` · query, key or env var: `logic-build` · a document: `docs-format`.
+<!-- /kaizen:rules -->
+```

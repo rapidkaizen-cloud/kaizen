@@ -1,27 +1,31 @@
 # Commands
 
-What to run in which situation. Five skills have a command; the rest load by themselves.
+Every command `kaizen` gives you, and the skills that load without one.
 
 | Situation | Run |
 |---|---|
-| New app, empty directory | `/kaizn:app-settle`, then in the new repo `/kaizn:logic-settle` and `/kaizn:design-settle` |
-| Running app | `/kaizn:app-settle` — it reads the repo and runs the one mode it owes next: documents it, migrates a root `PRD.md` to `docs/`, then audits the code against the rules and fixes what you pick, one finding per commit. Ask it for a change and it reworks the decisions instead. Then the other two |
-| Only the look or the logic layer | `/kaizn:design-settle` or `/kaizn:logic-settle` alone |
-| Which command to run, what version this is, what changed | `/kaizn:norms-help`, or ask in your own words |
-| A norm, a guard or a reminder turned off, to advice only, or back on — or a folder set for the files sessions make for you | `/kaizn:norms-config`, or ask in your own words |
+| A new app, before any code | `/kaizen:app-settle` |
+| An app that already runs and has no documents | `/kaizen:app-settle` |
+| Put the working rules into a repo's `CLAUDE.md`, or refresh them after an update | `/kaizen:norms-config` |
+| Settle or change the look of an app | `/kaizen:design-settle` |
+| Which version is running, what changed, which page explains a feature | `/kaizen:norms-help` |
 
-`design-settle` asks Fast or Full with its first question, on a new app and a redesign alike. Fast answers every design dialog with its recommendation in one block you cancel line by line; the frames, the pick, the gate and every check run as in Full. `/kaizn:design-settle fast` skips the question.
+Each command stands alone: none requires another, and none starts another when it ends. A session may also load one when you ask in your own words; the command is the sure way.
 
 ## No command needed
 
+A session loads these by their description when the work calls for one.
+
 | Skill | Loads when a session |
 |---|---|
-| `build-flow` | Starts a page or a feature, or decides what to build next — in every app session |
-| `docs-format` | Writes, edits or proposes a change to a document of the app |
-| `ui-build` | Creates or edits a component, touches a styling value, or writes user-facing text |
-| `db-ops` | Writes SQL, alters a table, changes an RLS policy, or runs a `DELETE`, `DROP`, `TRUNCATE` or `UPDATE` |
-| `logic-build` | Writes a query, a server action, a route handler, an edge function, or an environment variable |
+| `build-flow` | builds or continues a feature, a page or a batch of pages |
+| `docs-format` | creates or edits `README.md`, `DESIGN.md` or a file under `docs/` |
+| `ui-build` | creates or edits a component, a styling value or on-screen text |
+| `db-ops` | writes or runs SQL, a migration or an RLS policy |
+| `logic-build` | writes a query, an API handler, an environment variable or anything that holds a key |
+
+The last line of the [working rules](../concepts/working-rules.md) names four of them, so a repo that carries the rules points its sessions at them as well.
 
 ## Things you never type
 
-A session never hands you a command to run. Updating the plugin, committing, pushing, running a migration: ask for it, and the session runs it — after your reply, where it is a [gate](../concepts/gates.md).
+`git` commands, SQL and install commands are the session's to run. Where the working rules are in the repo, a session puts a decision to you as options and then runs the command itself. What stays yours is what needs your own hands: a browser login, a dashboard, a key rotation, a payment.
