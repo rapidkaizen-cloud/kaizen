@@ -1,6 +1,6 @@
 ---
 name: norms-config
-description: Writes or refreshes the kaizn working-rules block in this repo's `CLAUDE.md` — eight short rules on scope, language, git, data, secrets, asking and closing, each one negotiable in chat. Use when the user asks to set up, install, refresh or change the working rules of a repo, or after a plugin update changed the block.
+description: Writes or refreshes the kaizen working-rules block in this repo's `CLAUDE.md` — eight short rules on scope, language, git, data, secrets, asking and closing, each one negotiable in chat. Use when the user asks to set up, install, refresh or change the working rules of a repo, or after a plugin update changed the block.
 ---
 
 # norms-config — the working-rules block
@@ -8,7 +8,7 @@ description: Writes or refreshes the kaizn working-rules block in this repo's `C
 Write the block below into the `CLAUDE.md` at the repo root. The rules are text: nothing enforces them, and the user may waive or reword any line.
 
 1. **Read `CLAUDE.md`.** Absent → create it holding only the block.
-2. **No block yet → append it at the end of the file.** A block is everything from `<!-- kaizn:rules` to `<!-- /kaizn:rules -->`.
+2. **No block yet → append it at the end of the file.** A block is everything from `<!-- kaizen:rules` to `<!-- /kaizen:rules -->`.
 3. **A block with an older version in its opening marker → replace it, markers included, and nothing outside it.**
 4. **A block with this version that differs from the text below → the user edited it.** Show the lines that differ and ask which to keep before writing; never restore a line the user removed without that answer.
 5. **`AGENTS.md` exists at the root → write the same block there by the same steps.** Never create `AGENTS.md`.
@@ -19,7 +19,7 @@ Write the block below into the `CLAUDE.md` at the repo root. The rules are text:
 Copy the block exactly, the version in its marker included — it names the plugin version the block last changed in.
 
 ```markdown
-<!-- kaizn:rules 1.0.0 -->
+<!-- kaizen:rules 1.2.0 -->
 ## Working rules
 
 Each line holds until the user waives it in chat.
@@ -32,5 +32,5 @@ Each line holds until the user waives it in chat.
 - **Asking** — put a decision as options with one recommendation and its trade-off; never hand the user a command to type.
 - **Closing** — report per item what changed or `UNTOUCHED`, each default you chose, and what the user must do by hand.
 - **Skills, where installed** — UI: `ui-build` · SQL: `db-ops` · query, key or env var: `logic-build` · a document: `docs-format`.
-<!-- /kaizn:rules -->
+<!-- /kaizen:rules -->
 ```

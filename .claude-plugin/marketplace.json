@@ -1,15 +1,16 @@
 {
-  "name": "kaizn",
+  "name": "kaizen",
   "owner": { "name": "rapidkaizen-cloud" },
   "plugins": [
     {
-      "name": "kaizn",
+      "name": "kaizen",
       "source": "./",
       "description": "Nine standalone skills for building an app with an agent: app-settle and design-settle decide what the app is and how it looks; build-flow, docs-format, ui-build, db-ops and logic-build carry the build rules; norms-config writes eight negotiable working rules into the repo's CLAUDE.md. Nothing is enforced by a hook."
     }
   ],
   "renames": {
     "raizen-hub": "raizen-norms",
-    "raizen-norms": "kaizn"
+    "raizen-norms": "kaizen",
+    "kaizn": "kaizen"
   }
 }

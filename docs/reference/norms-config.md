@@ -5,7 +5,7 @@ Writes or refreshes the eight working rules in a repo's `CLAUDE.md`.
 | | |
 |---|---|
 | Kind | Skill — runs when you ask |
-| Run | `/kaizn:norms-config` |
+| Run | `/kaizen:norms-config` |
 | Writes | `CLAUDE.md` at the repo root, and `AGENTS.md` where the repo already has one |
 | Commits | The files it wrote, naming their paths. Never pushes |
 | Source | `skills/norms-config/SKILL.md` |
@@ -21,7 +21,7 @@ Writes or refreshes the eight working rules in a repo's `CLAUDE.md`.
 | An `AGENTS.md` at the root | Writes the same block there. It never creates the file |
 | A folder you name for the files made for you | Adds one `Output` line holding it |
 
-The block sits between `<!-- kaizn:rules <version> -->` and `<!-- /kaizn:rules -->`. [Working rules](../concepts/working-rules.md) lists its eight lines.
+The block sits between `<!-- kaizen:rules <version> -->` and `<!-- /kaizen:rules -->`. [Working rules](../concepts/working-rules.md) lists its eight lines.
 
 ## What you can rely on
 

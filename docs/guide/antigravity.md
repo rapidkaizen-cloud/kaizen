@@ -15,10 +15,10 @@ One command in a terminal, once per machine, and the nine skills are there in ev
 ## Install the plugin
 
 ```
-agy plugin install https://github.com/rapidkaizen-cloud/kaizn
+agy plugin install https://github.com/rapidkaizen-cloud/kaizen
 ```
 
-The copy lands in `~/.gemini/config/plugins/kaizn`.
+The copy lands in `~/.gemini/config/plugins/kaizen`.
 
 > [!WARNING]
 > Install it for the machine, never through a repo's `.agents/plugins.json`. Registered per folder, the plugin loaded a minute after an interactive conversation began.
@@ -43,13 +43,13 @@ None is required: the same three as on Claude Code, read where installed.
 
 ## Check that it loaded
 
-- `agy plugin list` names `kaizn`.
+- `agy plugin list` names `kaizen`.
 
 ## Update
 
 ```
-agy plugin uninstall kaizn
-agy plugin install https://github.com/rapidkaizen-cloud/kaizn
+agy plugin uninstall kaizen
+agy plugin install https://github.com/rapidkaizen-cloud/kaizen
 ```
 
 The install is a copy, and nothing refreshes it.
@@ -61,7 +61,7 @@ A headless run (`agy -p`) cannot be asked for permission, and a skill file sits 
 1. **Allow the plugin folder to be read**, in `~/.gemini/antigravity-cli/settings.json`, or the run stops at the first skill it reads:
 
    ```json
-   {"permissions": {"allow": ["read_file(C:/Users/<you>/.gemini/config/plugins/kaizn)"]}}
+   {"permissions": {"allow": ["read_file(C:/Users/<you>/.gemini/config/plugins/kaizen)"]}}
    ```
 
 2. **For a headless `design-settle` run, allow all of these**, or the turn ends with no output at the first one missing:

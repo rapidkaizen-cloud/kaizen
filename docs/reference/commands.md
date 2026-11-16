@@ -1,14 +1,14 @@
 # Commands
 
-Every command `kaizn` gives you, and the skills that load without one.
+Every command `kaizen` gives you, and the skills that load without one.
 
 | Situation | Run |
 |---|---|
-| A new app, before any code | `/kaizn:app-settle` |
-| An app that already runs and has no documents | `/kaizn:app-settle` |
-| Put the working rules into a repo's `CLAUDE.md`, or refresh them after an update | `/kaizn:norms-config` |
-| Settle or change the look of an app | `/kaizn:design-settle` |
-| Which version is running, what changed, which page explains a feature | `/kaizn:norms-help` |
+| A new app, before any code | `/kaizen:app-settle` |
+| An app that already runs and has no documents | `/kaizen:app-settle` |
+| Put the working rules into a repo's `CLAUDE.md`, or refresh them after an update | `/kaizen:norms-config` |
+| Settle or change the look of an app | `/kaizen:design-settle` |
+| Which version is running, what changed, which page explains a feature | `/kaizen:norms-help` |
 
 Each command stands alone: none requires another, and none starts another when it ends. A session may also load one when you ask in your own words; the command is the sure way.
 

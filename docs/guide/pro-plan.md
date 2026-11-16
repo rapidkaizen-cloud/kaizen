@@ -1,12 +1,12 @@
 # Run on a Pro plan
 
-Four settings of your own machine that decide how many 5-hour windows a `design-settle` run takes on a Pro plan; `kaizn` can change none of them for you.
+Four settings of your own machine that decide how many 5-hour windows a `design-settle` run takes on a Pro plan; `kaizen` can change none of them for you.
 
-Before 1.0.0, one redesign of the proof app took 8 windows of a Pro plan: about $182 at API prices, a window running out at $12–23. Version 1.0.0 cut the steps of that run, and what it costs now has not been measured. These steps cut what every call carries before `kaizn` adds anything, and they hold for any long session.
+Before 1.0.0, one redesign of the proof app took 8 windows of a Pro plan: about $182 at API prices, a window running out at $12–23. Version 1.0.0 cut the steps of that run, and what it costs now has not been measured. These steps cut what every call carries before `kaizen` adds anything, and they hold for any long session.
 
 ## Steps
 
-1. **Measure what a session starts with.** Open a new session in the app repo and run `/context`. In the proof app every call started at 56k–67k tokens before any work: the system prompt, the skill listing, the tool definitions of every MCP server and what other plugins print at session start. `kaizn`'s own part was under 5k then, and since 1.0.0 it prints nothing at session start. Aim for about 30k.
+1. **Measure what a session starts with.** Open a new session in the app repo and run `/context`. In the proof app every call started at 56k–67k tokens before any work: the system prompt, the skill listing, the tool definitions of every MCP server and what other plugins print at session start. `kaizen`'s own part was under 5k then, and since 1.0.0 it prints nothing at session start. Aim for about 30k.
 2. **Turn off what that repo does not use.** Plugins in `/plugin`, MCP servers in `/mcp`. A server's tool definitions ride every call, used or not; one reverse-engineering server alone carried about 200 tools there. The connectors of your claude.ai account load into Claude Code too: set `"ENABLE_CLAUDEAI_MCP_SERVERS": "false"` under `env` in `~/.claude/settings.json` to keep them out, and remove the line when a session needs one.
 3. **Turn off ECC's GateGuard**, where the `ecc` plugin is installed: set `"ECC_GATEGUARD": "off"` under `env` in `~/.claude/settings.json`. In the proof app it refused 172 writes and commands over 11 sessions, each refusal one more call at the full context, and every refused file was written again. You lose its read-before-you-write reminder.
 4. **Run no other session on the same account during a redesign.** Every session, every machine and claude.ai draw on the same window: in the proof app other work used part of the windows the redesign ran out of.

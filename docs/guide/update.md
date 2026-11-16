@@ -8,8 +8,8 @@ A new version reaches a session only after the machine has pulled it and the hos
 - **Without it**, ask a session to update the plugin, or run:
 
   ```
-  claude plugin marketplace update kaizn
-  claude plugin update kaizn@kaizn
+  claude plugin marketplace update kaizen
+  claude plugin update kaizen@kaizen
   ```
 
 Then restart Claude Code. Nothing reaches a session before the restart.
@@ -17,8 +17,8 @@ Then restart Claude Code. Nothing reaches a session before the restart.
 ## On Antigravity
 
 ```
-agy plugin uninstall kaizn
-agy plugin install https://github.com/rapidkaizen-cloud/kaizn
+agy plugin uninstall kaizen
+agy plugin install https://github.com/rapidkaizen-cloud/kaizen
 ```
 
 The install is a copy, and nothing refreshes it.
@@ -27,43 +27,30 @@ The install is a copy, and nothing refreshes it.
 
 Version 1.0.0 removed every guard and the rules a session used to be handed at its start. Nothing breaks on update, but an app repo is under no rule until you give it one.
 
-1. **Run `/kaizn:norms-config` once in each app repo.** It writes the working rules into that repo's `CLAUDE.md`; before that, a session there follows none of them. See [Working rules](../concepts/working-rules.md).
+1. **Run `/kaizen:norms-config` once in each app repo.** It writes the working rules into that repo's `CLAUDE.md`; before that, a session there follows none of them. See [Working rules](../concepts/working-rules.md).
 2. **Protect what the guards protected, yourself.** Nothing holds a push, a merge or a destructive SQL statement any more: turn on branch protection, keep database backups, and give sessions a database login that is not the owner.
 3. **Say where your files go, if you used the output folder.** The plugin no longer prints or guards one. Name the folder when you run `norms-config`, and it becomes a line of the block.
 4. **Leave or delete the old settings.** `switches.json` and the marker `onboarded-output` in the plugin's data folder, and `.claude/destructive-gate.off` in a repo, are read by nothing.
-5. **Stop asking for what is gone**: `/kaizn:logic-settle`, and `app-settle`'s modes `migrate`, `align`, `rework` and `seed`. `app-settle` now writes documents only — it scaffolds no app.
+5. **Stop asking for what is gone**: `logic-settle`, and `app-settle`'s modes `migrate`, `align`, `rework` and `seed`. `app-settle` now writes documents only — it scaffolds no app.
 
 [Maintain app repos](maintain-app-repos.md) lists what a repo from an older version still carries.
 
-## Moving from raizen-norms
+## Moving from kaizn or raizen-norms
 
-Until 0.106.0 the plugin was `raizen-norms`, from the marketplace `raizen`. An update in place keeps the marketplace under its old name, so move once instead:
+Until 1.2.0 the plugin was `kaizn`, from the marketplace `kaizn`; until 0.106.0 it was `raizen-norms`, from the marketplace `raizen`. An update in place keeps the marketplace under its old name, so move once instead:
 
-1. **Remove the old marketplace:** `claude plugin marketplace remove raizen`. It uninstalls `raizen-norms` with it.
-2. **Add the new one and install:** `claude plugin marketplace add rapidkaizen-cloud/kaizn`, then `claude plugin install kaizn@kaizn`.
-3. **Turn `autoUpdate` back on**, for `kaizn` this time, as in [Install](../start/install.md). The old entry's setting left with it.
-4. **In every app repo whose `.claude/settings.json` names `raizen-norms@raizen`**, change the key to `kaizn@kaizn` and commit it, so a teammate's machine enables the plugin there too.
-5. **On Antigravity:** `agy plugin uninstall raizen-norms`, then install from the new URL as above.
+1. **Remove the old marketplace:** `claude plugin marketplace remove kaizn`, or `raizen` on a machine that never moved. It uninstalls the old plugin with it.
+2. **Add the new one and install:** `claude plugin marketplace add rapidkaizen-cloud/kaizen`, then `claude plugin install kaizen@kaizen`.
+3. **Turn `autoUpdate` back on**, for `kaizen` this time, as in [Install](../start/install.md). The old entry's setting left with it.
+4. **In every app repo whose `.claude/settings.json` names `kaizn@kaizn` or `raizen-norms@raizen`**, change the key to `kaizen@kaizen` and commit it, so a teammate's machine enables the plugin there too.
+5. **On Antigravity:** `agy plugin uninstall kaizn`, or `raizen-norms`, then install from the new URL as above.
+6. **Change `/kaizn:` to `/kaizen:`** in anything of yours that invokes a skill: notes, aliases, scripts.
 
-Then restart the host.
-
-## Moving from `master` to `main`
-
-Since 0.109.0 the repo's branch is `main`. A machine that added the marketplace before then keeps a clone that fetches `master` only: its updates stop without an error, and `claude plugin marketplace update kaizn` still reports success. Point the clone at `main` once:
-
-```
-git -C ~/.claude/plugins/marketplaces/kaizn config remote.origin.fetch "+refs/heads/main:refs/remotes/origin/main"
-git -C ~/.claude/plugins/marketplaces/kaizn fetch origin
-git -C ~/.claude/plugins/marketplaces/kaizn branch -m master main
-git -C ~/.claude/plugins/marketplaces/kaizn branch -u origin/main main
-claude plugin marketplace update kaizn
-```
-
-Then restart Claude Code. Removing the marketplace and adding it again works too, and takes one more step: the removal uninstalls the plugin, so install it again. Antigravity is not affected: its install is a copy, made again from the URL.
+Then restart the host. The new clone fetches `main`, so the move also mends a machine whose clone still fetches `master`, the branch before 0.109.0, where updates stop without an error.
 
 ## Check what you are running
 
-1. **Run `/kaizn:norms-help`** in any session. The first line is the version of the copy that session loaded.
+1. **Run `/kaizen:norms-help`** in any session. The first line is the version of the copy that session loaded.
 2. **Read `LAST CHANGE` on the same card**: the newest changelog entry, with its `To act on` lines — what an installed app must do because of that version.
 3. **For older versions**, open `CHANGELOG.md` at the repo root.
 

@@ -1,4 +1,4 @@
 {
-  "name": "kaizn",
+  "name": "kaizen",
   "description": "Nine standalone skills for building an app with an agent: app-settle and design-settle decide what the app is and how it looks; build-flow, docs-format, ui-build, db-ops and logic-build carry the build rules; norms-config writes eight negotiable working rules into the repo's CLAUDE.md. Nothing is enforced by a hook."
 }

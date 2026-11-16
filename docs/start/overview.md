@@ -1,6 +1,6 @@
 # Overview
 
-`kaizn` is one plugin of nine standalone skills for building an app with an agent, plus eight working rules a repo keeps in its own `CLAUDE.md`.
+`kaizen` is one plugin of nine standalone skills for building an app with an agent, plus eight working rules a repo keeps in its own `CLAUDE.md`.
 
 Nothing in it is enforced. A skill is text a session reads when the work calls for it, and a working rule is a line you can waive in chat. The plugin ships no hook.
 

@@ -1,6 +1,6 @@
-# kaizn docs
+# kaizen docs
 
-`kaizn` is nine standalone skills for building an app with an agent, and eight working rules a repo keeps in its own `CLAUDE.md`. These pages are for the people who install it. What an agent obeys is in `skills/`; nothing here is a rule, and where a page and a skill disagree the skill is right and the page is the defect.
+`kaizen` is nine standalone skills for building an app with an agent, and eight working rules a repo keeps in its own `CLAUDE.md`. These pages are for the people who install it. What an agent obeys is in `skills/`; nothing here is a rule, and where a page and a skill disagree the skill is right and the page is the defect.
 
 New here: [Overview](start/overview.md), then [Install](start/install.md), then [Quickstart](start/quickstart.md).
 
@@ -53,6 +53,6 @@ New here: [Overview](start/overview.md), then [Install](start/install.md), then 
 | Page | Holds |
 |---|---|
 | [What is proven](reference/status.md) | What has run for real, and what has not |
-| [Changelog](https://github.com/rapidkaizen-cloud/kaizn/blob/main/CHANGELOG.md) | Every version, newest first |
+| [Changelog](https://github.com/rapidkaizen-cloud/kaizen/blob/main/CHANGELOG.md) | Every version, newest first |
 
 A feature with no page here has its skill as the only source: `skills/<name>/SKILL.md`.

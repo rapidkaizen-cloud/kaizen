@@ -1,6 +1,6 @@
 # What is proven
 
-What has been seen working, and what has only been written — so you know which parts of `kaizn` 1.0.0 you are the first to run.
+What has been seen working, and what has only been written — so you know which parts of `kaizen` 1.0.0 you are the first to run.
 
 Version 1.0.0 rewrote every skill. What earlier versions proved was proved on text that no longer exists, so it is not carried here.
 

@@ -13,15 +13,15 @@ Two commands in Claude Code and a restart. For Antigravity, see [Run on Antigrav
 ## Install the plugin
 
 ```
-/plugin marketplace add rapidkaizen-cloud/kaizn
-/plugin install kaizn@kaizn
+/plugin marketplace add rapidkaizen-cloud/kaizen
+/plugin install kaizen@kaizen
 ```
 
 1. **Install at user scope only.** A project-scope entry updates separately and falls behind.
-2. **Turn on `autoUpdate`.** In `~/.claude/settings.json`, set `"autoUpdate": true` on `kaizn` under `extraKnownMarketplaces`, so a new version reaches the machine at its next start.
+2. **Turn on `autoUpdate`.** In `~/.claude/settings.json`, set `"autoUpdate": true` on `kaizen` under `extraKnownMarketplaces`, so a new version reaches the machine at its next start.
 3. **Restart Claude Code.**
 
-The plugin asks nothing and prints nothing when a session starts. To give a repo the working rules, run `/kaizn:norms-config` once in it: see [Working rules](../concepts/working-rules.md).
+The plugin asks nothing and prints nothing when a session starts. To give a repo the working rules, run `/kaizen:norms-config` once in it: see [Working rules](../concepts/working-rules.md).
 
 ## Optional design skills
 
@@ -40,8 +40,8 @@ None is required, and a session never asks for one. Where one is installed, `des
 
 ## Check that it loaded
 
-- `/plugin` lists `kaizn`.
-- `/kaizn:norms-help` prints the running version, the commands and the last change, in any session.
+- `/plugin` lists `kaizen`.
+- `/kaizen:norms-help` prints the running version, the commands and the last change, in any session.
 - `design-settle` prints the running build as `Skill build` in the block it opens with.
 
 ## Next

@@ -1,6 +1,27 @@
 # Changelog
 
-All notable changes to the `kaizn` plugin — named `raizen-norms` until 0.106.0, and `raizen-hub` until 0.70.0 merged it in — newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before these are in `git log`.
+All notable changes to the `kaizen` plugin — named `kaizn` until 1.2.0, `raizen-norms` until 0.106.0, and `raizen-hub` until 0.70.0 merged it in — newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before these are in `git log`.
+
+## [kaizen 1.2.0] - 2026-11-16
+
+`kaizn` is now `kaizen`, with its marketplace and repo, because the spelling without its `e` read as a typo. Other Claude Code plugins named `kaizen` exist; installing one of them beside this one puts two plugins under one name.
+
+### Changed
+
+- The plugin `kaizn` is renamed `kaizen`: every skill is now `/kaizen:<skill>`. The `renames` map in `marketplace.json` carries `kaizn` and `raizen-norms` to `kaizen`.
+- The marketplace `kaizn` is renamed `kaizen`, so the install is `/plugin install kaizen@kaizen`.
+- The repo moves to `rapidkaizen-cloud/kaizen`, where GitHub redirects the old URL, and the docs site to `https://rapidkaizen-cloud.github.io/kaizen/`, where the old address does not redirect.
+- The working-rules block sits between `<!-- kaizen:rules 1.2.0 -->` and `<!-- /kaizen:rules -->`.
+- `norms-help` opens its card with `kaizen <version>`.
+- Changelog headings read `## [kaizen x.y.z]`; the entries below this one keep the old name.
+
+To act on:
+
+- Claude Code: remove the marketplace `kaizn`, add `rapidkaizen-cloud/kaizen`, install `kaizen@kaizen`, and turn `autoUpdate` on for `kaizen` — the steps are in `docs/guide/update.md`.
+- Every app repo whose `.claude/settings.json` names `kaizn@kaizn`: change the key to `kaizen@kaizen` and commit it.
+- Antigravity: `agy plugin uninstall kaizn`, then install from `https://github.com/rapidkaizen-cloud/kaizen`.
+- Anything written outside the plugin that invokes a skill — notes, aliases, scripts — changes `/kaizn:` to `/kaizen:`.
+- A bookmark of the docs site moves to `https://rapidkaizen-cloud.github.io/kaizen/`.
 
 ## [kaizn 1.1.0] - 2026-11-16
 

@@ -1,4 +1,4 @@
-# CLAUDE.md — repo kaizn
+# CLAUDE.md — repo kaizen
 
 This repo is not an application. Its root is the plugin that other repos install, so a mistake here spreads to every app.
 
@@ -20,7 +20,7 @@ Make every skill stand alone: it names no other skill, requires none, and runs i
 
 Change a rule for a finding seen in two sessions or in a real app, or on the user's direct word; a finding seen once is a line of `docs/reference/status.md`, because one session's miss is as often the session as the rule.
 
-Do not add a skill to `kaizn` without naming what would be lost if it did not exist. Every skill pays a context cost in every session through its description, including the sessions that never use it.
+Do not add a skill to `kaizen` without naming what would be lost if it did not exist. Every skill pays a context cost in every session through its description, including the sessions that never use it.
 
 Never add a hook that refuses, holds or blocks, because a hook cannot ask and a rule here is negotiable in chat. The plugin ships no hook; the context reminder was removed on the user's word because its note interrupted the work.
 

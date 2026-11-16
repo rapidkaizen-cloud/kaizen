@@ -5,7 +5,7 @@ One session that settles an app's visual direction: two frames to pick from, the
 | | |
 |---|---|
 | Kind | Skill — runs only when you ask |
-| Run | `/kaizn:design-settle` |
+| Run | `/kaizen:design-settle` |
 | Reads | `CLAUDE.md`, `docs/`, `DESIGN.md`, the styling files, the component folder, the routes |
 | Writes | `DESIGN.md`, the styling files, the proving page and the shared components it needs, lines in `docs/queue.md` |
 | Works in | `src/design-canvas/` — the frames and the check's screenshots, deleted at the close |

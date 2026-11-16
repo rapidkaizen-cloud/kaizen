@@ -5,7 +5,7 @@ A short interview about what an app is, then the repo's `CLAUDE.md` and its core
 | | |
 |---|---|
 | Kind | Skill — runs only when you ask |
-| Run | `/kaizn:app-settle` |
+| Run | `/kaizen:app-settle` |
 | Reads | The repo root, `CLAUDE.md`, `README.md`, everything under `docs/`, the stack's manifest |
 | Writes | `CLAUDE.md`, `README.md`, and under `docs/`: `README.md`, `product.md`, `rules.md`, `changelog.md`, and `queue.md` on a new app |
 | Commits | Once, at the close. Never pushes |

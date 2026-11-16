@@ -4,13 +4,13 @@ Eight lines of text in a repo's `CLAUDE.md` tell every session there how to work
 
 ## Where they live
 
-`/kaizn:norms-config` writes them at the end of the `CLAUDE.md` at the repo root, as one block between two markers:
+`/kaizen:norms-config` writes them at the end of the `CLAUDE.md` at the repo root, as one block between two markers:
 
 ```
-<!-- kaizn:rules 1.0.0 -->
+<!-- kaizen:rules 1.2.0 -->
 ## Working rules
 ...
-<!-- /kaizn:rules -->
+<!-- /kaizen:rules -->
 ```
 
 The host reads `CLAUDE.md` when a session starts, so the rules reach every session in that repo. They travel with the repo: a teammate's session reads them whether or not that machine has the plugin. The number in the opening marker is the plugin version the block last changed in.
@@ -26,7 +26,7 @@ The host reads `CLAUDE.md` when a session starts, so the rules reach every sessi
 | `Secrets` | Name a variable, never write its value |
 | `Asking` | Put a decision to you as options with one recommendation and its trade-off, and run the command itself |
 | `Closing` | Report per item what changed, each default it chose, and what you must do by hand |
-| `Skills, where installed` | Read the `kaizn` skill for UI, SQL, logic or a document before that kind of work |
+| `Skills, where installed` | Read the `kaizen` skill for UI, SQL, logic or a document before that kind of work |
 
 The exact text is in `skills/norms-config/SKILL.md`.
 
@@ -37,11 +37,11 @@ A session that skips a line is stopped by nothing. `Git` and `Data` are the two 
 ## Waive or change a line
 
 - **For one session**, say so in chat: "push without asking in this session".
-- **For good**, edit the line in `CLAUDE.md`, or delete it. The next `/kaizn:norms-config` shows the lines that differ from the plugin's and asks which to keep; it never puts back a line you removed without your answer.
+- **For good**, edit the line in `CLAUDE.md`, or delete it. The next `/kaizen:norms-config` shows the lines that differ from the plugin's and asks which to keep; it never puts back a line you removed without your answer.
 
 ## After a plugin update
 
-A version that changes the block says so in its changelog entry. Run `/kaizn:norms-config` again in each repo.
+A version that changes the block says so in its changelog entry. Run `/kaizen:norms-config` again in each repo.
 
 > [!WARNING]
 > A block with an older version in its marker is replaced whole, your edits inside it included. Keep rules of your own outside the markers — under `## Rules for this app only`, the section `app-settle` writes for them.

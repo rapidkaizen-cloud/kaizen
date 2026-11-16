@@ -26,7 +26,7 @@ Print the block whole:
 
 ```
 DESIGN-SETTLE
-Skill build     : kaizn [version, from .claude-plugin/plugin.json two levels above this file]
+Skill build     : kaizen [version, from .claude-plugin/plugin.json two levels above this file]
 Model           : [the model this session runs on, as the host names it]
 Quota           : [the `used` lines of `claude -p "/usage" --strict-mcp-config`, on Claude Code] | not read — [host]
 Documents       : [the files read] | none

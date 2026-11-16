@@ -10,7 +10,7 @@ One `design-settle` session settles the direction and proves it on one page; eve
 
 ## Steps
 
-1. **Run `/kaizn:design-settle`.** It reads the repo and prints a block: the build, the model, the quota, the documents and components it found. Then it gives its reading of the app in one sentence. Correct it before anything is asked or drawn.
+1. **Run `/kaizen:design-settle`.** It reads the repo and prints a block: the build, the model, the quota, the documents and components it found. Then it gives its reading of the app in one sentence. Correct it before anything is asked or drawn.
 2. **Answer one round of questions**, two at most: a direction out of three named ones or `decide for me`, a reference product, what stays (logo, brand colour, font, component library), theme and widths, the proving page, the copy voice. What your documents already answer is not asked. Where a `DESIGN.md` exists, the question is what must change, and the rest stays.
 3. **Open the two frames.** The session draws the proving page twice, as two files you open in a browser. They differ in structure, never only in colour, and hold your app's real content.
 4. **Pick `A`, `B`, a mix, or neither.** A mix or a correction is applied and shown again until you ratify it; `neither` gets one new pair.
