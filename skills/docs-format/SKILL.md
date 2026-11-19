@@ -13,7 +13,7 @@ Write for the developer or the agent who continues the app, in the user's langua
 |---|---|
 | `README.md` | what the app is, how to run it — environment variables by name |
 | `docs/README.md` | one sentence on the app and a link to each file that exists; never the queue |
-| `docs/product.md` | context, problem, success, non-goals, roles, prohibitions |
+| `docs/product.md` | context, problem, success, non-goals, roles, prohibitions, features |
 | `docs/rules.md` | each business rule under its own heading, with its `Why:` |
 | `docs/queue.md` | work owed, one line each; a finished line is deleted, an empty file is deleted |
 | `docs/changelog.md` | what changed in how the app behaves, newest first; an entry is never edited |
@@ -47,6 +47,20 @@ Write for the developer or the agent who continues the app, in the user's langua
 - **Give each rule a `Why:` of three sentences at most**: the reason, the trade-off, the condition for revisiting it. An unknown reason is written `Why: unknown — it has always been this way`.
 - **Propose a prohibition or a non-goal, then stop for the user's answer**: never write one on your own.
 - **`DESIGN.md` derives user → `DESIGN.md` → styling files**: a value enters it only when the user ratified it.
+
+## Features
+
+The `## Features` table of `docs/product.md` is the one list of what exists a document keeps, routes and selectors included, because a walk and an unclear bug report start from it. One row per feature a user reaches:
+
+| Column | Holds |
+|---|---|
+| `Feature` | its name as the user says it |
+| `How a user reaches it` | the clicks from the start page, as the user sees them |
+| `Drive` | the route, selector or shortcut a walk uses |
+| `Proof` | the end state on screen that shows it worked |
+| `Gotchas` | a precondition or trap a walk meets, or `none` |
+
+- **A walk that cannot reach a row's `Proof` is a failure with its reason in `Gotchas`**, never a reason to weaken the row.
 
 ## The same commit
 

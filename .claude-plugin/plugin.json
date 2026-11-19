@@ -1,6 +1,6 @@
 {
   "name": "kaizen",
-  "version": "1.2.0",
-  "description": "Nine standalone skills for building an app with an agent: app-settle writes down what the app is, design-settle settles its look into DESIGN.md, and build-flow, docs-format, ui-build, db-ops and logic-build carry the rules for building a page, a document, UI, SQL and application logic. norms-config writes eight working rules into the repo's CLAUDE.md, each negotiable in chat. Nothing is enforced by a hook.",
+  "version": "1.3.0",
+  "description": "Nine standalone skills for building an app with an agent: app-settle writes down what the app is, design-settle settles its look into DESIGN.md, and build-flow, docs-format, ui-build, db-ops and logic-build carry the rules for building a page, a document, UI, SQL and application logic. norms-config writes ten working rules into the repo's CLAUDE.md, each negotiable in chat. Nothing is enforced by a hook.",
   "keywords": ["norms", "docs", "rls", "build-order", "secrets", "bootstrap", "logic-layer", "design-system", "brownfield", "claude-md"]
 }

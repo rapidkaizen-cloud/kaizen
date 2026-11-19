@@ -7,7 +7,7 @@ An app repo keeps a small set of documents, and no skill requires any of them.
 | `CLAUDE.md` | What is true of this app alone: locale, stack, ground truth, its own rules | `app-settle`; `norms-config` adds the [working rules](working-rules.md) |
 | `README.md` | What the app is, and how to run it | `app-settle` |
 | `docs/README.md` | One sentence on the app, and a link to each document | `app-settle` |
-| `docs/product.md` | Context, problem, success, non-goals, roles, prohibitions | `app-settle` |
+| `docs/product.md` | Context, problem, success, non-goals, roles, prohibitions, and a features table: how a user reaches each feature, how a walk drives it, and what proves it worked | `app-settle`; a build session adds the row of each feature it builds |
 | `docs/rules.md` | Each business rule under its own heading, with its `Why:` | `app-settle`, then any session that records a rule |
 | `docs/queue.md` | Work owed, one line per page; a finished line is deleted | `app-settle` on a new app, `design-settle`, any session that queues work |
 | `docs/changelog.md` | What changed in how the app behaves, newest first | Any session whose commit changes behaviour |
@@ -29,7 +29,7 @@ A commit that makes a document false carries its correction, and a commit that c
 
 ## What stays out
 
-Anything a live check can bring back: a list of tables or pages, a status, a description of the current state, a number measured today. A document holds what the code cannot say — the reason behind a rule, what must never be done, what the app is not for.
+Anything a live check can bring back: a list of tables or pages, a status, a description of the current state, a number measured today. The features table of `docs/product.md` is the one exception, because it holds what the code does not: how a user sees each feature and what proves it worked. A document holds what the code cannot say — the reason behind a rule, what must never be done, what the app is not for.
 
 ## Other files
 

@@ -17,6 +17,7 @@ The rules a session follows for the logic layer: which key goes where, where a b
 - **A question for an unrecorded rule.** A business rule `docs/rules.md` does not hold is asked, never invented.
 - **Errors you can act on.** The screen gets a sentence; the log gets the detail.
 - **A test per rule**, titled with the rule's name, that attacks the point where the rule is enforced.
+- **A test per bug fix** that fails without the fix. Where `CLAUDE.md` keeps a `Rule | Enforced by` table, the test is named in the row of the mistake it fixed.
 
 ## A choice nobody recorded
 
@@ -32,7 +33,7 @@ The session raises it once: install one now, or carry on unproven with a line `P
 
 ## What it does not cover
 
-- **A lint floor.** Lint rules and rule tests already in a repo stay as that repo's own configuration; no skill writes or maintains them.
+- **A lint floor.** No skill ships a preset lint rule. Lint rules already in a repo stay as its own configuration, and a new one enters only from a correction you made, by the `Corrections` line of the [working rules](../concepts/working-rules.md).
 - **A settled architecture document.** The Stack table of `CLAUDE.md` is the record.
 
 ## Related

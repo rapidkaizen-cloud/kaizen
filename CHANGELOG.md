@@ -2,6 +2,27 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 1.3.0] - 2026-11-19
+
+A correction now ends in a check where one can hold, because a rule an agent reads loses to the pattern it copies from the code beside it. These rules come from published practice of teams whose code is mostly written by agents, on the maintainer's direct word, and not from a miss seen twice in an app here; [What is proven](docs/reference/status.md) lists them as run in no session.
+
+### Added
+
+- Working rules `Corrections` and `Comments`, making the block ten lines. `Corrections`: after fixing what the user corrected, offer to make the mistake impossible — the code's structure, a type, a lint whose error names the replacement, a test, prose last — with a check that fails only on new additions where the pattern is common, proven to fail on the old mistake, and recorded in a `| Rule | Enforced by |` table under `## Rules for this app only`, outside the block. `Comments`: no comment that excuses a workaround; the rest of a fix, a shortcut's limit included, goes where the repo keeps its owed work.
+- `docs-format`: a `## Features` table in `docs/product.md`, one row per feature — `Feature · How a user reaches it · Drive · Proof · Gotchas`.
+- `app-settle`: Document mode writes the features table for the features the app's routes or menu show.
+- `build-flow`: the walk ends on the feature's `Proof` with a screenshot of each state; a scripted walk runs only through the repo's one driver; a new feature adds its row; a vague bug report is read against the features table first; a fix that replaces a pattern used elsewhere queues the other copies as one line.
+- `logic-build`: a bug fix's test is named in the row of the mistake it fixed, where `CLAUDE.md` keeps the table.
+
+### Changed
+
+- The working-rules block sits between `<!-- kaizen:rules 1.3.0 -->` and `<!-- /kaizen:rules -->`.
+- `build-flow` also loads when the user reports a bug in a page.
+
+To act on:
+
+- Every app repo: run `/kaizen:norms-config` to write the 1.3.0 block.
+
 ## [kaizen 1.2.0] - 2026-11-16
 
 The plugin, its marketplace and its repo are renamed `kaizen`, because the earlier spelling read as a typo. Other Claude Code plugins named `kaizen` exist; installing one of them beside this one puts two plugins under one name.

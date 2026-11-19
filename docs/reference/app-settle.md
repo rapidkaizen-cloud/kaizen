@@ -27,7 +27,7 @@ The session names the mode in the block it prints first.
 3. **Six themes**: the problem · who uses the app and how they work today · what each role must finish, and its limits · the business rules and the reason behind each number · the terms easy to misread · what the app is not for. Each is summarized back, and its gaps are asked in one batch.
 4. **The stack.** On a new app, one round: platform, frontend, database with auth, hosting — each with a recommendation, its trade-off and `decide for me`. On an existing app, nothing is asked.
 5. **The summary**: each file and what it will hold.
-6. **The files**, then one commit and a report.
+6. **The files**, then one commit and a report. On an existing app, `docs/product.md` gets a features table: one row per feature the app's routes or menu show, with how a user reaches it, how a walk drives it, and what proves it worked. On a new app the table starts with the first page built.
 
 ## Where it stops
 

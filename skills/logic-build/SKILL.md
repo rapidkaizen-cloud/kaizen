@@ -58,6 +58,7 @@ description: Rules for the logic layer of an app — which key goes where, where
 ## Rule test
 
 - **Every rule implemented leaves one test whose title quotes the rule's name**, and a bug fix leaves the test that fails without it.
+- **Where `CLAUDE.md` keeps a `Rule | Enforced by` table, name a bug fix's test in the row of the mistake it fixed.**
 - **The test attacks the enforcement point**: a constraint, trigger or RPC → attempt the forbidden write as the bound role and expect the refusal, then the permitted one. A computation → call it with the rule's value, the value just inside and the value just outside.
 - **Never mock the call under test, and never fix a failing rule test by editing the test.**
 - **No test runner → raise it once**: install one now, or carry on unproven with a line `Prove: <rule>` where the repo keeps its owed work.

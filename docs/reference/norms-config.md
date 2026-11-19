@@ -1,6 +1,6 @@
 # norms-config
 
-Writes or refreshes the eight working rules in a repo's `CLAUDE.md`.
+Writes or refreshes the ten working rules in a repo's `CLAUDE.md`.
 
 | | |
 |---|---|
@@ -21,7 +21,7 @@ Writes or refreshes the eight working rules in a repo's `CLAUDE.md`.
 | An `AGENTS.md` at the root | Writes the same block there. It never creates the file |
 | A folder you name for the files made for you | Adds one `Output` line holding it |
 
-The block sits between `<!-- kaizen:rules <version> -->` and `<!-- /kaizen:rules -->`. [Working rules](../concepts/working-rules.md) lists its eight lines.
+The block sits between `<!-- kaizen:rules <version> -->` and `<!-- /kaizen:rules -->`. [Working rules](../concepts/working-rules.md) lists its ten lines.
 
 ## What you can rely on
 

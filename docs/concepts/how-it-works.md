@@ -30,6 +30,6 @@ For an app that runs in production, keep the protections that do not depend on a
 
 ## Related
 
-- [Working rules](working-rules.md) — the eight lines, and how to waive or change one.
+- [Working rules](working-rules.md) — the ten lines, and how to waive or change one.
 - [Documents](documents.md) — the files a skill reads where they exist.
 - [What is proven](../reference/status.md) — what has run for real since the rebuild.
