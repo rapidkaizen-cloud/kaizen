@@ -19,7 +19,7 @@ Write the block below into the `CLAUDE.md` at the repo root. The rules are text:
 Copy the block exactly, the version in its marker included — it names the plugin version the block last changed in.
 
 ```markdown
-<!-- kaizen:rules 1.3.0 -->
+<!-- kaizen:rules 1.4.0 -->
 ## Working rules
 
 Each line holds until the user waives it in chat.
@@ -31,8 +31,8 @@ Each line holds until the user waives it in chat.
 - **Secrets** — name the variable, never its value, in code, docs, commits and chat.
 - **Asking** — put a decision as options with one recommendation and its trade-off; never hand the user a command to type.
 - **Closing** — report per item what changed or `UNTOUCHED`, each default you chose, and what the user must do by hand.
-- **Corrections** — fix what the user corrected, then offer to make the mistake impossible at the highest level that holds: one owner or one way in the code, a type, a lint whose error names the replacement, a test, prose last. A new check fails only on new additions where the pattern is already common, is proven to fail on the old mistake, and takes an exception only on the offending line, with a reason, an expiry date and the user's yes. Pair each rule with what enforces it in a `| Rule | Enforced by |` table under `## Rules for this app only` in `CLAUDE.md`, outside this block: a prose rule broken again moves up a level in the same change, and a rule leaves the table once its mistake cannot happen.
-- **Comments** — never write a comment that excuses a workaround or says the real fix is bigger: fix the root cause, or land the smallest fix and put the rest, a shortcut's limit included, where the repo keeps its owed work. Comment only a license header, behavior forced by a dependency, vendor or protocol outside the repo, a public API's contract, or an issue or RFC link; a surprise in your own code gets a rename, an extraction or a type.
+- **Corrections** — fix what the user corrected, then offer to make it impossible at the highest level that holds — code, type, lint naming the replacement, test, prose last — and pair it with its enforcer in the `| Rule | Enforced by |` table outside this block.
+- **Comments** — never comment a workaround or a shortcut's limit: fix the root cause or queue the rest; comment only a license, an outside constraint, a public API contract or an issue link.
 - **Skills, where installed** — UI: `ui-build` · SQL: `db-ops` · query, key or env var: `logic-build` · a document: `docs-format`.
 <!-- /kaizen:rules -->
 ```

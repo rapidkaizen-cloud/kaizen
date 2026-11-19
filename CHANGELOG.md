@@ -2,6 +2,27 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 1.4.0] - 2026-11-19
+
+The `Corrections` and `Comments` working rules are one sentence each, because the block is read in every session of every app; what they shed moved to `logic-build`, which loads only when a check is written. Written on the maintainer's direct word; [What is proven](docs/reference/status.md) lists these as run in no session.
+
+### Added
+
+- `logic-build`: a `Checks from corrections` section — where the `| Rule | Enforced by |` table sits, a new check failing only on new additions where the pattern is common, proven to fail on the old mistake, an exception only on its own line with a reason, an expiry date and the user's yes, a prose rule broken again moving up a level, and a row leaving the table once its mistake cannot happen.
+- `logic-build`: a rule that computes money, stock or pay also gets a property-based test of its invariant over generated input; the library is asked once and recorded in the Stack table.
+- `logic-build`: allowed status transitions are enforced in the database, by a transitions table or a trigger, and their rule test attempts a forbidden transition.
+- Docs: [Check features on a schedule](docs/guide/scheduled-walk.md), a read-only run that walks the features table on a schedule and reports what broke.
+
+### Changed
+
+- Working rule `Corrections` names the order of levels and the table only; `Comments` also forbids a comment that states a shortcut's limit, and keeps a license, an outside constraint, a public API contract or an issue link.
+- `logic-build` also loads when a session writes a lint, type or test that makes a corrected mistake impossible.
+- The working-rules block sits between `<!-- kaizen:rules 1.4.0 -->` and `<!-- /kaizen:rules -->`.
+
+To act on:
+
+- Every app repo: run `/kaizen:norms-config` to write the 1.4.0 block.
+
 ## [kaizen 1.3.0] - 2026-11-19
 
 A correction now ends in a check where one can hold, because a rule an agent reads loses to the pattern it copies from the code beside it. These rules come from published practice of teams whose code is mostly written by agents, on the maintainer's direct word, and not from a miss seen twice in an app here; [What is proven](docs/reference/status.md) lists them as run in no session.

@@ -7,7 +7,7 @@ Ten lines of text in a repo's `CLAUDE.md` tell every session there how to work, 
 `/kaizen:norms-config` writes them at the end of the `CLAUDE.md` at the repo root, as one block between two markers:
 
 ```
-<!-- kaizen:rules 1.3.0 -->
+<!-- kaizen:rules 1.4.0 -->
 ## Working rules
 ...
 <!-- /kaizen:rules -->
@@ -27,7 +27,7 @@ The host reads `CLAUDE.md` when a session starts, so the rules reach every sessi
 | `Asking` | Put a decision to you as options with one recommendation and its trade-off, and run the command itself |
 | `Closing` | Report per item what changed, each default it chose, and what you must do by hand |
 | `Corrections` | After fixing a mistake you corrected, offer to make it impossible: in the code's structure, a type, a lint, a test, and prose only last |
-| `Comments` | No comment that excuses a workaround: the root cause is fixed, or the rest is queued as owed work |
+| `Comments` | No comment that excuses a workaround or states a shortcut's limit: the root cause is fixed, or the rest is queued as owed work |
 | `Skills, where installed` | Read the `kaizen` skill for UI, SQL, logic or a document before that kind of work |
 
 The exact text is in `skills/norms-config/SKILL.md`.
@@ -58,15 +58,13 @@ A rule an agent reads loses to the code it copies, so a correction you make is w
 4. **A test.**
 5. **Prose**, only for a judgment call nothing can check.
 
-A new check is shown failing on the old mistake before it is kept. Where the pattern is already common, it fails only on new additions, and the old copies become a queue line to clean later. An exception sits on its own line with a reason, an expiry date and your yes.
-
-Each rule and what enforces it is a row of a `| Rule | Enforced by |` table under `## Rules for this app only` in `CLAUDE.md`, outside the markers, so a refresh of the block never removes it. A rule kept only as prose and broken again moves up a level in the same change; a rule leaves the table once its mistake cannot happen.
+Each rule and what enforces it is a row of a `| Rule | Enforced by |` table in `CLAUDE.md`, outside the markers, so a refresh of the block never removes it. How a check is kept — where the table sits, the proof, the exception, when a row leaves — is in [logic-build](../reference/logic-build.md#checks-from-corrections).
 
 Nothing is preset: a repo gets a check only from a correction you made in it.
 
 ## Comments
 
-A comment that explains why a workaround is fine is read by the next session as permission to copy it. A session fixes the root cause, or lands the smallest fix and queues the rest, a shortcut's known limit included. Comments that stay: a license header, behavior forced by a dependency, vendor or protocol outside the repo, a public API's contract, an issue or RFC link.
+A comment that explains why a workaround is fine is read by the next session as permission to copy it. A session fixes the root cause, or queues the rest as owed work. A shortcut's known limit is queued too, never left as a comment, even where another plugin asks for one. Comments that stay: a license, a constraint from outside the repo, a public API's contract, an issue link.
 
 ## `AGENTS.md`
 

@@ -28,6 +28,7 @@ New here: [Overview](start/overview.md), then [Install](start/install.md), then 
 | [Start a new app](guide/new-app.md) | From an empty directory to the first page |
 | [Bring in an existing app](guide/existing-app.md) | Working rules and documents for an app that already runs |
 | [Redesign the look](guide/redesign.md) | One `design-settle` session, then one page per session |
+| [Check features on a schedule](guide/scheduled-walk.md) | A read-only run that walks the features table and reports what broke |
 | [Run on a Pro plan](guide/pro-plan.md) | Four settings of your machine that decide what a session costs |
 | [Update the plugin](guide/update.md) | Updating, moving to 1.0.0, and the two older moves |
 | [Run on Antigravity](guide/antigravity.md) | Install, update, and what is absent there |
