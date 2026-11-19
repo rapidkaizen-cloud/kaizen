@@ -1,6 +1,6 @@
 ---
 name: build-flow
-description: How to build an app one page at a time so every session ends on something that works — the unit of work, the queue line, proposing a page's content before code, the order inside a page, and the three stops. Use when the user asks to build or continue a feature, a page or a batch of pages.
+description: How to build an app one page at a time so every session ends on something that works — the unit of work, the queue line, proposing a page's content before code, the order inside a page, and the three stops. Use when the user asks to build or continue a feature, a page or a batch of pages, or reports a bug in one.
 ---
 
 # build-flow — one page at a time
@@ -19,10 +19,12 @@ description: How to build an app one page at a time so every session ends on som
 - **Add `(needs: <page>)` only for a real dependency.**
 - **Delete a line in the commit that finishes it, and the file with its last line.** History is `git log docs/queue.md`.
 - **No status column, checkbox or date.**
+- **A fix that replaces a pattern found elsewhere queues the other copies as one line, never fixes them in the same change**: `- <pattern> — <count> copies — <files>`.
 
 ## Before code
 
 - **Read what binds the page**: `docs/rules.md`, the roles and prohibitions of `docs/product.md`, `DESIGN.md`, and the pages that exist. A file that is absent binds nothing.
+- **A bug report that does not say where → read the `## Features` table of `docs/product.md` first**, and reproduce it by the row's `Drive`.
 - **Propose the page's content, then ask everything in one turn**:
   - `Bound` — what the documents or the request require. Stated, never asked.
   - `Optional` — what you would add. One multi-select of what to drop, with `keep all` first.
@@ -40,13 +42,15 @@ A page that writes or reads new data:
 5. The query, in the data layer.
 6. The test of the rule.
 7. The page, wired to the query, with its loading, empty and failed states.
-8. A walk in the browser as the role the page is for: the action it exists for, its empty state, one failure.
+8. A walk in the browser as the role the page is for, with a screenshot of each state: the action it exists for, ending on its feature's `Proof`, its empty state, one failure.
 9. The repo's lint command.
-10. The documents the change made false.
+10. The documents the change made false, and a new feature's row in the `## Features` table of `docs/product.md`.
 
 A page with no new data starts at step 7.
 
 - **No browser tool at hand → report the page `not walked`**, never as working.
+- **Script a walk only through the repo's one driver** — its end-to-end config, its own walk script, or the plugin's `scripts/verify_pages.js` two levels above this file — **never a new script per session**; a repo with none gets one script, committed, that the next walk reuses.
+- **Keep screenshots out of the commit.**
 - **Read every new on-screen string once before the lint**: short, one term per concept.
 
 ## The three stops
@@ -62,5 +66,5 @@ Anything else is yours to decide: take the default and name it in the closing re
 ## Closing
 
 - **Commit the unit, naming its paths**, with the documents it made false and without its queue line.
-- **Report per page**: built · walked as which role, or `not walked` · what is left.
+- **Report per page**: built · walked as which role, with each screenshot's path, or `not walked` · what is left.
 - **A commit that changes no document says so**: `Docs: none — <why>`.

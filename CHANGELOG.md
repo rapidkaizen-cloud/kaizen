@@ -2,6 +2,57 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 1.5.0] - 2026-11-19
+
+`ui-build` follows Google's `modern-web-guidance` skill in a web app where it is installed, on the maintainer's direct word; it stays optional, and [What is proven](docs/reference/status.md) lists it as run in no session.
+
+### Added
+
+- `ui-build`: where `modern-web-guidance` is installed and the app is a web app, a new component, or client-side CSS or JS, takes from its guide how to use a browser feature; it never replaces a component the repo or its library has, and never overrules `DESIGN.md`.
+- Docs: `modern-web-guidance` as the recommended companion for a web app, with its install on [Claude Code](docs/start/install.md#recommended-for-a-web-app) and [Antigravity](docs/guide/antigravity.md#recommended-for-a-web-app).
+
+## [kaizen 1.4.0] - 2026-11-19
+
+The `Corrections` and `Comments` working rules are one sentence each, because the block is read in every session of every app; what they shed moved to `logic-build`, which loads only when a check is written. Written on the maintainer's direct word; [What is proven](docs/reference/status.md) lists these as run in no session.
+
+### Added
+
+- `logic-build`: a `Checks from corrections` section — where the `| Rule | Enforced by |` table sits, a new check failing only on new additions where the pattern is common, proven to fail on the old mistake, an exception only on its own line with a reason, an expiry date and the user's yes, a prose rule broken again moving up a level, and a row leaving the table once its mistake cannot happen.
+- `logic-build`: a rule that computes money, stock or pay also gets a property-based test of its invariant over generated input; the library is asked once and recorded in the Stack table.
+- `logic-build`: allowed status transitions are enforced in the database, by a transitions table or a trigger, and their rule test attempts a forbidden transition.
+- Docs: [Check features on a schedule](docs/guide/scheduled-walk.md), a read-only run that walks the features table on a schedule and reports what broke.
+
+### Changed
+
+- Working rule `Corrections` names the order of levels and the table only; `Comments` also forbids a comment that states a shortcut's limit, and keeps a license, an outside constraint, a public API contract or an issue link.
+- `logic-build` also loads when a session writes a lint, type or test that makes a corrected mistake impossible.
+- The working-rules block sits between `<!-- kaizen:rules 1.4.0 -->` and `<!-- /kaizen:rules -->`.
+
+To act on:
+
+- Every app repo: run `/kaizen:norms-config` to write the 1.4.0 block.
+
+## [kaizen 1.3.0] - 2026-11-19
+
+A correction now ends in a check where one can hold, because a rule an agent reads loses to the pattern it copies from the code beside it. These rules come from published practice of teams whose code is mostly written by agents, on the maintainer's direct word, and not from a miss seen twice in an app here; [What is proven](docs/reference/status.md) lists them as run in no session.
+
+### Added
+
+- Working rules `Corrections` and `Comments`, making the block ten lines. `Corrections`: after fixing what the user corrected, offer to make the mistake impossible — the code's structure, a type, a lint whose error names the replacement, a test, prose last — with a check that fails only on new additions where the pattern is common, proven to fail on the old mistake, and recorded in a `| Rule | Enforced by |` table under `## Rules for this app only`, outside the block. `Comments`: no comment that excuses a workaround; the rest of a fix, a shortcut's limit included, goes where the repo keeps its owed work.
+- `docs-format`: a `## Features` table in `docs/product.md`, one row per feature — `Feature · How a user reaches it · Drive · Proof · Gotchas`.
+- `app-settle`: Document mode writes the features table for the features the app's routes or menu show.
+- `build-flow`: the walk ends on the feature's `Proof` with a screenshot of each state; a scripted walk runs only through the repo's one driver; a new feature adds its row; a vague bug report is read against the features table first; a fix that replaces a pattern used elsewhere queues the other copies as one line.
+- `logic-build`: a bug fix's test is named in the row of the mistake it fixed, where `CLAUDE.md` keeps the table.
+
+### Changed
+
+- The working-rules block sits between `<!-- kaizen:rules 1.3.0 -->` and `<!-- /kaizen:rules -->`.
+- `build-flow` also loads when the user reports a bug in a page.
+
+To act on:
+
+- Every app repo: run `/kaizen:norms-config` to write the 1.3.0 block.
+
 ## [kaizen 1.2.0] - 2026-11-16
 
 The plugin, its marketplace and its repo are renamed `kaizen`, because the earlier spelling read as a typo. Other Claude Code plugins named `kaizen` exist; installing one of them beside this one puts two plugins under one name.

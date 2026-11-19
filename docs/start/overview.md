@@ -1,6 +1,6 @@
 # Overview
 
-`kaizen` is one plugin of nine standalone skills for building an app with an agent, plus eight working rules a repo keeps in its own `CLAUDE.md`.
+`kaizen` is one plugin of nine standalone skills for building an app with an agent, plus ten working rules a repo keeps in its own `CLAUDE.md`.
 
 Nothing in it is enforced. A skill is text a session reads when the work calls for it, and a working rule is a line you can waive in chat. The plugin ships no hook.
 
@@ -11,7 +11,7 @@ Nothing in it is enforced. A skill is text a session reads when the work calls f
 | `app-settle` | Interviews you about the problem, the roles and the business rules, then writes the repo's `CLAUDE.md` and its core documents | When you invoke it |
 | `design-settle` | Settles the look: two direction frames you pick from on screen, then `DESIGN.md` and one proving page | When you invoke it |
 | `build-flow`, `docs-format`, `ui-build`, `db-ops`, `logic-build` | Carry the rules for building a page, a document, UI, SQL and application logic | By themselves, when the work matches their description |
-| `norms-config` | Writes the eight working rules into the repo's `CLAUDE.md` | When you invoke it, once per repo |
+| `norms-config` | Writes the ten working rules into the repo's `CLAUDE.md` | When you invoke it, once per repo |
 | `norms-help` | Prints the commands, these pages, the version and its last change | When you ask |
 
 ## Every skill stands alone

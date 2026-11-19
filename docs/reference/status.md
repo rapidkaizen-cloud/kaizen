@@ -19,6 +19,9 @@ Nothing at 1.0.0. The plugin has not been installed there since the rewrite.
 ## Not yet verified
 
 - **Every rebuilt skill.** `app-settle`, `design-settle`, `norms-config`, `build-flow`, `docs-format`, `ui-build`, `db-ops` and `logic-build` at 1.0.0 have run in no session, on no model.
+- **The 1.3.0 additions.** The `Corrections` and `Comments` working rules, the features table, the walk through one driver and the queue line for old copies were written on the maintainer's word from published practice of teams whose code is mostly written by agents, not from a miss seen in an app here, and have run in no session.
+- **The 1.4.0 additions.** The one-sentence `Corrections` and `Comments` lines, the checks section of `logic-build`, the property-based test for money, stock and pay, the status-transitions row, and the run in [Check features on a schedule](../guide/scheduled-walk.md) have run in no session.
+- **The 1.5.0 addition.** `ui-build` following `modern-web-guidance` in a web app has run in no session, on Claude Code or Antigravity.
 - **Loading by itself.** Whether a session loads a rule skill without being asked depends on the host listing its description; where it lists the name only, name the skill or keep the working rules' last line.
 - **The working rules as text.** How well a session keeps a rule nothing enforces has not been measured.
 - **What a run costs.** Every figure in [Run on a Pro plan](../guide/pro-plan.md) was measured on the flow before 1.0.0.

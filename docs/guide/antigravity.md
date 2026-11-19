@@ -41,6 +41,14 @@ None is required: the same three as on Claude Code, read where installed.
 > [!NOTE]
 > A skill is found only as a folder of its own under `~/.gemini/config/skills/`. Under `~/.gemini/antigravity-cli/skills/`, or as a link to a folder elsewhere, it is never listed.
 
+## Recommended for a web app
+
+`modern-web-guidance`, which `ui-build` follows for how new UI uses a browser feature — see [Install](../start/install.md#recommended-for-a-web-app). Not required.
+
+```
+agy plugin install https://github.com/GoogleChrome/modern-web-guidance
+```
+
 ## Check that it loaded
 
 - `agy plugin list` names `kaizen`.

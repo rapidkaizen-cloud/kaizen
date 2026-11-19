@@ -11,6 +11,7 @@ description: Rules for building or changing any UI — where a component comes f
 - **No `DESIGN.md` → say so once, then build from the tokens and components the repo already has**, and write no new styling value. A repo with no UI yet takes its values from the user.
 - **A line of it marked `[needs verification]` → take the value from an existing component**, and name it at the close.
 - **A design skill is installed (`impeccable`, `frontend-design`, `ui-ux-pro-max`) → read only its part for the component at hand.** None is required.
+- **`modern-web-guidance` is installed and the app is a web app → follow its guide for how a new component, or client-side CSS or JS, uses a browser feature**; it never replaces a component the repo or its library has, and never overrules `DESIGN.md`. It is not required.
 - **Read the shared component folder itself**, never a search for it.
 
 ## Where a component comes from

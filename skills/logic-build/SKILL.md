@@ -1,6 +1,6 @@
 ---
 name: logic-build
-description: Rules for the logic layer of an app — which key goes where, where a business rule is enforced, server handlers, errors, the data-layer folder and the test every rule leaves. Use before writing a query, an API handler, an environment variable, anything that holds a key, or code that enforces a business rule.
+description: Rules for the logic layer of an app — which key goes where, where a business rule is enforced, server handlers, errors, the data-layer folder, the test every rule leaves and the check a correction becomes. Use before writing a query, an API handler, an environment variable, anything that holds a key, code that enforces a business rule, or a lint, type or test that makes a mistake the user corrected impossible.
 ---
 
 # logic-build — keys, rules, queries
@@ -23,6 +23,7 @@ description: Rules for the logic layer of an app — which key goes where, where
 |---|---|
 | Access | RLS, always |
 | Uniqueness | a unique constraint, always |
+| Allowed status transitions | a transitions table or a trigger in the database, always |
 | Computation, workflow | one named place |
 
 - **Client code is convenience only**: name a check that repeats a server rule as a mirror, in the code.
@@ -45,7 +46,7 @@ description: Rules for the logic layer of an app — which key goes where, where
 
 ## Libraries and reuse
 
-- **A need with no recorded choice — cache, validator, dates, where errors go, background jobs — is asked once, with a recommendation**, then recorded as a row of the Stack table in `CLAUDE.md`. A recorded `none` is a decision.
+- **A need with no recorded choice — cache, validator, dates, where errors go, background jobs, property-based tests — is asked once, with a recommendation**, then recorded as a row of the Stack table in `CLAUDE.md`. A recorded `none` is a decision.
 - **Keep a library's defaults until a recorded reason changes one.**
 - **Extract a query or a rule the second time it appears.**
 - **Regenerate types from the live schema after every schema change.** `as any` on a call the types lack is a finding.
@@ -58,6 +59,17 @@ description: Rules for the logic layer of an app — which key goes where, where
 ## Rule test
 
 - **Every rule implemented leaves one test whose title quotes the rule's name**, and a bug fix leaves the test that fails without it.
-- **The test attacks the enforcement point**: a constraint, trigger or RPC → attempt the forbidden write as the bound role and expect the refusal, then the permitted one. A computation → call it with the rule's value, the value just inside and the value just outside.
+- **Where `CLAUDE.md` keeps a `Rule | Enforced by` table, name a bug fix's test in the row of the mistake it fixed.**
+- **The test attacks the enforcement point**: a constraint, trigger or RPC → attempt the forbidden write, a forbidden status transition included, as the bound role and expect the refusal, then the permitted one. A computation → call it with the rule's value, the value just inside and the value just outside.
+- **A rule that computes money, stock or pay also gets a property-based test that checks its invariant over generated input** — a total always equals the sum of its lines — with fast-check in TypeScript or its counterpart in the stack.
 - **Never mock the call under test, and never fix a failing rule test by editing the test.**
 - **No test runner → raise it once**: install one now, or carry on unproven with a line `Prove: <rule>` where the repo keeps its owed work.
+
+## Checks from corrections
+
+- **Keep the `| Rule | Enforced by |` table under `## Rules for this app only` in the app's `CLAUDE.md`**, because a refresh of the working-rules block replaces everything inside it.
+- **Where the pattern is already common, fail a new check only on new additions.**
+- **Prove a new check fails on the old mistake before keeping it.**
+- **Allow an exception only on the offending line itself, with its reason, an expiry date and the user's yes.**
+- **A prose rule broken again moves up one level in the same change.**
+- **Delete a table row once its mistake cannot happen.**

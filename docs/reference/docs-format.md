@@ -15,11 +15,15 @@ Which documents an app repo keeps, what belongs in each, and what is never writt
 
 ## What you will see
 
-- **No list of what exists.** A session writes the criterion that decides membership, never the tables, pages or files themselves.
+- **No list of what exists**, the features table aside. A session writes the criterion that decides membership, never the tables, pages or files themselves.
 - **No status, no date, no "currently".** The documents read the same next year; dates live in `docs/changelog.md` only.
 - **A `Why:` under every rule**, three sentences at most: the reason, the trade-off, when to revisit it. An unknown reason is written as unknown.
 - **A proposal before a prohibition.** A session proposes a prohibition or a non-goal and waits for your answer; it never writes one on its own.
 - **`Docs: none`** with its reason, in the report of a commit that changes no document.
+
+## The features table
+
+`docs/product.md` ends with a `## Features` table, one row per feature a user reaches: `Feature · How a user reaches it · Drive · Proof · Gotchas`. `Drive` is the route, selector or shortcut a walk uses; `Proof` is the end state on screen that shows the feature worked. It is the one list of what exists a document keeps, because a walk in the browser and a vague bug report both start from it. A walk that cannot reach a row's `Proof` is reported as a failure, with its reason in `Gotchas`; the row is never weakened to let it pass.
 
 ## What you can rely on
 

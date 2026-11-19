@@ -5,7 +5,7 @@ The rules a session follows for the logic layer: which key goes where, where a b
 | | |
 |---|---|
 | Kind | Skill — no command |
-| Loads when | A session writes a query, an API handler, an environment variable, anything that holds a key, or code that enforces a business rule |
+| Loads when | A session writes a query, an API handler, an environment variable, anything that holds a key, code that enforces a business rule, or a check that makes a mistake you corrected impossible |
 | Reads | `docs/rules.md` and the Stack table of `CLAUDE.md`, where the repo has them |
 | Source | `skills/logic-build/SKILL.md` |
 
@@ -13,10 +13,23 @@ The rules a session follows for the logic layer: which key goes where, where a b
 
 - **Keys kept apart.** The public key in the client, the secret one on the server only. A variable whose prefix ships it to the browser is never given a secret.
 - **A stop on a committed secret.** The session names the variable and asks you to rotate it first.
-- **One rule in one place.** Access in RLS, uniqueness in a constraint, a computation or a workflow in one named place. A client check that repeats a server rule is named a mirror.
+- **One rule in one place.** Access in RLS, uniqueness in a constraint, the allowed moves between statuses in a transitions table or a trigger, a computation or a workflow in one named place. A client check that repeats a server rule is named a mirror.
 - **A question for an unrecorded rule.** A business rule `docs/rules.md` does not hold is asked, never invented.
 - **Errors you can act on.** The screen gets a sentence; the log gets the detail.
-- **A test per rule**, titled with the rule's name, that attacks the point where the rule is enforced.
+- **A test per rule**, titled with the rule's name, that attacks the point where the rule is enforced. For a status, it tries a forbidden transition and expects the refusal.
+- **A property-based test for money, stock and pay**: generated input checks an invariant, such as a total always equal to the sum of its lines. The library is asked once and recorded in the Stack table.
+- **A test per bug fix** that fails without the fix. Where `CLAUDE.md` keeps a `Rule | Enforced by` table, the test is named in the row of the mistake it fixed.
+
+## Checks from corrections
+
+When a session turns a mistake you corrected into a check, by the `Corrections` line of the [working rules](../concepts/working-rules.md):
+
+- **The `| Rule | Enforced by |` table** sits under `## Rules for this app only` in `CLAUDE.md`, outside the working-rules markers.
+- **Shown failing on the old mistake** before the check is kept.
+- **Only new additions fail** where the pattern is already common; the old copies become one queue line.
+- **An exception** sits on the offending line itself, with a reason, an expiry date and your yes.
+- **A prose rule broken again** moves up one level in the same change.
+- **A row leaves the table** once its mistake cannot happen.
 
 ## A choice nobody recorded
 
@@ -32,7 +45,7 @@ The session raises it once: install one now, or carry on unproven with a line `P
 
 ## What it does not cover
 
-- **A lint floor.** Lint rules and rule tests already in a repo stay as that repo's own configuration; no skill writes or maintains them.
+- **A lint floor.** No skill ships a preset lint rule. Lint rules already in a repo stay as its own configuration, and a new one enters only from a correction you made, by the `Corrections` line of the [working rules](../concepts/working-rules.md).
 - **A settled architecture document.** The Stack table of `CLAUDE.md` is the record.
 
 ## Related

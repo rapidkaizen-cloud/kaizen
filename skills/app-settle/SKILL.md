@@ -79,6 +79,7 @@ Leave everything else in an existing `CLAUDE.md` as it is, a block between `<!--
 | `## Non-goals` | one line each, with why |
 | `## Roles` | a table `Role · Must be able to · Must not`, and one sentence on a user whose role is empty or unknown |
 | `## Prohibitions` | what a later session would "fix" in good faith: the principle and its reason. Near-empty at Bootstrap is correct |
+| `## Features` | Document only: a table `Feature · How a user reaches it · Drive · Proof · Gotchas`, one row per feature the app's routes or menu show |
 
 **`docs/rules.md`** — `# Rules` → `## <Group>` → `### <Topic>`, the rule in explicit sentences, then `Why: <reason · trade-off · condition for revisiting>` in three sentences at most. No numbering: the topic heading is the rule's name.
 
