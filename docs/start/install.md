@@ -33,6 +33,17 @@ None is required, and a session never asks for one. Where one is installed, `des
 | `frontend-design` | `/plugin` |
 | `ui-ux-pro-max` | `/plugin marketplace add nextlevelbuilder/ui-ux-pro-max-skill`, then `/plugin install ui-ux-pro-max@ui-ux-pro-max-skill` |
 
+## Recommended for a web app
+
+Not required. `modern-web-guidance` holds guides to web platform features, kept by the Chrome, Edge, Firefox and MDN teams; it loads by itself for HTML, CSS and client-side JS work and runs through `npx`. Where it is installed, `ui-build` follows it for how new UI uses a browser feature, while your repo's components and `DESIGN.md` still win.
+
+| Skill | Install |
+|---|---|
+| `modern-web-guidance` | `/plugin marketplace add GoogleChrome/modern-web-guidance`, then `/plugin install modern-web-guidance@googlechrome`, and turn on `autoUpdate` for its marketplace |
+
+> [!WARNING]
+> Install it from Google's marketplace above, never the copy in `claude-plugins-official`, which lags behind it.
+
 ## A browser
 
 - **For `design-settle`'s check**: Chrome installed on the machine, and Playwright in the app repo's own `node_modules`. Nothing is installed for you: where the repo has no Playwright, the check is reported `not verified`.

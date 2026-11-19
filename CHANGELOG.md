@@ -2,6 +2,15 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 1.5.0] - 2026-11-19
+
+`ui-build` follows Google's `modern-web-guidance` skill in a web app where it is installed, on the maintainer's direct word; it stays optional, and [What is proven](docs/reference/status.md) lists it as run in no session.
+
+### Added
+
+- `ui-build`: where `modern-web-guidance` is installed and the app is a web app, a new component, or client-side CSS or JS, takes from its guide how to use a browser feature; it never replaces a component the repo or its library has, and never overrules `DESIGN.md`.
+- Docs: `modern-web-guidance` as the recommended companion for a web app, with its install on [Claude Code](docs/start/install.md#recommended-for-a-web-app) and [Antigravity](docs/guide/antigravity.md#recommended-for-a-web-app).
+
 ## [kaizen 1.4.0] - 2026-11-19
 
 The `Corrections` and `Comments` working rules are one sentence each, because the block is read in every session of every app; what they shed moved to `logic-build`, which loads only when a check is written. Written on the maintainer's direct word; [What is proven](docs/reference/status.md) lists these as run in no session.

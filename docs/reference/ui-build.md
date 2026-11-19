@@ -6,7 +6,7 @@ The rules a session builds UI by: where a component comes from, its states, and 
 |---|---|
 | Kind | Skill — no command |
 | Loads when | A session creates or edits a component, touches a styling value, or writes on-screen text |
-| Reads | `DESIGN.md`, the shared component folder, an installed design skill for the part at hand |
+| Reads | `DESIGN.md`, the shared component folder, an installed design skill for the part at hand, `modern-web-guidance` in a web app |
 | Source | `skills/ui-build/SKILL.md` |
 
 ## What you will see
@@ -23,6 +23,10 @@ The session says so once, then builds from the tokens and components the repo al
 ## Design skills
 
 Where `impeccable`, `frontend-design` or `ui-ux-pro-max` is installed, the session reads only the part for the component at hand. None is required.
+
+## Web guidance
+
+Where `modern-web-guidance` is installed and the app is a web app, the session follows its guide for how a new component, or client-side CSS or JS, uses a browser feature — never to replace a component your repo or its library has, and never against `DESIGN.md`. It is not required: see [Install](../start/install.md#recommended-for-a-web-app).
 
 ## What it does not cover
 
