@@ -2,6 +2,25 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 1.7.0] - 2026-11-25
+
+Code stays lean through checks a machine runs, read only where they fail, on the maintainer's direct word after the audit of a real app: things rebuilt, giant files, leftovers and unchecked types. Nothing holds a commit. [What is proven](docs/reference/status.md) lists these as run in no session.
+
+### Added
+
+- `logic-build`: a `Lint floor` section — the linter's own rules, set to error, for unused imports and variables, an explicit `any`, a leftover console or debugger call and function size; old hits frozen in the linter's own baseline, which only shrinks. The floor is asked once, like a cache or a validator.
+- `logic-build` and `ui-build`: a query, handler, error handling, form, screen state or fetch is written the way the repo already does it; a second way is a finding, never new code.
+- `build-flow`: code added to a file over the repo's size limit goes into a new module named for its job; the limit is asked once and recorded in the Stack table.
+- Docs: [Clean up on a schedule](docs/guide/scheduled-cleanup.md), a report of dead code, duplication and large functions, then one cleanup session.
+
+### Changed
+
+- `build-flow` step 9 and `ui-build`'s last step run the repo's typecheck, lint and tests on the files touched, reading only the failures, where they ran the lint alone.
+
+To act on:
+
+- Nothing is required. A session asks for the lint floor and the size limit the first time it needs them in a repo.
+
 ## [kaizen 1.6.1] - 2026-11-25
 
 Working rule `Comments` settles a conflict with another plugin that asks for a `shortcut:` comment, on the maintainer's direct word: both reach the same session and contradict each other.

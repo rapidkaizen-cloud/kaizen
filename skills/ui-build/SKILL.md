@@ -22,6 +22,7 @@ Before building, name the existing component that covers each element. Take the 
 2. **The installed component library**: list its component directory before deciding it lacks something.
 3. **A new component, only when nothing fits**: say what fails — looking slightly different is not a reason — follow the library's idiom, and say in its header which rule it holds.
 
+- **Before writing a form, screen state or a fetch on a page, find how the repo already does it and do it that way**; a second way is a finding in the closing report, never new code.
 - **Extract a visual pattern the second time it appears**, and add it to the design-system route where the repo has one.
 - **Put every on-screen string in the one dictionary file** where the repo has one.
 
@@ -67,4 +68,4 @@ The writing rules are adapted from the `better-writing` skill of [jakubkrehel/sk
 
 ## Before committing
 
-- **Run the repo's lint command** and fix what it reports in the files you touched.
+- **Run the repo's typecheck and lint on the files you touched** and fix what they report, reading only the failures.

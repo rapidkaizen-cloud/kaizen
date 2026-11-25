@@ -14,7 +14,8 @@ The rules a session builds UI by: where a component comes from, its states, and 
 - **An existing component named for each element** before anything is built. A new one comes only when nothing fits, with what fails said — looking slightly different is not a reason.
 - **Three states with every component**: a skeleton while loading, an empty state that says why and what to do next, a failure with its cause and a retry.
 - **Short text.** Two words for an action, three for a name, one sentence of eight words for an explanation; one term per concept; a button that starts with a verb.
-- **The lint command run** before the commit.
+- **The repo's way, once.** A form, screen state or fetch is written the way the repo already does it; a second way is reported, never added.
+- **Typecheck and lint run on the touched files** before the commit.
 
 ## Without a `DESIGN.md`
 
