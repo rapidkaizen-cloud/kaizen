@@ -1,6 +1,6 @@
 # Overview
 
-`kaizen` is one plugin of eight standalone skills for building an app with an agent, plus ten working rules every Claude Code session gets.
+`kaizen` is one plugin of eight standalone skills for building an app with an agent, plus ten working rules every session gets, on Claude Code and on the Antigravity CLI.
 
 Nothing in it is enforced. A skill is text a session reads when the work calls for it, and a working rule is a line you can waive in chat. The plugin's one hook prints the working rules and refuses nothing.
 

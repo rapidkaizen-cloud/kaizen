@@ -3,7 +3,7 @@
 One command in a terminal, once per machine, and the eight skills are there in every folder `agy` opens. For Claude Code, see [Install](../start/install.md).
 
 > [!NOTE]
-> Version 1.0.0 has not been installed or run on Antigravity. What this page says was seen on earlier versions; [What is proven](../reference/status.md) says what has not been seen since.
+> Of 2.1.0, only the working rules were seen on Antigravity. The rest of this page was seen on versions before 1.0.0; [What is proven](../reference/status.md) says what has not been seen since.
 
 ## Before you start
 
@@ -26,7 +26,7 @@ The copy lands in `~/.gemini/config/plugins/kaizen`.
 ## What is absent there
 
 - **The `Quota` row** of `design-settle`: it reads `not read`.
-- **The working rules.** The hook that prints them is written for Claude Code only.
+- **The working rules, outside the `agy` CLI.** The hook that prints them runs on the CLI; reports say the IDE and the desktop app run no hook.
 
 ## Optional design skills
 

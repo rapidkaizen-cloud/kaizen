@@ -25,7 +25,7 @@ What that costs you:
 
 - **A session that skips a line is stopped by nothing.** The plugin has no second check behind the text.
 - **A push and a destructive statement are held by a sentence**, the `Git` and `Data` lines of the working rules. A session that reads them stops and waits; nothing refuses the command if it does not.
-- **A machine without the plugin gets no rules.** The rules live in the plugin, not in the repo, and on Antigravity no hook prints them.
+- **A machine without the plugin gets no rules.** The rules live in the plugin, not in the repo.
 
 For an app that runs in production, keep the protections that do not depend on a session: branch protection on the remote, backups of the database, and a database login with less than owner rights for everyday work.
 

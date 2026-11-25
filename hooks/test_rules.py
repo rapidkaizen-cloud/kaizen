@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Self-check rules.js and the commands in hooks.json: the rules are printed in every
-project, whatever its CLAUDE.md holds, and nothing is printed, with exit 0, where the repo
-turned the hook off or where Node is missing. Every folder name holds a space.
+"""Self-check rules.js and both hooks.json files: the rules are printed in every project,
+whatever its CLAUDE.md holds, once per conversation on Antigravity, and nothing is printed,
+with exit 0, where the repo turned the hook off or where Node is missing. Every folder name
+holds a space.
 Run directly: python3 test_rules.py
 """
 import json
@@ -57,6 +58,22 @@ def main():
         lone.mkdir()
         shutil.copy(HOOKS / "rules.js", lone / "rules.js")
         assert run(bare, script=lone / "rules.js") == ""
+
+        # Antigravity: once per conversation, before its first model call.
+        def agy(root, num=0, transcript=None):
+            payload = json.dumps({"workspacePaths": [str(root)], "invocationNum": num, "transcriptPath": str(transcript or t / "none.jsonl")})
+            p = subprocess.run(["node", str(HOOKS / "rules.js"), "PreInvocation"], input=payload, capture_output=True, text=True, encoding="utf-8")
+            assert p.returncode == 0 and p.stderr == "", (p.returncode, p.stderr)
+            return p.stdout
+
+        assert json.loads(agy(bare)) == {"injectSteps": [{"userMessage": RULES}]}
+        assert agy(bare, num=1) == "", "a later call of the turn"
+        seen = t / "seen.jsonl"
+        seen.write_text(json.dumps({"userMessage": RULES}) + "\n", encoding="utf-8")
+        assert agy(bare, transcript=seen) == "", "this conversation already holds the rules"
+        assert agy(off / "sub dir") == ""
+        root_hooks = json.loads((HOOKS.parent / "hooks.json").read_text(encoding="utf-8"))
+        assert root_hooks["kaizen"]["PreInvocation"][0]["command"] == "node hooks/rules.js PreInvocation"
 
         # The commands as the host runs them, from a plugin folder whose path holds a space.
         bash = shutil.which("bash")

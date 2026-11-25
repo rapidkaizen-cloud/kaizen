@@ -4,7 +4,7 @@ Ten lines of text tell every session how to work, and each one holds until you w
 
 ## Where they come from
 
-The plugin's [hook](../reference/rules-hook.md) prints them into every Claude Code session and subagent, in every repo on a machine that has the plugin. A repo keeps no copy: its `CLAUDE.md` holds only what is true of that app, its own rules included. The exact text is in `hooks/rules.md`.
+The plugin's [hook](../reference/rules-hook.md) prints them into every Claude Code session and subagent, and every conversation of the Antigravity CLI, in every repo on a machine that has the plugin. A repo keeps no copy: its `CLAUDE.md` holds only what is true of that app, its own rules included. The exact text is in `hooks/rules.md`.
 
 ## The ten lines
 
