@@ -8,7 +8,7 @@ Writes or refreshes the ten working rules in a repo's `CLAUDE.md`.
 | Run | `/kaizen:norms-config` |
 | Writes | `CLAUDE.md` at the repo root, and `AGENTS.md` where the repo already has one |
 | Commits | The files it wrote, naming their paths. Never pushes |
-| Source | `skills/norms-config/SKILL.md` |
+| Source | `skills/norms-config/SKILL.md`; the block in `skills/norms-config/rules.md` |
 
 ## What it does
 
@@ -29,12 +29,14 @@ The block sits between `<!-- kaizen:rules <version> -->` and `<!-- /kaizen:rules
 - **A line you removed is not restored** without your answer.
 - **No folder is asked for.** The `Output` line appears only when you name one.
 - **No secret**: no key, no token, no URL that carries a credential.
+- **The [rules hook](rules-hook.md) goes silent** in the repo once the block is there.
 
 > [!WARNING]
 > A block from an older version is replaced whole, your edits inside it included. Keep a rule of your own outside the markers.
 
 ## What it does not cover
 
+- **A repo you leave without the block.** The [rules hook](rules-hook.md) gives its sessions the plugin's rules. Run this command where a teammate works without the plugin, or to keep a reworded block.
 - **Enforcement.** The rules are text: a session follows them, and you can waive any of them in chat.
 - **Other repos.** It writes into the repo it is run in. Run it once in each.
 - **Switches.** There is none to set; a rule you do not want is a line you delete.

@@ -1,6 +1,6 @@
 # kaizen docs
 
-`kaizen` is nine standalone skills for building an app with an agent, and ten working rules a repo keeps in its own `CLAUDE.md`. These pages are for the people who install it. What an agent obeys is in `skills/`; nothing here is a rule, and where a page and a skill disagree the skill is right and the page is the defect.
+`kaizen` is nine standalone skills for building an app with an agent, and ten working rules that a hook prints into every session, or a repo keeps in its own `CLAUDE.md`. These pages are for the people who install it. What an agent obeys is in `skills/`; nothing here is a rule, and where a page and a skill disagree the skill is right and the page is the defect.
 
 New here: [Overview](start/overview.md), then [Install](start/install.md), then [Quickstart](start/quickstart.md).
 
@@ -34,7 +34,7 @@ New here: [Overview](start/overview.md), then [Install](start/install.md), then 
 | [Run on Antigravity](guide/antigravity.md) | Install, update, and what is absent there |
 | [Maintain app repos](guide/maintain-app-repos.md) | What a repo started under an older version still carries |
 
-## Reference: commands and skills
+## Reference: commands, skills and the hook
 
 | Page | Holds |
 |---|---|
@@ -42,6 +42,7 @@ New here: [Overview](start/overview.md), then [Install](start/install.md), then 
 | [app-settle](reference/app-settle.md) | The interview that writes `CLAUDE.md` and the core documents |
 | [design-settle](reference/design-settle.md) | Two frames, `DESIGN.md` and one proving page, in one session |
 | [norms-config](reference/norms-config.md) | Writing and refreshing the working rules in a repo |
+| [Rules hook](reference/rules-hook.md) | The working rules printed into every session, and how to turn them off in one repo |
 | [norms-help](reference/norms-help.md) | The card: version, commands, pages, last change |
 | [build-flow](reference/build-flow.md) | Building one page at a time, and its three stops |
 | [docs-format](reference/docs-format.md) | Which documents a repo keeps, and what stays out of them |

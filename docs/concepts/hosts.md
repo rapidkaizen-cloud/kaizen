@@ -8,7 +8,7 @@ The same nine skills install on Claude Code and on Antigravity; the working rule
 | Install | `/plugin marketplace add`, then `/plugin install` | `agy plugin install <URL>` |
 | Update | By itself with `autoUpdate` on | Uninstall, then install again: the install is a copy |
 | Skills | All nine | All nine |
-| Working rules | Read from the repo's `CLAUDE.md` by the host | Not verified: the block is written into `AGENTS.md` where the repo has one |
+| Working rules | Printed by the plugin's hook, or read from the repo's `CLAUDE.md` where it holds the block | No hook. Not verified: the block is written into `AGENTS.md` where the repo has one |
 | `Quota` row of `design-settle` | Read from `claude -p "/usage"` | Printed as `not read` |
 
 > [!NOTE]

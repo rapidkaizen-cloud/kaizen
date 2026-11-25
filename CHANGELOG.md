@@ -2,6 +2,27 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 1.6.0] - 2026-11-25
+
+The working rules reach every Claude Code session again, through a hook that only prints them, on the maintainer's direct word: a repo where `norms-config` never ran had none, and a block went stale after an update. [What is proven](docs/reference/status.md) lists the hook as seen in no installed session.
+
+### Added
+
+- Hook `hooks/rules.js` on `SessionStart` (startup, resume, clear, compact) and `SubagentStart`: prints the working-rules block into the context of a session or subagent whose `CLAUDE.md`, in the project folder or a folder above it, holds no block. It never refuses, holds or blocks, and prints nothing where Node is missing.
+- An empty `.kaizen-rules-off` file in the project folder or a folder above it turns the hook off for that repo.
+- Docs: [Rules hook](docs/reference/rules-hook.md).
+
+### Changed
+
+- The block lives in `skills/norms-config/rules.md`, the one file both the hook and `norms-config` read.
+- Working rule `Skills, where installed` says to load the skill before its work, and names `build-flow` for a page or a feature.
+- `norms-config` is optional: run it where a teammate works without the plugin, or to keep a reworded block.
+- The working-rules block sits between `<!-- kaizen:rules 1.6.0 -->` and `<!-- /kaizen:rules -->`.
+
+To act on:
+
+- Nothing is required. A repo with an older block keeps it and the hook stays silent there: run `/kaizen:norms-config` to write the 1.6.0 block, or delete the block to take the plugin's.
+
 ## [kaizen 1.5.0] - 2026-11-19
 
 `ui-build` follows Google's `modern-web-guidance` skill in a web app where it is installed, on the maintainer's direct word; it stays optional, and [What is proven](docs/reference/status.md) lists it as run in no session.

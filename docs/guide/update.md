@@ -27,7 +27,7 @@ The install is a copy, and nothing refreshes it.
 
 Version 1.0.0 removed every guard and the rules a session used to be handed at its start. Nothing breaks on update, but an app repo is under no rule until you give it one.
 
-1. **Run `/kaizen:norms-config` once in each app repo.** It writes the working rules into that repo's `CLAUDE.md`; before that, a session there follows none of them. See [Working rules](../concepts/working-rules.md).
+1. **Run `/kaizen:norms-config` once in each app repo.** It writes the working rules into that repo's `CLAUDE.md`. Since 1.6.0 the plugin's hook prints them where a repo has none, so this step matters for a repo whose teammates work without the plugin. See [Working rules](../concepts/working-rules.md).
 2. **Protect what the guards protected, yourself.** Nothing holds a push, a merge or a destructive SQL statement any more: turn on branch protection, keep database backups, and give sessions a database login that is not the owner.
 3. **Say where your files go, if you used the output folder.** The plugin no longer prints or guards one. Name the folder when you run `norms-config`, and it becomes a line of the block.
 4. **Leave or delete the old settings.** `switches.json` and the marker `onboarded-output` in the plugin's data folder, and `.claude/destructive-gate.off` in a repo, are read by nothing.
