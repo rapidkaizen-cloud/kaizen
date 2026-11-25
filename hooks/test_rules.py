@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Self-check rules.js and the commands in hooks.json: the block is printed where the repo
-has none, and nothing is printed, with exit 0, where it has one, where the repo turned the
-hook off, or where Node is missing. Every folder name holds a space.
+"""Self-check rules.js and the commands in hooks.json: the rules are printed in every
+project, whatever its CLAUDE.md holds, and nothing is printed, with exit 0, where the repo
+turned the hook off or where Node is missing. Every folder name holds a space.
 Run directly: python3 test_rules.py
 """
 import json
@@ -12,10 +12,8 @@ import tempfile
 from pathlib import Path
 
 HOOKS = Path(__file__).parent
-ROOT = HOOKS.parent
 # Raw bytes: a Windows checkout may hold CRLF, and the hook prints the file as it is.
-RULES = (ROOT / "skills" / "norms-config" / "rules.md").read_bytes().decode("utf-8")
-BLOCK = "# App\n\n<!-- kaizen:rules 1.4.0 -->\n" + RULES.split("\n", 1)[1]
+RULES = (HOOKS / "rules.md").read_bytes().decode("utf-8")
 
 
 def run(project, *args, cwd=None, script=HOOKS / "rules.js"):
@@ -34,7 +32,7 @@ def printed(out, event="SessionStart"):
 
 
 def main():
-    assert RULES.startswith("<!-- kaizen:rules ") and RULES.rstrip().endswith("<!-- /kaizen:rules -->")
+    assert RULES.startswith("## kaizen working rules")
     assert len(RULES) < 9000, "hook stdout is cut at 10,000 characters"
     with tempfile.TemporaryDirectory(prefix="kaizen rules ") as t:
         t = Path(t)
@@ -44,17 +42,10 @@ def main():
         assert printed(run(bare, "SubagentStart"), "SubagentStart")
         assert printed(run(None, cwd=bare)), "no CLAUDE_PROJECT_DIR: the working folder is read"
 
-        other = t / "other claude md"
-        other.mkdir()
-        (other / "CLAUDE.md").write_text("# App\n\nThe block starts with `<!-- kaizen:rules`.\n", encoding="utf-8")
-        assert printed(run(other)), "the marker quoted in prose is not a block"
-
-        has = t / "has block"
-        (has / "sub dir").mkdir(parents=True)
-        (has / "CLAUDE.md").write_text(BLOCK, encoding="utf-8")
-        assert run(has) == "", "an older block in the repo wins"
-        assert run(has, "SubagentStart") == ""
-        assert run(has / "sub dir") == "", "a block one folder up counts"
+        old = t / "old block"
+        old.mkdir()
+        (old / "CLAUDE.md").write_text("# App\n\n<!-- kaizen:rules 1.6.1 -->\n## Working rules\n<!-- /kaizen:rules -->\n", encoding="utf-8")
+        assert printed(run(old)), "a block an older version wrote does not silence the hook"
 
         off = t / "turned off"
         (off / "sub dir").mkdir(parents=True)
@@ -74,8 +65,6 @@ def main():
         else:
             plugin = t / "plugin root"
             shutil.copytree(HOOKS, plugin / "hooks")
-            (plugin / "skills" / "norms-config").mkdir(parents=True)
-            shutil.copy(ROOT / "skills" / "norms-config" / "rules.md", plugin / "skills" / "norms-config")
             hooks = json.loads((HOOKS / "hooks.json").read_text(encoding="utf-8"))["hooks"]
             assert hooks["SessionStart"][0]["matcher"] == "startup|resume|clear|compact"
             for event in ("SessionStart", "SubagentStart"):

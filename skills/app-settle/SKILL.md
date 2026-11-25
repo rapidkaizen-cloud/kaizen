@@ -67,7 +67,7 @@ Write `CLAUDE.md` in English and the rest in the user's language. A file that ex
 | `## Ground truth` | code and the live database for facts; `docs/` for intent and prohibitions; `DESIGN.md` for the design system |
 | `## Rules for this app only` | empty at Bootstrap |
 
-Leave everything else in an existing `CLAUDE.md` as it is, a block between `<!-- kaizen:rules` markers included.
+Leave everything else in an existing `CLAUDE.md` as it is.
 
 **`docs/product.md`** — `# Product — <App name>`, then:
 

@@ -1,6 +1,6 @@
 # kaizen
 
-`kaizen` is a plugin for Claude Code and Antigravity: nine standalone skills for building an app with an agent. Two interviews write an app's documents and its design, five sets of rules load as a session builds, ten working rules reach every session through one hook that only prints them, one skill writes those rules into the repo's own `CLAUDE.md` for teammates without the plugin, and one prints help. Nothing is enforced: every rule is text you can waive in chat.
+`kaizen` is a plugin for Claude Code and Antigravity: eight standalone skills for building an app with an agent. Two interviews write an app's documents and its design, five sets of rules load as a session builds, and one prints help; on Claude Code, ten working rules reach every session through one hook that only prints them. Nothing is enforced: every rule is text you can waive in chat.
 
 The name is *kaizen*, Japanese for continuous improvement.
 

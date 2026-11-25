@@ -1,11 +1,11 @@
 # Rules hook
 
-Prints the ten working rules into every Claude Code session and subagent whose repo has no block of its own.
+Prints the ten working rules into every Claude Code session and subagent, in every repo on a machine that has the plugin.
 
 | | |
 |---|---|
 | Kind | Hook — `SessionStart` (startup, resume, clear, compact) and `SubagentStart` |
-| Prints | The block in `skills/norms-config/rules.md`, about 1,700 characters |
+| Prints | `hooks/rules.md`, about 1,700 characters |
 | Refuses | Nothing. It never holds, asks or blocks, and ends without an error on every path |
 | Needs | Node on `PATH`. Without it the hook prints nothing |
 | Source | `hooks/hooks.json`, `hooks/rules.js`; self-check `hooks/test_rules.py` |
@@ -14,12 +14,13 @@ Prints the ten working rules into every Claude Code session and subagent whose r
 
 | It finds | It does |
 |---|---|
-| No `CLAUDE.md`, or one with no block | Prints the plugin's block |
-| A `CLAUDE.md` holding a block, in the project folder or a folder above it | Nothing: the repo's block wins, whatever its version |
+| Any project, whatever its `CLAUDE.md` holds | Prints the rules |
 | `.kaizen-rules-off` in the project folder or a folder above it | Nothing |
 | A subagent starting | The same as for its session |
 
-A block counts only where its opening marker starts a line, so the marker quoted in a sentence does not silence the hook.
+## Change a rule for one repo
+
+Write the change in that repo's `CLAUDE.md`, under `## Rules for this app only`. A session reads it beside the printed rules, and the rules give way to it.
 
 ## Turn it off in one repo
 
@@ -28,14 +29,9 @@ A block counts only where its opening marker starts a line, so the marker quoted
 
 Delete the file to turn the hook back on. A session that is already running keeps what it was given at its start.
 
-## Keep a repo's own rules
-
-Run [`/kaizen:norms-config`](norms-config.md) in the repo. The block it writes into `CLAUDE.md` is then what every session reads, on machines with or without the plugin, and the hook stays silent there.
-
-A line you reword or delete in that block stays as you left it. After an update that changes the block, the repo keeps its older one until you run `norms-config` again; delete the block to go back to the plugin's.
-
 ## What it does not cover
 
+- **A machine without the plugin.** The rules live in the plugin, not in the repo: a teammate gets them by installing `kaizen`.
 - **Antigravity.** The hook is written for Claude Code only. See [Hosts](../concepts/hosts.md).
 - **Enforcement.** The rules reach the session as text. A session that skips one is stopped by nothing.
 

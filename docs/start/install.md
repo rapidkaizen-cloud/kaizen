@@ -21,7 +21,7 @@ Two commands in Claude Code and a restart. For Antigravity, see [Run on Antigrav
 2. **Turn on `autoUpdate`.** In `~/.claude/settings.json`, set `"autoUpdate": true` on `kaizen` under `extraKnownMarketplaces`, so a new version reaches the machine at its next start.
 3. **Restart Claude Code.**
 
-The plugin asks nothing and prints nothing when a session starts. To give a repo the working rules, run `/kaizen:norms-config` once in it: see [Working rules](../concepts/working-rules.md).
+The plugin asks nothing. When a session starts, its hook prints the ten [working rules](../concepts/working-rules.md) in every repo.
 
 ## Optional design skills
 

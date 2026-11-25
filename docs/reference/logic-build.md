@@ -25,7 +25,7 @@ The rules a session follows for the logic layer: which key goes where, where a b
 
 When a session turns a mistake you corrected into a check, by the `Corrections` line of the [working rules](../concepts/working-rules.md):
 
-- **The `| Rule | Enforced by |` table** sits under `## Rules for this app only` in `CLAUDE.md`, outside the working-rules markers.
+- **The `| Rule | Enforced by |` table** sits under `## Rules for this app only` in `CLAUDE.md`.
 - **Shown failing on the old mistake** before the check is kept.
 - **Only new additions fail** where the pattern is already common; the old copies become one queue line.
 - **An exception** sits on the offending line itself, with a reason, an expiry date and your yes.

@@ -4,16 +4,16 @@ A repo started under an older version still carries files and sections that 1.0.
 
 ## After an update that changes the working rules
 
-A repo with no block gets the new rules from the hook at its next session. In a repo with a block, run `/kaizen:norms-config`. A version's changelog entry says when the block changed. See [Working rules](../concepts/working-rules.md).
+Nothing to run: the next session gets the new rules from the hook. A version's changelog entry says when they changed. See [Working rules](../concepts/working-rules.md).
 
-## What a repo from before 1.0.0 still carries
+## What a repo from an older version still carries
 
 | Found | Where | What to do |
 |---|---|---|
-| No working rules | `CLAUDE.md` | Nothing: since 1.6.0 the hook prints them. Run `/kaizen:norms-config` to keep them in the repo for a teammate without the plugin |
+| A block between `<!-- kaizen:rules` markers, written by `norms-config` before 2.0.0 | `CLAUDE.md`, `AGENTS.md` | Delete it: the hook prints the current rules, and the old block would sit beside them. Move a line you reworded there to `## Rules for this app only` |
 | `switches.json`, the marker `onboarded-output` | The plugin's data folder on the machine | Nothing reads them. Delete them or leave them |
 | `.claude/destructive-gate.off` | The repo | Nothing reads it. Delete it |
-| An output folder set through the old `norms-config` | `switches.json` | No longer printed or guarded. Name the folder to `/kaizen:norms-config` to get it as a line of the working rules |
+| An output folder set through the old `norms-config` | `switches.json` | No longer printed or guarded. Write the folder as a line of `CLAUDE.md` |
 | Sections an older `app-settle` wrote | `CLAUDE.md` | Kept as they are. `app-settle` adds only what the file lacks |
 | A root `PRD.md` or `docs/PRD.md` | The repo | Read as it is. It no longer marks a repo as settled, and no skill moves it unless you ask |
 | Lint floors and rule tests | The repo's lint config and tests | They are the repo's own and keep running. No skill maintains them |

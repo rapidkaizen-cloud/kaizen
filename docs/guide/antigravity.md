@@ -1,6 +1,6 @@
 # Run on Antigravity
 
-One command in a terminal, once per machine, and the nine skills are there in every folder `agy` opens. For Claude Code, see [Install](../start/install.md).
+One command in a terminal, once per machine, and the eight skills are there in every folder `agy` opens. For Claude Code, see [Install](../start/install.md).
 
 > [!NOTE]
 > Version 1.0.0 has not been installed or run on Antigravity. What this page says was seen on earlier versions; [What is proven](../reference/status.md) says what has not been seen since.
@@ -26,8 +26,7 @@ The copy lands in `~/.gemini/config/plugins/kaizen`.
 ## What is absent there
 
 - **The `Quota` row** of `design-settle`: it reads `not read`.
-- **The rules hook.** It is written for Claude Code only.
-- **The working rules, unless the repo has an `AGENTS.md`.** `norms-config` writes its block into `CLAUDE.md`, and into `AGENTS.md` only where the repo already has one. Whether a session there then follows the block has not been verified.
+- **The working rules.** The hook that prints them is written for Claude Code only.
 
 ## Optional design skills
 

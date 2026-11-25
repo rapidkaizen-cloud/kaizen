@@ -7,7 +7,7 @@
     {
       "name": "kaizen",
       "source": "./",
-      "description": "Nine standalone skills for building an app with an agent: app-settle and design-settle decide what the app is and how it looks; build-flow, docs-format, ui-build, db-ops and logic-build carry the build rules; norms-config writes ten negotiable working rules into the repo's CLAUDE.md. On Claude Code one hook prints the working rules into each session whose CLAUDE.md lacks them; it never refuses or blocks."
+      "description": "Eight standalone skills for building an app with an agent: app-settle and design-settle decide what the app is and how it looks; build-flow, docs-format, ui-build, db-ops and logic-build carry the build rules; norms-help prints help. On Claude Code one hook prints ten working rules into every session and subagent; it never refuses or blocks, and a repo's CLAUDE.md waives or adds to them."
     }
   ]
 }

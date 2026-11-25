@@ -16,13 +16,13 @@ Keep every rule short. One rule is one imperative sentence. Give its reason in o
 
 Write each skill as one `SKILL.md` with no `references/` folder, because a skill costs what a session reads to run it.
 
-Make every skill stand alone: it names no other skill, requires none, and runs in a repo where `docs/` and `DESIGN.md` are absent. The one exception is the last line of the rules block in `skills/norms-config/rules.md`, which names five skills `where installed`.
+Make every skill stand alone: it names no other skill, requires none, and runs in a repo where `docs/` and `DESIGN.md` are absent. The one exception is the last line of `hooks/rules.md`, which names five skills.
 
 Change a rule for a finding seen in two sessions or in a real app, or on the user's direct word; a finding seen once is a line of `docs/reference/status.md`, because one session's miss is as often the session as the rule.
 
 Do not add a skill to `kaizen` without naming what would be lost if it did not exist. Every skill pays a context cost in every session through its description, including the sessions that never use it.
 
-Never add a hook that refuses, holds or blocks, because a hook cannot ask and a rule here is negotiable in chat. The plugin ships one hook, `hooks/rules.js`, which only prints the rules block where a repo's `CLAUDE.md` lacks one; the context reminder was removed on the user's word because its note interrupted the work.
+Never add a hook that refuses, holds or blocks, because a hook cannot ask and a rule here is negotiable in chat. The plugin ships one hook, `hooks/rules.js`, which only prints `hooks/rules.md` into every session; the context reminder was removed on the user's word because its note interrupted the work.
 
 This plugin ships no templates. What a new app repo gets is written by `app-settle` for that repo's answers — never a stock file, which is a decision taken before its question was asked and goes stale without anyone re-reading it. Whatever a skill here tells a session to write lands in app repos that may not be private, so a rule that produces a file must never produce a secret in it: name the variable, never its value.
 
@@ -52,12 +52,10 @@ Keep `CHANGELOG.md` at the root and the commands a user runs in `docs/reference/
 
 ## Git
 
-Commit, push and merge by the `Git` line of the rules block in `skills/norms-config/rules.md`, as an app repo does.
+Commit, push and merge by the `Git` line of `hooks/rules.md`, as an app repo does.
 
 A commit that changes the plugin — `skills/`, `scripts/`, `hooks/` or a manifest — bumps its `version` in the same commit, because `/plugin update` compares version numbers only; `.githooks/pre-commit` refuses it otherwise, so run `git config core.hooksPath .githooks` once per clone.
 
 A commit that bumps the version adds that version's entry to `CHANGELOG.md`, in English and in Keep a Changelog form, naming every rename or removal an installed app must act on; `.githooks/pre-commit` refuses the bump without it, and warns when the plugin changed and no page under `docs/` did.
-
-A commit that changes the rules block in `skills/norms-config/rules.md` sets the version in its opening marker to that commit's plugin version, because the marker is how an app repo's block is found to be older.
 
 A commit reaches app sessions only after it is pushed to `origin`, and the user decides every push.
