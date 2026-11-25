@@ -15,7 +15,9 @@ Version 1.0.0 rewrote every skill. What earlier versions proved was proved on te
 
 ## Proven on Antigravity
 
-Nothing at 1.0.0. The plugin has not been installed there since the rewrite.
+| What | How it was seen |
+|---|---|
+| Working rules | 2.1.0 installed from a folder on `agy` 1.3.3: a headless conversation received them once, before its first model call, and not again on its second turn |
 
 ## Not yet verified
 

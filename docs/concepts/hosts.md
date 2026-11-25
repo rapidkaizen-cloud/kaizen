@@ -1,6 +1,6 @@
 # Hosts
 
-The same eight skills install on Claude Code and on Antigravity; the working rules reach Claude Code only.
+The same eight skills install on Claude Code and on Antigravity; the working rules reach both, through a hook on each.
 
 | | Claude Code | Antigravity |
 |---|---|---|
@@ -8,11 +8,11 @@ The same eight skills install on Claude Code and on Antigravity; the working rul
 | Install | `/plugin marketplace add`, then `/plugin install` | `agy plugin install <URL>` |
 | Update | By itself with `autoUpdate` on | Uninstall, then install again: the install is a copy |
 | Skills | All eight | All eight |
-| Working rules | Printed by the plugin's hook | None: no hook runs there |
+| Working rules | Printed by the plugin's hook into every session and subagent | Printed once per conversation, before its first model call, by a `PreInvocation` hook in `hooks.json` at the repo root — on the `agy` CLI |
 | `Quota` row of `design-settle` | Read from `claude -p "/usage"` | Printed as `not read` |
 
 > [!NOTE]
-> 1.0.0 has not been installed or run on Antigravity. Every row of that column describes what the plugin ships, never what was seen. See [What is proven](../reference/status.md).
+> Of 2.1.0, only the working rules were seen on Antigravity: on `agy` 1.3.3, installed from a folder. Every other row of that column describes what the plugin ships, never what was seen. See [What is proven](../reference/status.md).
 
 ## Switching hosts mid-work
 

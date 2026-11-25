@@ -2,6 +2,18 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 2.1.0] - 2026-11-25
+
+The working rules reach Antigravity again, on the maintainer's direct word: the same `hooks/rules.js` runs there as a `PreInvocation` hook.
+
+### Added
+
+- `hooks.json` at the repo root, read by Antigravity: before the first model call of a conversation, `hooks/rules.js` injects `hooks/rules.md` as a step that stays in it, once per conversation, and stays silent under `.kaizen-rules-off`. Seen on `agy` 1.3.3; reports say the IDE and the desktop app run no hook.
+
+To act on:
+
+- Antigravity: uninstall the plugin and install it again; an install there is a copy.
+
 ## [kaizen 2.0.0] - 2026-11-25
 
 The working rules live in the plugin alone, on the maintainer's direct word: the hook prints them in every repo, and a repo's `CLAUDE.md` holds only what is true of that app, its changes to the rules included.

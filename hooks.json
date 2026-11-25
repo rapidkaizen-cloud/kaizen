@@ -1,0 +1,7 @@
+{
+  "kaizen": {
+    "PreInvocation": [
+      { "type": "command", "command": "node hooks/rules.js PreInvocation" }
+    ]
+  }
+}

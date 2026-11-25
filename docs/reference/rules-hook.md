@@ -1,14 +1,14 @@
 # Rules hook
 
-Prints the ten working rules into every Claude Code session and subagent, in every repo on a machine that has the plugin.
+Prints the ten working rules into every Claude Code session and subagent, and every conversation of the Antigravity CLI, in every repo on a machine that has the plugin.
 
 | | |
 |---|---|
-| Kind | Hook — `SessionStart` (startup, resume, clear, compact) and `SubagentStart` |
+| Kind | Hook — `SessionStart` (startup, resume, clear, compact) and `SubagentStart` on Claude Code; `PreInvocation` on Antigravity |
 | Prints | `hooks/rules.md`, about 1,700 characters |
 | Refuses | Nothing. It never holds, asks or blocks, and ends without an error on every path |
 | Needs | Node on `PATH`. Without it the hook prints nothing |
-| Source | `hooks/hooks.json`, `hooks/rules.js`; self-check `hooks/test_rules.py` |
+| Source | `hooks/hooks.json` (Claude Code), `hooks.json` (Antigravity), `hooks/rules.js`; self-check `hooks/test_rules.py` |
 
 ## When it prints
 
@@ -17,6 +17,7 @@ Prints the ten working rules into every Claude Code session and subagent, in eve
 | Any project, whatever its `CLAUDE.md` holds | Prints the rules |
 | `.kaizen-rules-off` in the project folder or a folder above it | Nothing |
 | A subagent starting | The same as for its session |
+| An Antigravity conversation | Prints once, before its first model call, as a step that stays in the conversation; never again in that conversation |
 
 ## Change a rule for one repo
 
@@ -32,7 +33,7 @@ Delete the file to turn the hook back on. A session that is already running keep
 ## What it does not cover
 
 - **A machine without the plugin.** The rules live in the plugin, not in the repo: a teammate gets them by installing `kaizen`.
-- **Antigravity.** The hook is written for Claude Code only. See [Hosts](../concepts/hosts.md).
+- **Antigravity outside the CLI.** Reports say the IDE and the desktop app run no hook. See [Hosts](../concepts/hosts.md).
 - **Enforcement.** The rules reach the session as text. A session that skips one is stopped by nothing.
 
 ## Related
