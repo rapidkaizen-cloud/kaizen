@@ -7,7 +7,7 @@ Ten lines of text tell every session how to work, and each one holds until you w
 The plugin's [hook](../reference/rules-hook.md) prints them into every Claude Code session and subagent. `/kaizen:norms-config` writes them into the repo instead, at the end of the `CLAUDE.md` at the repo root, as one block between two markers:
 
 ```
-<!-- kaizen:rules 1.6.0 -->
+<!-- kaizen:rules 1.6.1 -->
 ## Working rules
 ...
 <!-- /kaizen:rules -->
@@ -27,7 +27,7 @@ Where `CLAUDE.md` holds the block, the hook stays silent and the block is what e
 | `Asking` | Put a decision to you as options with one recommendation and its trade-off, and run the command itself |
 | `Closing` | Report per item what changed, each default it chose, and what you must do by hand |
 | `Corrections` | After fixing a mistake you corrected, offer to make it impossible: in the code's structure, a type, a lint, a test, and prose only last |
-| `Comments` | No comment that excuses a workaround or states a shortcut's limit: the root cause is fixed, or the rest is queued as owed work |
+| `Comments` | No comment that excuses a workaround or states a shortcut's limit, a `shortcut:` comment included: the root cause is fixed, or the rest is queued as owed work |
 | `Skills, where installed` | Load the `kaizen` skill for UI, SQL, logic, a document or a page before that kind of work |
 
 The exact text is in `skills/norms-config/rules.md`.
@@ -64,7 +64,7 @@ Nothing is preset: a repo gets a check only from a correction you made in it.
 
 ## Comments
 
-A comment that explains why a workaround is fine is read by the next session as permission to copy it. A session fixes the root cause, or queues the rest as owed work. A shortcut's known limit is queued too, never left as a comment, even where another plugin asks for one. Comments that stay: a license, a constraint from outside the repo, a public API's contract, an issue link.
+A comment that explains why a workaround is fine is read by the next session as permission to copy it. A session fixes the root cause, or queues the rest as owed work. A shortcut's known limit is queued too, with when to upgrade it, never left as a comment, even where another plugin asks for a `shortcut:` comment. The queue is where the next piece of work is picked from, so the limit gets fixed instead of waiting for someone to search the code. Comments that stay: a license, a constraint from outside the repo, a public API's contract, an issue link.
 
 ## `AGENTS.md`
 

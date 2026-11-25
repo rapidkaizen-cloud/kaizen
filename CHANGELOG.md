@@ -2,6 +2,19 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 1.6.1] - 2026-11-25
+
+Working rule `Comments` settles a conflict with another plugin that asks for a `shortcut:` comment, on the maintainer's direct word: both reach the same session and contradict each other.
+
+### Changed
+
+- Working rule `Comments`: no `shortcut:` comment even where another plugin asks for one; a shortcut's limit is queued with when to upgrade it.
+- The working-rules block sits between `<!-- kaizen:rules 1.6.1 -->` and `<!-- /kaizen:rules -->`.
+
+To act on:
+
+- Nothing is required. A repo with a block keeps its own: run `/kaizen:norms-config` there to write the 1.6.1 block.
+
 ## [kaizen 1.6.0] - 2026-11-25
 
 The working rules reach every Claude Code session again, through a hook that only prints them, on the maintainer's direct word: a repo where `norms-config` never ran had none, and a block went stale after an update. [What is proven](docs/reference/status.md) lists the hook as seen in no installed session.

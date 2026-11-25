@@ -15,7 +15,7 @@ HOOKS = Path(__file__).parent
 ROOT = HOOKS.parent
 # Raw bytes: a Windows checkout may hold CRLF, and the hook prints the file as it is.
 RULES = (ROOT / "skills" / "norms-config" / "rules.md").read_bytes().decode("utf-8")
-BLOCK = "# App\n\n" + RULES
+BLOCK = "# App\n\n<!-- kaizen:rules 1.4.0 -->\n" + RULES.split("\n", 1)[1]
 
 
 def run(project, *args, cwd=None, script=HOOKS / "rules.js"):
@@ -51,7 +51,7 @@ def main():
 
         has = t / "has block"
         (has / "sub dir").mkdir(parents=True)
-        (has / "CLAUDE.md").write_text(BLOCK.replace("1.6.0", "1.4.0", 1), encoding="utf-8")
+        (has / "CLAUDE.md").write_text(BLOCK, encoding="utf-8")
         assert run(has) == "", "an older block in the repo wins"
         assert run(has, "SubagentStart") == ""
         assert run(has / "sub dir") == "", "a block one folder up counts"
