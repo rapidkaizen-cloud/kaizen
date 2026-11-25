@@ -2,6 +2,26 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 2.0.0] - 2026-11-25
+
+The working rules live in the plugin alone, on the maintainer's direct word: the hook prints them in every repo, and a repo's `CLAUDE.md` holds only what is true of that app, its changes to the rules included.
+
+### Removed
+
+- `norms-config` and its command `/kaizen:norms-config`: the plugin writes no working-rules block into a repo's `CLAUDE.md` or `AGENTS.md`, and no `Output` line.
+- The hook no longer goes silent where a `CLAUDE.md` holds a block.
+
+### Changed
+
+- The rules moved to `hooks/rules.md`, without markers or a version.
+- Each rule holds until the user waives it in chat or in the repo's `CLAUDE.md`; `Corrections` keeps its table in the repo's `CLAUDE.md`; `Skills, where installed` is `Skills`.
+
+To act on:
+
+- Every app repo with a `<!-- kaizen:rules` block in `CLAUDE.md` or `AGENTS.md`: delete the block, and move a line you reworded there to `## Rules for this app only`.
+- A teammate or a machine that read the rules from the block: install the plugin.
+- Antigravity: no working rules reach a session there.
+
 ## [kaizen 1.7.0] - 2026-11-25
 
 Code stays lean through checks a machine runs, read only where they fail, on the maintainer's direct word after the audit of a real app: things rebuilt, giant files, leftovers and unchecked types. Nothing holds a commit. [What is proven](docs/reference/status.md) lists these as run in no session.

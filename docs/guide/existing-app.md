@@ -4,7 +4,7 @@ Give an app that already runs the working rules and, where it has none, its docu
 
 ## Steps
 
-1. **Open Claude Code in the repo.** The hook gives each session the working rules. Run `/kaizen:norms-config` as well if a teammate works without the plugin: it appends the rules to `CLAUDE.md`, or creates the file holding only them, and commits. Text outside the block is left as it is.
+1. **Open Claude Code in the repo.** The hook gives each session the working rules; nothing is written into the repo for them.
 2. **Run `/kaizen:app-settle` where the repo has no documents.** It finds app code and names the mode `Document`.
 3. **Describe the app, then correct the session's reading.** It reads what the repo already says first and asks only what that leaves open, over the same six themes as on a [new app](new-app.md).
 4. **Let it record the stack as found.** Each row names the file it was read from; nothing is asked.
@@ -20,5 +20,5 @@ Give an app that already runs the working rules and, where it has none, its docu
 ## Related
 
 - [app-settle](../reference/app-settle.md)
-- [norms-config](../reference/norms-config.md)
+- [Rules hook](../reference/rules-hook.md)
 - [Working rules](../concepts/working-rules.md)

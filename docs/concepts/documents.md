@@ -4,7 +4,7 @@ An app repo keeps a small set of documents, and no skill requires any of them.
 
 | File | Holds | Written by |
 |---|---|---|
-| `CLAUDE.md` | What is true of this app alone: locale, stack, ground truth, its own rules | `app-settle`; `norms-config` adds the [working rules](working-rules.md) |
+| `CLAUDE.md` | What is true of this app alone: locale, stack, ground truth, its own rules | `app-settle`; the [working rules](working-rules.md) come from the plugin, not from this file |
 | `README.md` | What the app is, and how to run it | `app-settle` |
 | `docs/README.md` | One sentence on the app, and a link to each document | `app-settle` |
 | `docs/product.md` | Context, problem, success, non-goals, roles, prohibitions, and a features table: how a user reaches each feature, how a walk drives it, and what proves it worked | `app-settle`; a build session adds the row of each feature it builds |

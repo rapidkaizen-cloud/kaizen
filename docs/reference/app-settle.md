@@ -46,7 +46,7 @@ The session names the mode in the block it prints first.
 
 - **A scaffold.** It writes documents, never code; the app's code starts with the first build session.
 - **`DESIGN.md`.** That is [design-settle](design-settle.md).
-- **The working rules.** That is [norms-config](norms-config.md); a block already in `CLAUDE.md` is left as it is.
+- **The working rules.** The plugin's [hook](rules-hook.md) prints them; `app-settle` writes none into `CLAUDE.md`.
 - **An audit, or a migration of documents from an older version.** See [Maintain app repos](../guide/maintain-app-repos.md).
 - **Every choice beyond the four of the stack round.** A cache, a validator, a date library: each is asked by the session that first needs it.
 

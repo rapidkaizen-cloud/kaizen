@@ -74,7 +74,7 @@ description: Rules for the logic layer of an app — which key goes where, where
 
 ## Checks from corrections
 
-- **Keep the `| Rule | Enforced by |` table under `## Rules for this app only` in the app's `CLAUDE.md`**, because a refresh of the working-rules block replaces everything inside it.
+- **Keep the `| Rule | Enforced by |` table under `## Rules for this app only` in the app's `CLAUDE.md`.**
 - **Where the pattern is already common, fail a new check only on new additions.**
 - **Prove a new check fails on the old mistake before keeping it.**
 - **Allow an exception only on the offending line itself, with its reason, an expiry date and the user's yes.**

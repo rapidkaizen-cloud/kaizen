@@ -6,7 +6,6 @@ Every command `kaizen` gives you, and the skills that load without one.
 |---|---|
 | A new app, before any code | `/kaizen:app-settle` |
 | An app that already runs and has no documents | `/kaizen:app-settle` |
-| Put the working rules into a repo's `CLAUDE.md`, or refresh them after an update | `/kaizen:norms-config` |
 | Settle or change the look of an app | `/kaizen:design-settle` |
 | Stop the working rules being printed in one repo | An empty `.kaizen-rules-off` file at its root — see [Rules hook](rules-hook.md) |
 | Which version is running, what changed, which page explains a feature | `/kaizen:norms-help` |

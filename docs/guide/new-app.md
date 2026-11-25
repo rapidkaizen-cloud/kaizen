@@ -9,9 +9,8 @@ From an empty directory to the first page, in sessions you start yourself.
 3. **Answer one round about the stack**: platform, frontend, database with auth, hosting. Each comes with a recommendation and its trade-off, and `decide for me` takes it.
 4. **Read the summary and say yes.** It lists each file and what it will hold, with every `[needs verification]` marked. Nothing is written before your yes.
 5. **Let it write and commit.** `CLAUDE.md`, `README.md`, and under `docs/`: `product.md`, `rules.md`, `changelog.md`, `queue.md` and `README.md`. It runs `git init` where the directory is no repo yet, commits once, and pushes nothing.
-6. **Run `/kaizen:norms-config`, if a teammate works without the plugin.** It adds the working rules to `CLAUDE.md`, in one commit; with the plugin, the hook already prints them.
-7. **Run `/kaizen:design-settle`** where the app has a UI. You pick between two frames of one page, and that page is built first. [Redesign the look](redesign.md) walks through the run.
-8. **Ask for the next page**, by its line in `docs/queue.md`. A session builds one page, or one batch of pages of the same kind, and queues the rest.
+6. **Run `/kaizen:design-settle`** where the app has a UI. You pick between two frames of one page, and that page is built first. [Redesign the look](redesign.md) walks through the run.
+7. **Ask for the next page**, by its line in `docs/queue.md`. A session builds one page, or one batch of pages of the same kind, and queues the rest.
 
 > [!NOTE]
 > `app-settle` writes documents, never code: it scaffolds nothing. The app's code starts with the session that builds the first page.
@@ -19,6 +18,6 @@ From an empty directory to the first page, in sessions you start yourself.
 ## Related
 
 - [app-settle](../reference/app-settle.md)
-- [norms-config](../reference/norms-config.md)
+- [Rules hook](../reference/rules-hook.md)
 - [build-flow](../reference/build-flow.md) — how a page is built, and where a session stops.
 - [Documents](../concepts/documents.md)
