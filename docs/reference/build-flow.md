@@ -16,6 +16,8 @@ How a session builds an app one page at a time, so each one ends on something th
 - **One unit per session**: one page, or one batch of pages of the same kind. More work than that is queued.
 - **A proposal before code.** What the documents or your request require is stated as `Bound`. What the session would add is `Optional`: one multi-select of what to drop, with `keep all` first.
 - **A walk in the browser** as the role the page is for: the action it exists for, ending on the `Proof` its feature's row names, its empty state, one failure — a screenshot at each state.
+- **Typecheck, lint and tests on the files the unit touched**, reading only what fails.
+- **New code in a module of its own** where a file is over the repo's size limit. The limit is asked once and recorded in the Stack table; the rest of the file is left as it is.
 - **A report per page**: built · walked in the browser as which role, with the path of each screenshot, or `not walked` · what is left.
 - **A vague bug report read against the features table first**: the session finds the feature there and reproduces the bug by its `Drive`.
 

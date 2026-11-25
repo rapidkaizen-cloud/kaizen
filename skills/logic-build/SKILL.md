@@ -46,10 +46,17 @@ description: Rules for the logic layer of an app — which key goes where, where
 
 ## Libraries and reuse
 
-- **A need with no recorded choice — cache, validator, dates, where errors go, background jobs, property-based tests — is asked once, with a recommendation**, then recorded as a row of the Stack table in `CLAUDE.md`. A recorded `none` is a decision.
+- **A need with no recorded choice — cache, validator, dates, where errors go, background jobs, property-based tests, the lint floor — is asked once, with a recommendation**, then recorded as a row of the Stack table in `CLAUDE.md`. A recorded `none` is a decision.
 - **Keep a library's defaults until a recorded reason changes one.**
+- **Before writing a query, a handler or error handling, find how the repo already does it and do it that way**; a second way is a finding in the closing report, never new code.
 - **Extract a query or a rule the second time it appears.**
 - **Regenerate types from the live schema after every schema change.** `as any` on a call the types lack is a finding.
+
+## Lint floor
+
+- **The floor is the linter's own rules, set to error, for unused imports and variables, an explicit `any` or its counterpart, a leftover console or debugger call, and function size at the limit recorded with it.**
+- **Freeze the hits already in the repo in the linter's own baseline file**, never by lowering a rule to a warning or turning it off; new code passes the floor.
+- **Never add to the baseline; a cleanup removes the entries it fixed.**
 
 ## Data layer
 

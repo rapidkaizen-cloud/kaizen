@@ -4,13 +4,13 @@ A repo started under an older version still carries files and sections that 1.0.
 
 ## After an update that changes the working rules
 
-Run `/kaizen:norms-config` in each repo. A version's changelog entry says when the block changed. See [Working rules](../concepts/working-rules.md).
+A repo with no block gets the new rules from the hook at its next session. In a repo with a block, run `/kaizen:norms-config`. A version's changelog entry says when the block changed. See [Working rules](../concepts/working-rules.md).
 
 ## What a repo from before 1.0.0 still carries
 
 | Found | Where | What to do |
 |---|---|---|
-| No working rules | `CLAUDE.md` | Run `/kaizen:norms-config` once. Until then none of the old session norms reaches a session there: they are no longer printed at session start |
+| No working rules | `CLAUDE.md` | Nothing: since 1.6.0 the hook prints them. Run `/kaizen:norms-config` to keep them in the repo for a teammate without the plugin |
 | `switches.json`, the marker `onboarded-output` | The plugin's data folder on the machine | Nothing reads them. Delete them or leave them |
 | `.claude/destructive-gate.off` | The repo | Nothing reads it. Delete it |
 | An output folder set through the old `norms-config` | `switches.json` | No longer printed or guarded. Name the folder to `/kaizen:norms-config` to get it as a line of the working rules |

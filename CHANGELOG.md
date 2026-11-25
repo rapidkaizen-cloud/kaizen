@@ -2,6 +2,59 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 1.7.0] - 2026-11-25
+
+Code stays lean through checks a machine runs, read only where they fail, on the maintainer's direct word after the audit of a real app: things rebuilt, giant files, leftovers and unchecked types. Nothing holds a commit. [What is proven](docs/reference/status.md) lists these as run in no session.
+
+### Added
+
+- `logic-build`: a `Lint floor` section — the linter's own rules, set to error, for unused imports and variables, an explicit `any`, a leftover console or debugger call and function size; old hits frozen in the linter's own baseline, which only shrinks. The floor is asked once, like a cache or a validator.
+- `logic-build` and `ui-build`: a query, handler, error handling, form, screen state or fetch is written the way the repo already does it; a second way is a finding, never new code.
+- `build-flow`: code added to a file over the repo's size limit goes into a new module named for its job; the limit is asked once and recorded in the Stack table.
+- Docs: [Clean up on a schedule](docs/guide/scheduled-cleanup.md), a report of dead code, duplication and large functions, then one cleanup session.
+
+### Changed
+
+- `build-flow` step 9 and `ui-build`'s last step run the repo's typecheck, lint and tests on the files touched, reading only the failures, where they ran the lint alone.
+
+To act on:
+
+- Nothing is required. A session asks for the lint floor and the size limit the first time it needs them in a repo.
+
+## [kaizen 1.6.1] - 2026-11-25
+
+Working rule `Comments` settles a conflict with another plugin that asks for a `shortcut:` comment, on the maintainer's direct word: both reach the same session and contradict each other.
+
+### Changed
+
+- Working rule `Comments`: no `shortcut:` comment even where another plugin asks for one; a shortcut's limit is queued with when to upgrade it.
+- The working-rules block sits between `<!-- kaizen:rules 1.6.1 -->` and `<!-- /kaizen:rules -->`.
+
+To act on:
+
+- Nothing is required. A repo with a block keeps its own: run `/kaizen:norms-config` there to write the 1.6.1 block.
+
+## [kaizen 1.6.0] - 2026-11-25
+
+The working rules reach every Claude Code session again, through a hook that only prints them, on the maintainer's direct word: a repo where `norms-config` never ran had none, and a block went stale after an update. [What is proven](docs/reference/status.md) lists the hook as seen in no installed session.
+
+### Added
+
+- Hook `hooks/rules.js` on `SessionStart` (startup, resume, clear, compact) and `SubagentStart`: prints the working-rules block into the context of a session or subagent whose `CLAUDE.md`, in the project folder or a folder above it, holds no block. It never refuses, holds or blocks, and prints nothing where Node is missing.
+- An empty `.kaizen-rules-off` file in the project folder or a folder above it turns the hook off for that repo.
+- Docs: [Rules hook](docs/reference/rules-hook.md).
+
+### Changed
+
+- The block lives in `skills/norms-config/rules.md`, the one file both the hook and `norms-config` read.
+- Working rule `Skills, where installed` says to load the skill before its work, and names `build-flow` for a page or a feature.
+- `norms-config` is optional: run it where a teammate works without the plugin, or to keep a reworded block.
+- The working-rules block sits between `<!-- kaizen:rules 1.6.0 -->` and `<!-- /kaizen:rules -->`.
+
+To act on:
+
+- Nothing is required. A repo with an older block keeps it and the hook stays silent there: run `/kaizen:norms-config` to write the 1.6.0 block, or delete the block to take the plugin's.
+
 ## [kaizen 1.5.0] - 2026-11-19
 
 `ui-build` follows Google's `modern-web-guidance` skill in a web app where it is installed, on the maintainer's direct word; it stays optional, and [What is proven](docs/reference/status.md) lists it as run in no session.

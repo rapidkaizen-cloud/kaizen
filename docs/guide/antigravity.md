@@ -26,6 +26,7 @@ The copy lands in `~/.gemini/config/plugins/kaizen`.
 ## What is absent there
 
 - **The `Quota` row** of `design-settle`: it reads `not read`.
+- **The rules hook.** It is written for Claude Code only.
 - **The working rules, unless the repo has an `AGENTS.md`.** `norms-config` writes its block into `CLAUDE.md`, and into `AGENTS.md` only where the repo already has one. Whether a session there then follows the block has not been verified.
 
 ## Optional design skills

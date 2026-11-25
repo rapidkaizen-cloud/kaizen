@@ -18,6 +18,7 @@ The rules a session follows for the logic layer: which key goes where, where a b
 - **Errors you can act on.** The screen gets a sentence; the log gets the detail.
 - **A test per rule**, titled with the rule's name, that attacks the point where the rule is enforced. For a status, it tries a forbidden transition and expects the refusal.
 - **A property-based test for money, stock and pay**: generated input checks an invariant, such as a total always equal to the sum of its lines. The library is asked once and recorded in the Stack table.
+- **The repo's way, once.** A query, handler or error handling is written the way the repo already does it; a second way is reported, never added.
 - **A test per bug fix** that fails without the fix. Where `CLAUDE.md` keeps a `Rule | Enforced by` table, the test is named in the row of the mistake it fixed.
 
 ## Checks from corrections
@@ -33,7 +34,15 @@ When a session turns a mistake you corrected into a check, by the `Corrections` 
 
 ## A choice nobody recorded
 
-The first time a session needs something the repo has not chosen — a cache, a validator, a date library, where errors go, background jobs — it asks once, with a recommendation, and records the answer as a row of the Stack table in `CLAUDE.md`. `none` is an answer, and it is recorded too.
+The first time a session needs something the repo has not chosen — a cache, a validator, a date library, where errors go, background jobs, the lint floor — it asks once, with a recommendation, and records the answer as a row of the Stack table in `CLAUDE.md`. `none` is an answer, and it is recorded too.
+
+## Lint floor
+
+Asked once, then kept by every session that writes code: the linter's own rules, set to error, for unused imports and variables, an explicit `any` or its counterpart, a leftover console or debugger call, and function size at a limit recorded with it.
+
+- **Old code is frozen** in the linter's own baseline file, never by lowering a rule to a warning. New code passes.
+- **The baseline only shrinks.** A cleanup removes the entries it fixed; nothing is added to it.
+- **What a linter cannot see** — unused exports and files, duplicated blocks — waits for a report: [Clean up on a schedule](../guide/scheduled-cleanup.md).
 
 ## The data layer
 
@@ -45,7 +54,6 @@ The session raises it once: install one now, or carry on unproven with a line `P
 
 ## What it does not cover
 
-- **A lint floor.** No skill ships a preset lint rule. Lint rules already in a repo stay as its own configuration, and a new one enters only from a correction you made, by the `Corrections` line of the [working rules](../concepts/working-rules.md).
 - **A settled architecture document.** The Stack table of `CLAUDE.md` is the record.
 
 ## Related

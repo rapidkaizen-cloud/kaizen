@@ -1,8 +1,8 @@
 # Overview
 
-`kaizen` is one plugin of nine standalone skills for building an app with an agent, plus ten working rules a repo keeps in its own `CLAUDE.md`.
+`kaizen` is one plugin of nine standalone skills for building an app with an agent, plus ten working rules every Claude Code session gets.
 
-Nothing in it is enforced. A skill is text a session reads when the work calls for it, and a working rule is a line you can waive in chat. The plugin ships no hook.
+Nothing in it is enforced. A skill is text a session reads when the work calls for it, and a working rule is a line you can waive in chat. The plugin's one hook prints the working rules and refuses nothing.
 
 ## The parts
 
@@ -10,8 +10,9 @@ Nothing in it is enforced. A skill is text a session reads when the work calls f
 |---|---|---|
 | `app-settle` | Interviews you about the problem, the roles and the business rules, then writes the repo's `CLAUDE.md` and its core documents | When you invoke it |
 | `design-settle` | Settles the look: two direction frames you pick from on screen, then `DESIGN.md` and one proving page | When you invoke it |
-| `build-flow`, `docs-format`, `ui-build`, `db-ops`, `logic-build` | Carry the rules for building a page, a document, UI, SQL and application logic | By themselves, when the work matches their description |
-| `norms-config` | Writes the ten working rules into the repo's `CLAUDE.md` | When you invoke it, once per repo |
+| `build-flow`, `docs-format`, `ui-build`, `db-ops`, `logic-build` | Carry the rules for building a page, a document, UI, SQL and application logic | By themselves, when the work matches the working rules' last line or their description |
+| Rules hook | Prints the ten working rules into each session and subagent | When one starts, unless the repo's `CLAUDE.md` holds its own block |
+| `norms-config` | Writes the ten working rules into the repo's `CLAUDE.md`, so a teammate without the plugin reads them too | When you invoke it; optional |
 | `norms-help` | Prints the commands, these pages, the version and its last change | When you ask |
 
 ## Every skill stands alone
@@ -20,7 +21,7 @@ No skill requires another, and none starts another when it ends. Each one reads 
 
 ## What it adds to a session
 
-Each skill is one file, read only when it loads; the nine together are under 40,000 characters. The plugin prints nothing when a session starts. A session meets it through the skill list, and through the working rules where a repo has them.
+Each skill is one file, read only when it loads; the nine together are under 40,000 characters. When a session or subagent starts, the [hook](../reference/rules-hook.md) prints the working rules, about 1,700 characters, unless the repo's `CLAUDE.md` holds them. A session meets the rest through the skill list.
 
 ## Next
 

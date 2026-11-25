@@ -28,6 +28,7 @@ description: How to build an app one page at a time so every session ends on som
 - **Propose the page's content, then ask everything in one turn**:
   - `Bound` — what the documents or the request require. Stated, never asked.
   - `Optional` — what you would add. One multi-select of what to drop, with `keep all` first.
+- **Code added to a file over the repo's size limit goes into a new module named for its job**; leave the rest of the file as it is. No limit recorded → ask once, with a recommendation, and record it as a row of the Stack table in `CLAUDE.md`.
 - **A page whose data source is not built yet is built against a fixture typed like the real response**, and the report says so.
 - **Hand a subagent only work that needs no taste and no decision**: a search, a count, a mechanical edit across files.
 
@@ -43,7 +44,7 @@ A page that writes or reads new data:
 6. The test of the rule.
 7. The page, wired to the query, with its loading, empty and failed states.
 8. A walk in the browser as the role the page is for, with a screenshot of each state: the action it exists for, ending on its feature's `Proof`, its empty state, one failure.
-9. The repo's lint command.
+9. The repo's typecheck, lint and tests, run on the files the unit touched, reading only what fails.
 10. The documents the change made false, and a new feature's row in the `## Features` table of `docs/product.md`.
 
 A page with no new data starts at step 7.

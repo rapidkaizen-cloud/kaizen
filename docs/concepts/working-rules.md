@@ -1,19 +1,19 @@
 # Working rules
 
-Ten lines of text in a repo's `CLAUDE.md` tell every session there how to work, and each one holds until you waive it in chat.
+Ten lines of text tell every session how to work, and each one holds until you waive it in chat.
 
 ## Where they live
 
-`/kaizen:norms-config` writes them at the end of the `CLAUDE.md` at the repo root, as one block between two markers:
+The plugin's [hook](../reference/rules-hook.md) prints them into every Claude Code session and subagent. `/kaizen:norms-config` writes them into the repo instead, at the end of the `CLAUDE.md` at the repo root, as one block between two markers:
 
 ```
-<!-- kaizen:rules 1.4.0 -->
+<!-- kaizen:rules 1.6.1 -->
 ## Working rules
 ...
 <!-- /kaizen:rules -->
 ```
 
-The host reads `CLAUDE.md` when a session starts, so the rules reach every session in that repo. They travel with the repo: a teammate's session reads them whether or not that machine has the plugin. The number in the opening marker is the plugin version the block last changed in.
+Where `CLAUDE.md` holds the block, the hook stays silent and the block is what every session reads. It travels with the repo: a teammate's session reads it whether or not that machine has the plugin, and a line you reworded there stays reworded. The number in the opening marker is the plugin version the block last changed in.
 
 ## The ten lines
 
@@ -27,10 +27,10 @@ The host reads `CLAUDE.md` when a session starts, so the rules reach every sessi
 | `Asking` | Put a decision to you as options with one recommendation and its trade-off, and run the command itself |
 | `Closing` | Report per item what changed, each default it chose, and what you must do by hand |
 | `Corrections` | After fixing a mistake you corrected, offer to make it impossible: in the code's structure, a type, a lint, a test, and prose only last |
-| `Comments` | No comment that excuses a workaround or states a shortcut's limit: the root cause is fixed, or the rest is queued as owed work |
-| `Skills, where installed` | Read the `kaizen` skill for UI, SQL, logic or a document before that kind of work |
+| `Comments` | No comment that excuses a workaround or states a shortcut's limit, a `shortcut:` comment included: the root cause is fixed, or the rest is queued as owed work |
+| `Skills, where installed` | Load the `kaizen` skill for UI, SQL, logic, a document or a page before that kind of work |
 
-The exact text is in `skills/norms-config/SKILL.md`.
+The exact text is in `skills/norms-config/rules.md`.
 
 ## Nothing enforces them
 
@@ -39,11 +39,11 @@ A session that skips a line is stopped by nothing. `Git` and `Data` are the two 
 ## Waive or change a line
 
 - **For one session**, say so in chat: "push without asking in this session".
-- **For good**, edit the line in `CLAUDE.md`, or delete it. The next `/kaizen:norms-config` shows the lines that differ from the plugin's and asks which to keep; it never puts back a line you removed without your answer.
+- **For good**, run `/kaizen:norms-config` once so the block is in `CLAUDE.md`, then edit the line there, or delete it. The next `/kaizen:norms-config` shows the lines that differ from the plugin's and asks which to keep; it never puts back a line you removed without your answer.
 
 ## After a plugin update
 
-A version that changes the block says so in its changelog entry. Run `/kaizen:norms-config` again in each repo.
+A version that changes the block says so in its changelog entry. A repo with no block gets the new one from the hook at its next session. A repo with a block keeps its own: run `/kaizen:norms-config` again there, or delete the block to take the plugin's.
 
 > [!WARNING]
 > A block with an older version in its marker is replaced whole, your edits inside it included. Keep rules of your own outside the markers — under `## Rules for this app only`, the section `app-settle` writes for them.
@@ -64,7 +64,7 @@ Nothing is preset: a repo gets a check only from a correction you made in it.
 
 ## Comments
 
-A comment that explains why a workaround is fine is read by the next session as permission to copy it. A session fixes the root cause, or queues the rest as owed work. A shortcut's known limit is queued too, never left as a comment, even where another plugin asks for one. Comments that stay: a license, a constraint from outside the repo, a public API's contract, an issue link.
+A comment that explains why a workaround is fine is read by the next session as permission to copy it. A session fixes the root cause, or queues the rest as owed work. A shortcut's known limit is queued too, with when to upgrade it, never left as a comment, even where another plugin asks for a `shortcut:` comment. The queue is where the next piece of work is picked from, so the limit gets fixed instead of waiting for someone to search the code. Comments that stay: a license, a constraint from outside the repo, a public API's contract, an issue link.
 
 ## `AGENTS.md`
 
