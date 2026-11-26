@@ -37,6 +37,15 @@ You approve the number, not the intent. The operation then runs inside a block t
 
 A policy that exists is not a policy that works, and the default connection is the owner, which bypasses every policy. So each RLS change is tested as each role with a real user id of that role, inside a transaction that is rolled back — the role that must see nothing included. The report is one line per role: rows visible against rows expected. A mismatch stops the session.
 
+## Indexes and keys
+
+- **An index for every column a query filters, joins or sorts on**, in the same migration: several columns share one index, equality first; text search gets a trigram or full-text index; an indexed column is never wrapped in a function where the query filters.
+- **A test that fails on a foreign key with no index**, kept in the repo and named in the `| Rule | Enforced by |` table of `CLAUDE.md`.
+- **The columns an RLS policy filters on are indexed too**, and a per-user function in a policy runs once per query, not once per row.
+- **A table that will grow large** gets a key that increases in order — never a random UUIDv4 — and a decision on how long its rows are kept.
+
+Further reading, not required: `supabase-postgres-best-practices` in [supabase/agent-skills](https://github.com/supabase/agent-skills) (MIT).
+
 ## What it does not cover
 
 - **Enforcement.** You can waive the stop for a session; the session tells you once what is no longer counted.

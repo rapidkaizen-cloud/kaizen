@@ -2,6 +2,25 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 2.3.0] - 2026-11-26
+
+Performance rules in three skills, on the maintainer's direct word, so an app built under them stays fast as its tables grow, on any stack. Written in this toolkit's own words from four published catalogs; none of them is installed or required.
+
+### Added
+
+- `db-ops`: an index for every column a query filters, joins or sorts on, in the same migration, with a catalog test that fails on an unindexed foreign key; indexed RLS columns and a per-user function called once per query; a sequential key and a retention decision for a table that will grow large.
+- `logic-build`: a `Performance` section — no query or outside call inside a loop, guarded by the stack's lazy-load guard, a lint rule or a query-count test; only the columns and rows the screen uses; each read once per request; independent calls in parallel; slow work in a background job; clients created once per process; capped retries with backoff; a slow page measured before and after its fix. Upload caps under server handlers. The description now names fixing a slow page.
+- `ui-build`: a `Performance` section — lazy routes and libraries, a bundle size budget that fails the build, asked once and recorded in the Stack table; images at their displayed size; long lists paginated or virtualized; every interval, listener and poll stopped on unmount.
+
+### Changed
+
+- `logic-build`: a write of several statements runs in a short transaction with no outside call inside it; paging past an API's row cap joins the line on reading only what the screen uses; the section `Errors and reads` is now `Errors`.
+- `ui-build`: a loading skeleton takes the result's size as well as its shape.
+
+To act on:
+
+- Nothing by hand. A session adds the index test and the query guard where an app has none, and asks for the bundle budget once.
+
 ## [kaizen 2.2.0] - 2026-11-26
 
 An output folder per repo, worktree and workspace, on the maintainer's direct word, after a script with an empty target path left four files at a drive root.
