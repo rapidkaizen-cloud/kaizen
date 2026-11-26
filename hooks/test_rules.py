@@ -12,6 +12,7 @@ import subprocess
 import tempfile
 from pathlib import Path
 
+os.environ.pop("KAIZEN_OUTPUT_DIR", None)
 HOOKS = Path(__file__).parent
 # Raw bytes: a Windows checkout may hold CRLF, and the hook prints the file as it is.
 RULES = (HOOKS / "rules.md").read_bytes().decode("utf-8")
@@ -30,6 +31,14 @@ def printed(out, event="SessionStart"):
     o = json.loads(out)["hookSpecificOutput"]
     assert o == {"hookEventName": event, "additionalContext": RULES}, o
     return True
+
+
+def output_text(folder):
+    return (HOOKS / "output.md").read_bytes().decode("utf-8").replace("{dir}", str(folder))
+
+
+def agy_output(hook, root):
+    return hook("PreInvocation", json.dumps({"workspacePaths": [str(root)], "invocationNum": 0, "transcriptPath": ""}))
 
 
 def main():
@@ -92,6 +101,71 @@ def main():
                 env["PATH"] = str(t / "no node here")
                 p = subprocess.run([bash, "-c", cmd], capture_output=True, text=True, encoding="utf-8", env=env)
                 assert (p.returncode, p.stdout, p.stderr) == (0, "", ""), "Node missing: silent"
+
+        # The output folder: nothing while unset; once set, printed and checked.
+        out = t / "my output"
+        outside = t / "elsewhere" / "report.md"
+        # The check allows the system temp folder, and this test runs inside it: point temp elsewhere.
+        base = dict({k: v for k, v in os.environ.items() if not k.startswith("ORCA_")}, **{k: str(t / "temp") for k in ("TEMP", "TMP", "TMPDIR")})
+
+        def hook(event, payload="", output=out, project=bare, **extra):
+            env = dict(base, CLAUDE_PROJECT_DIR=str(project), **extra)
+            if output:
+                env["KAIZEN_OUTPUT_DIR"] = str(output)
+            p = subprocess.run(["node", str(HOOKS / "rules.js"), event], input=payload, capture_output=True, text=True, encoding="utf-8", env=env)
+            assert p.returncode == 0 and p.stderr == "", (p.returncode, p.stderr)
+            return p.stdout
+
+        def wrote(file, kind="create"):
+            return json.dumps({"cwd": str(bare), "tool_input": {"file_path": str(file)}, "tool_response": {"type": kind}})
+
+        for event in ("SessionStart", "SubagentStart"):
+            assert printed(hook(event, output=None), event)
+            text = json.loads(hook(event))["hookSpecificOutput"]["additionalContext"]
+            assert text.startswith(RULES) and f"## Output folder: {out / '_general'}\n" in text.replace("\r\n", "\n") and len(text) < 9000
+        assert hook("SessionStart", project=off) == ""
+        assert hook("PostToolUse", wrote(outside), output=None) == "", "unset: free"
+        note = json.loads(hook("PostToolUse", wrote(outside)))["hookSpecificOutput"]
+        assert note["hookEventName"] == "PostToolUse" and str(outside) in note["additionalContext"]
+        assert hook("PostToolUse", wrote(t / "my output 2" / "a.md")) != "", "a sibling with the same prefix"
+        for file in (out / "_general" / "topic" / "a.md", out / "_general" / "..a.md", bare / "a.md", t / "temp" / "a.md", Path.home() / ".claude" / "a.md"):
+            assert hook("PostToolUse", wrote(file)) == "", file
+        assert hook("PostToolUse", wrote(outside, "update")) == "", "an existing file"
+        assert hook("PostToolUse", wrote(outside), project=off) == ""
+        for bad in ("", "not json", "{}"):
+            assert hook("PostToolUse", bad) == "", bad
+
+        # Each repo, linked worktree and Orca folder workspace has a folder of its own.
+        def folder(project, **extra):
+            text = json.loads(hook("SessionStart", project=project, **extra))["hookSpecificOutput"]["additionalContext"]
+            return Path(text.split("## Output folder: ")[1].splitlines()[0])
+
+        def git(*args):
+            subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@t", *args], check=True, capture_output=True)
+
+        repo = t / "my app"
+        (repo / "sub").mkdir(parents=True)
+        git("init", "-q", str(repo))
+        git("-C", str(repo), "commit", "-q", "--allow-empty", "-m", "x")
+        git("-C", str(repo), "worktree", "add", "-q", str(t / "wt" / "fix"))
+        git("-C", str(repo), "worktree", "add", "-q", "-b", "two", str(t / "wt" / "my app-two"))
+        assert folder(repo) == folder(repo / "sub") == out / "my app"
+        assert folder(t / "wt" / "fix") == out / "my app-fix"
+        assert folder(t / "wt" / "my app-two") == out / "my app-two"
+        assert folder(bare) == out / "_general"
+        assert folder(bare, ORCA_APP_VERSION="1") == out / "no claude md"
+        assert folder(repo, ORCA_APP_VERSION="1") == out / "my app"
+        assert folder(Path.home(), ORCA_APP_VERSION="1") == out / "_general"
+        assert json.loads(agy_output(hook, repo)) == {"injectSteps": [{"userMessage": RULES + output_text(out / "my app")}]}
+        assert hook("PostToolUse", wrote(out / "my app" / "a.md"), project=repo) == ""
+        assert "my app-fix" in hook("PostToolUse", wrote(out / "my app" / "a.md"), project=t / "wt" / "fix"), "another checkout's folder"
+        assert hook("PostToolUse", wrote(out / "a.md"), project=repo) != "", "the root of the output folder"
+        if bash:
+            cmd = hooks["PostToolUse"][0]["hooks"][0]["command"]
+            for value, says in ((str(out), True), ("", False)):
+                env = dict(base, CLAUDE_PLUGIN_ROOT=str(plugin), CLAUDE_PROJECT_DIR=str(bare), KAIZEN_OUTPUT_DIR=value)
+                p = subprocess.run([bash, "-c", cmd], input=wrote(outside), capture_output=True, text=True, encoding="utf-8", env=env)
+                assert (p.returncode, bool(p.stdout), p.stderr) == (0, says, ""), (value, p)
     print("ok")
 
 

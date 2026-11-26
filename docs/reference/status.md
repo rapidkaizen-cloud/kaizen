@@ -12,12 +12,14 @@ Version 1.0.0 rewrote every skill. What earlier versions proved was proved on te
 | `norms-help` | Its self-check passes: the card is built from the files of this version |
 | Rules hook | Its self-check passes: it prints in every project, and stays silent with `.kaizen-rules-off` and without Node, from folders whose paths hold a space. An installed 1.7.0 session on Windows received the rules at its start |
 | `Quota` | `claude -p "/usage"` was read on a Max plan |
+| Output folder (2.2.0) | Its self-check passes on Windows. Sessions on Claude Code 2.1.332 on Windows used the right folder in a repo, a worktree (a plain file, a script and a subagent), an Orca folder workspace and a plain folder outside Orca, on Haiku, and in a repo on Opus 5.5 with a user `CLAUDE.md` still holding the old `Output` line. `Write` from a worktree into the repo's folder drew the hook's note. Unset, files stayed in the project. An earlier draft with one folder for all was kept by Haiku, Sonnet 5.5 and Opus 5.5, by file, script and subagent, and by an icon-extraction task like the one that left files at a drive root |
 
 ## Proven on Antigravity
 
 | What | How it was seen |
 |---|---|
 | Working rules | 2.1.0 installed from a folder on `agy` 1.3.3: a headless conversation received them once, before its first model call, and not again on its second turn |
+| Output folder | An earlier draft with one folder for all, on `agy` 1.5.13 with Gemini 3.8 Flash Low: a plain file landed there; of two runs through a script, one left a copy outside after its three-minute limit |
 
 ## Not yet verified
 
@@ -34,6 +36,7 @@ Version 1.0.0 rewrote every skill. What earlier versions proved was proved on te
 - **What a run costs.** Every figure in [Run on a Pro plan](../guide/pro-plan.md) was measured on the flow before 1.0.0.
 - **`verify_pages.js` against a desktop build**: not yet attached to a WebView2 or Electron app.
 - **`Quota` on a Pro plan.**
+- **The 2.2.0 output folder** on Linux and macOS (only the hook command under `dash` and the path logic under Node's POSIX rules were run), in the Claude desktop app, in a workspace Orca created itself, and split per repo in a real Antigravity session. The `Write` note was seen on Haiku only.
 
 ## Related
 

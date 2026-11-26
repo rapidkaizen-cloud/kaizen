@@ -13,7 +13,7 @@ Nothing to run: the next session gets the new rules from the hook. A version's c
 | A block between `<!-- kaizen:rules` markers, written by `norms-config` before 2.0.0 | `CLAUDE.md`, `AGENTS.md` | Delete it: the hook prints the current rules, and the old block would sit beside them. Move a line you reworded there to `## Rules for this app only` |
 | `switches.json`, the marker `onboarded-output` | The plugin's data folder on the machine | Nothing reads them. Delete them or leave them |
 | `.claude/destructive-gate.off` | The repo | Nothing reads it. Delete it |
-| An output folder set through the old `norms-config` | `switches.json` | No longer printed or guarded. Write the folder as a line of `CLAUDE.md` |
+| An output folder set through the old `norms-config` | `switches.json` | Nothing reads it. Set `KAIZEN_OUTPUT_DIR` instead: the hook prints one folder per repo, worktree and workspace under it, as in [Rules hook](../reference/rules-hook.md#the-output-folder). Delete a `CLAUDE.md` line that sends files to `<output>\<topic>\`, or make it name the same folders, so it does not contradict the hook |
 | Sections an older `app-settle` wrote | `CLAUDE.md` | Kept as they are. `app-settle` adds only what the file lacks |
 | A root `PRD.md` or `docs/PRD.md` | The repo | Read as it is. It no longer marks a repo as settled, and no skill moves it unless you ask |
 | Lint floors and rule tests | The repo's lint config and tests | They are the repo's own and keep running. No skill maintains them |
