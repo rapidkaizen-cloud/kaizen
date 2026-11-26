@@ -1,6 +1,6 @@
 ---
 name: logic-build
-description: Rules for the logic layer of an app — which key goes where, where a business rule is enforced, server handlers, errors, the data-layer folder, the test every rule leaves and the check a correction becomes. Use before writing a query, an API handler, an environment variable, anything that holds a key, code that enforces a business rule, or a lint, type or test that makes a mistake the user corrected impossible.
+description: Rules for the logic layer of an app — which key goes where, where a business rule is enforced, server handlers, errors, the data-layer folder, the test every rule leaves and the check a correction becomes. Use before writing a query, an API handler, an environment variable, anything that holds a key, code that enforces a business rule, or a lint, type or test that makes a mistake the user corrected impossible, and before fixing a slow page.
 ---
 
 # logic-build — keys, rules, queries
@@ -36,13 +36,24 @@ description: Rules for the logic layer of an app — which key goes where, where
 
 - **Parse the input at the handler's entry and reject what does not fit.**
 - **Every handler authorizes itself**, with the user's token by preference. Use `service_role` only where the operation must exceed the user's rights, and write the why beside it.
-- **A write of several statements runs in one transaction or one RPC.**
+- **A write of several statements runs in one short transaction or one RPC, with no outside call inside it.**
+- **Cap an upload's size at the handler, resize and compress an image, and keep files in storage**, never a database column.
 
-## Errors and reads
+## Errors
 
 - **The user gets a sentence they can act on; the log gets the detail.** Raw database text never reaches the screen.
 - **Never swallow an error**: a call that returns its error is read at the call site.
-- **Page every list read wherever the API caps rows.**
+
+## Performance
+
+- **Nothing inside a loop queries, calls out or searches another list**: batch writes, upsert, look up by key. Guard it with a lazy-load guard or lint rule, else a query-count test, named in the `| Rule | Enforced by |` table.
+- **Read only the columns, relations and rows the screen uses**: a limit on every list, cursor paging on a big table, paging past an API's row cap, filtering, sorting and totals in the database.
+- **Read the same data once per request and through the client's data cache**, precompute or cache a total over a big table, and cap every in-memory cache by size or TTL.
+- **Run independent calls in parallel**, on the server and the client.
+- **Run slow work — email, export, an outside API, logging — in a background job**, and stream a big export or import in chunks.
+- **Create the database client, config and static data once per process**, never per request.
+- **Retry an outside service with capped exponential backoff**, within its rate limit.
+- **Measure a slow page before fixing it** — a trace, `EXPLAIN`, slow-query stats — **then fix the measured cause and report before and after.**
 
 ## Libraries and reuse
 

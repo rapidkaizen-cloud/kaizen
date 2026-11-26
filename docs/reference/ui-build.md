@@ -17,6 +17,16 @@ The rules a session builds UI by: where a component comes from, its states, and 
 - **The repo's way, once.** A form, screen state or fetch is written the way the repo already does it; a second way is reported, never added.
 - **Typecheck and lint run on the touched files** before the commit.
 
+## Performance
+
+- **Routes and heavy libraries load lazily**, only the parts used are imported, and third-party scripts load after the page is interactive.
+- **A bundle size budget that fails the build**, asked once and recorded in the Stack table of `CLAUDE.md`.
+- **Images at their displayed size**, in WebP or AVIF with width and height set: lazy below the fold, the hero first. A loading skeleton takes the size of its content, so the page does not jump.
+- **A long list is paginated or virtualized.**
+- **Nothing keeps running after a component leaves**: intervals, listeners, subscriptions and polls stop, polling pauses in a hidden tab, and CPU-heavy work moves to a worker.
+
+Further reading, not required: `react-best-practices` in [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) and [addyosmani/web-quality-skills](https://github.com/addyosmani/web-quality-skills) (MIT).
+
 ## Without a `DESIGN.md`
 
 The session says so once, then builds from the tokens and components the repo already has, and writes no new styling value. A repo with no UI yet takes its values from you.

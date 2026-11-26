@@ -30,7 +30,7 @@ Before building, name the existing component that covers each element. Take the 
 
 Write these with the component, never after it.
 
-- **Loading**: a skeleton shaped like the result; a spinner only for work with no shape.
+- **Loading**: a skeleton of the result's shape and size; a spinner only for work with no shape.
 - **Empty**: why it is empty and what to do next, ending on the one action. A filtered list names the query and offers the exit: `No results for "quarterly". Clear filters`.
 - **Failed**: the message beside its cause, with a retry. It never disappears on its own.
 - **Never park lasting information in an empty state.**
@@ -39,6 +39,14 @@ Write these with the component, never after it.
 
 - **A date field writes only a complete, valid date.**
 - **A paid or slow call fires on an explicit action**, never on blur or a keystroke.
+
+## Performance
+
+- **Lazy-load a route and a heavy library, import only the parts used, and load a third-party script after the page is interactive.**
+- **Keep a bundle size budget that fails the build**, asked once and recorded in the Stack table of `CLAUDE.md`.
+- **Serve an image at its displayed size in WebP or AVIF, always with width and height**: lazy below the fold, the hero eager at high priority.
+- **Paginate or virtualize a long list.**
+- **Stop every interval, listener, subscription and poll on unmount**, pause polling while the tab is hidden, and move CPU-heavy work to a worker.
 
 ## Writing
 

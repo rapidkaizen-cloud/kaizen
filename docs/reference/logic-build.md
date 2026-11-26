@@ -5,7 +5,7 @@ The rules a session follows for the logic layer: which key goes where, where a b
 | | |
 |---|---|
 | Kind | Skill — no command |
-| Loads when | A session writes a query, an API handler, an environment variable, anything that holds a key, code that enforces a business rule, or a check that makes a mistake you corrected impossible |
+| Loads when | A session writes a query, an API handler, an environment variable, anything that holds a key, code that enforces a business rule, a check that makes a mistake you corrected impossible, or fixes a slow page |
 | Reads | `docs/rules.md` and the Stack table of `CLAUDE.md`, where the repo has them |
 | Source | `skills/logic-build/SKILL.md` |
 
@@ -43,6 +43,20 @@ Asked once, then kept by every session that writes code: the linter's own rules,
 - **Old code is frozen** in the linter's own baseline file, never by lowering a rule to a warning. New code passes.
 - **The baseline only shrinks.** A cleanup removes the entries it fixed; nothing is added to it.
 - **What a linter cannot see** — unused exports and files, duplicated blocks — waits for a report: [Clean up on a schedule](../guide/scheduled-cleanup.md).
+
+## Performance
+
+- **No query or outside call inside a loop.** Writes are batched and a list is looked up by key. The session guards it with the stack's own check — the framework's lazy-loading guard or a lint rule, else a test that counts a page's queries — named in the `| Rule | Enforced by |` table.
+- **Only what the screen uses is read**: a limit on every list, cursor paging on a big table, paging past an API's row cap, and filtering, sorting and totals done by the database.
+- **The same data is read once** per request and through the client's data cache. A total over a big table is precomputed or cached, and every in-memory cache has a size cap or an expiry.
+- **Independent calls run in parallel**, on the server and in the client.
+- **Slow work runs in a background job** — email, exports, outside APIs, logging — and a big export or import streams in chunks.
+- **Clients, config and static data are created once per process**, not per request.
+- **Transactions stay short** and never wait on an outside call. An outside service is retried with capped backoff, inside its rate limit.
+- **Uploads are capped** at the handler, images resized and compressed, and files kept in storage, never in a database column.
+- **A page you report slow is measured first** — a trace, the query plan, the database's slow-query stats — and the report gives the numbers before and after the fix.
+
+Further reading, not required: [Performance antipatterns for cloud applications](https://learn.microsoft.com/azure/architecture/antipatterns/) from Microsoft.
 
 ## The data layer
 
