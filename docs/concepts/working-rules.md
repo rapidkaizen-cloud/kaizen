@@ -53,6 +53,10 @@ Nothing is preset: a repo gets a check only from a correction you made in it.
 
 A comment that explains why a workaround is fine is read by the next session as permission to copy it. A session fixes the root cause, or queues the rest as owed work. A shortcut's known limit is queued too, with when to upgrade it, never left as a comment, even where another plugin asks for a `shortcut:` comment. The queue is where the next piece of work is picked from, so the limit gets fixed instead of waiting for someone to search the code. Comments that stay: a license, a constraint from outside the repo, a public API's contract, an issue link.
 
+## The output folder
+
+Set `KAIZEN_OUTPUT_DIR` and the hook adds one more rule: every file a session makes for you and not for the repo goes into a folder of its own under it — `<repo>` in a main checkout, `<repo>-<worktree>` in a worktree, the folder's name in an Orca workspace without a repo, `_general` anywhere else. A script is given the full path and stops when it is empty, and the session checks the file landed there. Leave the variable unset and nothing is said about where files go. How to set it is in [Rules hook](../reference/rules-hook.md#the-output-folder).
+
 ## Related
 
 - [Rules hook](../reference/rules-hook.md) — what prints the rules, and how to turn it off in one repo.

@@ -2,6 +2,20 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 2.2.0] - 2026-11-26
+
+An output folder per repo, worktree and workspace, on the maintainer's direct word, after a script with an empty target path left four files at a drive root.
+
+### Added
+
+- `KAIZEN_OUTPUT_DIR`: when set, the hook prints `hooks/output.md` after the working rules, naming this session's own folder under it — `<repo>` in a main checkout, `<repo>-<worktree>` in a worktree, the folder's name in an Orca workspace without a repo, `_general` elsewhere. Files made for the user go there; a script stops when its output path is empty, and the session checks where the file landed. Unset, nothing is printed and nothing is said.
+- A `PostToolUse` hook on `Write`: with `KAIZEN_OUTPUT_DIR` set, a new file written outside the session's folder, the project, the temp folder and `~/.claude` draws a note naming it. It refuses nothing. Claude Code only.
+
+To act on:
+
+- To use the output folder, set `KAIZEN_OUTPUT_DIR` in the `env` block of `~/.claude/settings.json`, or in the system environment for Antigravity, then start a new session; Antigravity also needs the plugin installed again.
+- A line in your `CLAUDE.md` or a repo's that sends files to `<output>\<topic>\`: delete it, or make it name the same folders as the hook.
+
 ## [kaizen 2.1.0] - 2026-11-25
 
 The working rules reach Antigravity again, on the maintainer's direct word: the same `hooks/rules.js` runs there as a `PreInvocation` hook.
