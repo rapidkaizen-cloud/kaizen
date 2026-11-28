@@ -2,6 +2,21 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 2.5.0] - 2026-11-28
+
+A repo's own rules live in one file, `AGENTS.md`, on the maintainer's direct word, because each agent reads one file: Antigravity reads `AGENTS.md` and never `CLAUDE.md`, and Claude Code reads `AGENTS.md` only through an `@AGENTS.md` import when `CLAUDE.md` exists. Two copies drift apart.
+
+### Changed
+
+- `app-settle` writes the Locale, Stack, Ground truth and `Rules for this app only` sections into `AGENTS.md`, and a `CLAUDE.md` holding `@AGENTS.md`. In a repo whose `CLAUDE.md` holds lines of its own, it moves them into `AGENTS.md`, keeps in `CLAUDE.md` only what Claude Code alone reads, and asks where two lines contradict. A `CLAUDE.md` that is a symlink becomes a plain file. Its block prints what `AGENTS.md` and `CLAUDE.md` hold.
+- The Stack table, the `Data layer` row and the `| Rule | Enforced by |` table are read and written in `AGENTS.md` by `logic-build`, `build-flow`, `db-ops`, `ui-build` and `design-settle`.
+- The working rules' first line names `AGENTS.md` as where a rule is waived and where a repo's own rules are written; `CLAUDE.md` holds `@AGENTS.md` and only what Claude alone reads. The `Corrections` line points at the table in `AGENTS.md`.
+
+To act on:
+
+- Every app repo whose `CLAUDE.md` holds rules without `@AGENTS.md`: move them into `AGENTS.md`, merged with what it holds, and leave `CLAUDE.md` as `@AGENTS.md` plus only what Claude Code alone reads — by hand, or by running `/kaizen:app-settle`.
+- Every app repo whose `CLAUDE.md` is a symlink to `AGENTS.md`: replace it with a plain file holding `@AGENTS.md`.
+
 ## [kaizen 2.4.1] - 2026-11-28
 
 ### Changed

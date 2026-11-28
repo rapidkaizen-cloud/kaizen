@@ -6,7 +6,7 @@ The rules a session follows for the logic layer: which key goes where, where a b
 |---|---|
 | Kind | Skill — no command |
 | Loads when | A session writes a query, an API handler, an environment variable, anything that holds a key, code that enforces a business rule, a check that makes a mistake you corrected impossible, or fixes a slow page |
-| Reads | `docs/rules.md` and the Stack table of `CLAUDE.md`, where the repo has them |
+| Reads | `docs/rules.md` and the Stack table of `AGENTS.md`, where the repo has them |
 | Source | `skills/logic-build/SKILL.md` |
 
 ## What you will see
@@ -19,13 +19,13 @@ The rules a session follows for the logic layer: which key goes where, where a b
 - **A test per rule**, titled with the rule's name, that attacks the point where the rule is enforced. For a status, it tries a forbidden transition and expects the refusal.
 - **A property-based test for money, stock and pay**: generated input checks an invariant, such as a total always equal to the sum of its lines. The library is asked once and recorded in the Stack table.
 - **The repo's way, once.** A query, handler or error handling is written the way the repo already does it; a second way is reported, never added.
-- **A test per bug fix** that fails without the fix. Where `CLAUDE.md` keeps a `Rule | Enforced by` table, the test is named in the row of the mistake it fixed.
+- **A test per bug fix** that fails without the fix. Where `AGENTS.md` keeps a `Rule | Enforced by` table, the test is named in the row of the mistake it fixed.
 
 ## Checks from corrections
 
 When a session turns a mistake you corrected into a check, by the `Corrections` line of the [working rules](../concepts/working-rules.md):
 
-- **The `| Rule | Enforced by |` table** sits under `## Rules for this app only` in `CLAUDE.md`.
+- **The `| Rule | Enforced by |` table** sits under `## Rules for this app only` in `AGENTS.md`.
 - **Shown failing on the old mistake** before the check is kept.
 - **Only new additions fail** where the pattern is already common; the old copies become one queue line.
 - **An exception** sits on the offending line itself, with a reason, an expiry date and your yes.
@@ -34,7 +34,7 @@ When a session turns a mistake you corrected into a check, by the `Corrections` 
 
 ## A choice nobody recorded
 
-The first time a session needs something the repo has not chosen — a cache, a validator, a date library, where errors go, background jobs, the lint floor — it asks once, with a recommendation, and records the answer as a row of the Stack table in `CLAUDE.md`. `none` is an answer, and it is recorded too.
+The first time a session needs something the repo has not chosen — a cache, a validator, a date library, where errors go, background jobs, the lint floor — it asks once, with a recommendation, and records the answer as a row of the Stack table in `AGENTS.md`. `none` is an answer, and it is recorded too.
 
 ## Lint floor
 
@@ -68,7 +68,7 @@ The session raises it once: install one now, or carry on unproven with a line `P
 
 ## What it does not cover
 
-- **A settled architecture document.** The Stack table of `CLAUDE.md` is the record.
+- **A settled architecture document.** The Stack table of `AGENTS.md` is the record.
 
 ## Related
 

@@ -20,7 +20,7 @@ The rules a session builds UI by: where a component comes from, its states, and 
 ## Performance
 
 - **Routes and heavy libraries load lazily**, only the parts used are imported, and third-party scripts load after the page is interactive.
-- **A bundle size budget that fails the build**, asked once and recorded in the Stack table of `CLAUDE.md`.
+- **A bundle size budget that fails the build**, asked once and recorded in the Stack table of `AGENTS.md`.
 - **Images at their displayed size**, in WebP or AVIF with width and height set: lazy below the fold, the hero first. A loading skeleton takes the size of its content, so the page does not jump.
 - **A long list is paginated or virtualized.**
 - **Nothing keeps running after a component leaves**: intervals, listeners, subscriptions and polls stop, polling pauses in a hidden tab, and CPU-heavy work moves to a worker.

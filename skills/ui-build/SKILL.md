@@ -43,7 +43,7 @@ Write these with the component, never after it.
 ## Performance
 
 - **Lazy-load a route and a heavy library, import only the parts used, and load a third-party script after the page is interactive.**
-- **Keep a bundle size budget that fails the build**, asked once and recorded in the Stack table of `CLAUDE.md`.
+- **Keep a bundle size budget that fails the build**, asked once and recorded in the Stack table of `AGENTS.md`.
 - **Serve an image at its displayed size in WebP or AVIF, always with width and height**: lazy below the fold, the hero eager at high priority.
 - **Paginate or virtualize a long list.**
 - **Stop every interval, listener, subscription and poll on unmount**, pause polling while the tab is hidden, and move CPU-heavy work to a worker.

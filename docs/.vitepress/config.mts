@@ -22,7 +22,7 @@ function sidebar() {
 
 export default defineConfig({
   title: 'kaizen',
-  description: 'kaizen is nine standalone skills for building an app with an agent, and eight working rules a repo keeps in its own CLAUDE.md.',
+  description: 'kaizen is eight standalone skills for building an app with an agent, and ten working rules a hook prints into every session; a repo keeps its own rules in AGENTS.md.',
   // Served as a project site: https://rapidkaizen-cloud.github.io/kaizen/
   base: '/kaizen/',
   cleanUrls: true,
