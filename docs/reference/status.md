@@ -39,7 +39,7 @@ Version 1.0.0 rewrote every skill. What earlier versions proved was proved on te
 - **`verify_pages.js` against a desktop build**: not yet attached to a WebView2 or Electron app.
 - **`Quota` on a Pro plan.**
 - **The 2.3.0 performance rules.** The index, key and RLS lines of `db-ops`, the performance sections of `logic-build` and `ui-build`, and the three checks they add — the index test, the query guard and the bundle budget — were written on the maintainer's word from published catalogs, not from a miss seen in an app here, and have run in no session.
-- **The 2.4.0 listing fields on Antigravity.** The logo, display name and suggested prompts were read by the validator only: no install from the marketplace, and no review by Google yet.
+- **The 2.4.0 listing fields on Antigravity.** The logo, display name and suggested prompts were read by the validator only; the plugin is not submitted to Antigravity's marketplace.
 - **The 2.2.0 output folder** on Linux and macOS (only the hook command under `dash` and the path logic under Node's POSIX rules were run), in the Claude desktop app, in a workspace Orca created itself, and split per repo in a real Antigravity session. The `Write` note was seen on Haiku only.
 
 ## Related
