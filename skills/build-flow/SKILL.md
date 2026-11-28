@@ -28,7 +28,7 @@ description: How to build an app one page at a time so every session ends on som
 - **Propose the page's content, then ask everything in one turn**:
   - `Bound` — what the documents or the request require. Stated, never asked.
   - `Optional` — what you would add. One multi-select of what to drop, with `keep all` first.
-- **Code added to a file over the repo's size limit goes into a new module named for its job**; leave the rest of the file as it is. No limit recorded → ask once, with a recommendation, and record it as a row of the Stack table in `CLAUDE.md`.
+- **Code added to a file over the repo's size limit goes into a new module named for its job**; leave the rest of the file as it is. No limit recorded → ask once, with a recommendation, and record it as a row of the Stack table in `AGENTS.md`.
 - **A page whose data source is not built yet is built against a fixture typed like the real response**, and the report says so.
 - **Hand a subagent only work that needs no taste and no decision**: a search, a count, a mechanical edit across files.
 

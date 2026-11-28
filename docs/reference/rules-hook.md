@@ -5,7 +5,7 @@ Prints the ten working rules into every Claude Code session and subagent, and ev
 | | |
 |---|---|
 | Kind | Hook — `SessionStart` (startup, resume, clear, compact), `SubagentStart` and `PostToolUse` on `Write` on Claude Code; `PreInvocation` on Antigravity |
-| Prints | `hooks/rules.md`, about 1,700 characters. With `KAIZEN_OUTPUT_DIR` set, `hooks/output.md` after it, about 700 characters |
+| Prints | `hooks/rules.md`, about 1,900 characters. With `KAIZEN_OUTPUT_DIR` set, `hooks/output.md` after it, about 700 characters |
 | Refuses | Nothing. It never holds, asks or blocks, and ends without an error on every path |
 | Needs | Node on `PATH`. Without it the hook prints nothing |
 | Source | `hooks/claude-code.json` (Claude Code), `hooks.json` (Antigravity), `hooks/rules.js`; self-check `hooks/test_rules.py` |
@@ -14,7 +14,7 @@ Prints the ten working rules into every Claude Code session and subagent, and ev
 
 | It finds | It does |
 |---|---|
-| Any project, whatever its `CLAUDE.md` holds | Prints the rules |
+| Any project, whatever its `AGENTS.md` or `CLAUDE.md` holds | Prints the rules |
 | `.kaizen-rules-off` in the project folder or a folder above it | Nothing, the output folder included |
 | A subagent starting | The same as for its session |
 | An Antigravity conversation | Prints once, before its first model call, as a step that stays in the conversation; never again in that conversation |
@@ -41,11 +41,11 @@ To turn it on:
 
 To turn it off, delete the variable. In one repo, `.kaizen-rules-off` turns off the output folder with the rules.
 
-If your own `CLAUDE.md` or a repo's names an output folder too, make it say the same as the table above, or delete it: a session that reads two places picks one.
+If your own `CLAUDE.md`, or a repo's `AGENTS.md` or `CLAUDE.md`, names an output folder too, make it say the same as the table above, or delete it: a session that reads two places picks one.
 
 ## Change a rule for one repo
 
-Write the change in that repo's `CLAUDE.md`, under `## Rules for this app only`. A session reads it beside the printed rules, and the rules give way to it.
+Write the change in that repo's `AGENTS.md`, under `## Rules for this app only`. A session reads it beside the printed rules, and the rules give way to it. Keep the repo's `CLAUDE.md` to `@AGENTS.md` and what Claude Code alone reads: Antigravity never reads `CLAUDE.md`, and Claude Code reads `AGENTS.md` only through that line.
 
 ## Turn it off in one repo
 

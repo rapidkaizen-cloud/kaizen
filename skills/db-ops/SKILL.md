@@ -15,7 +15,7 @@ Schema has git through migration files; data does not. A revert does not bring b
 - **A step is one command up to its next stop**: read several objects in one `SELECT` (`json_build_object`, `UNION ALL`).
 - **Follow every `DO $$` block with a `SELECT` that proves the state**: the block returns no rows, and `RAISE NOTICE` is not output.
 - **A new table gets RLS enabled and its policy in the same migration.**
-- **Index every column a query filters, joins or sorts on, in the same migration**: composite with equality first, trigram or full-text for text search, never wrapped in a function in `WHERE`. Keep a catalog test that fails on an unindexed foreign key, named in the `| Rule | Enforced by |` table of `CLAUDE.md`.
+- **Index every column a query filters, joins or sorts on, in the same migration**: composite with equality first, trigram or full-text for text search, never wrapped in a function in `WHERE`. Keep a catalog test that fails on an unindexed foreign key, named in the `| Rule | Enforced by |` table of `AGENTS.md`.
 - **A table that will grow large gets a sequential key — identity or UUIDv7, never UUIDv4 — and a retention or archive decision.**
 
 ## A destructive operation

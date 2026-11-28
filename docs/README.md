@@ -17,7 +17,7 @@ New here: [Overview](start/overview.md), then [Install](start/install.md), then 
 | Page | Holds |
 |---|---|
 | [How it works](concepts/how-it-works.md) | What loads when, and what it means that nothing is enforced |
-| [Working rules](concepts/working-rules.md) | The ten lines in a repo's `CLAUDE.md`, and how to waive or change one |
+| [Working rules](concepts/working-rules.md) | The ten lines the hook prints, and how to waive or change one |
 | [Documents](concepts/documents.md) | The files an app repo keeps, and what gets each one written |
 | [Hosts](concepts/hosts.md) | What differs between Claude Code and Antigravity |
 
@@ -40,7 +40,7 @@ New here: [Overview](start/overview.md), then [Install](start/install.md), then 
 | Page | Holds |
 |---|---|
 | [Commands](reference/commands.md) | What to run in which situation |
-| [app-settle](reference/app-settle.md) | The interview that writes `CLAUDE.md` and the core documents |
+| [app-settle](reference/app-settle.md) | The interview that writes `AGENTS.md` and the core documents |
 | [design-settle](reference/design-settle.md) | Two frames, `DESIGN.md` and one proving page, in one session |
 | [Rules hook](reference/rules-hook.md) | The working rules printed into every session, and how to turn them off in one repo |
 | [norms-help](reference/norms-help.md) | The card: version, commands, pages, last change |

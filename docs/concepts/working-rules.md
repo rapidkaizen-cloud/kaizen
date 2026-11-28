@@ -1,10 +1,10 @@
 # Working rules
 
-Ten lines of text tell every session how to work, and each one holds until you waive it, in chat or in the repo's `CLAUDE.md`.
+Ten lines of text tell every session how to work, and each one holds until you waive it, in chat or in the repo's `AGENTS.md`.
 
 ## Where they come from
 
-The plugin's [hook](../reference/rules-hook.md) prints them into every Claude Code session and subagent, and every conversation of the Antigravity CLI, in every repo on a machine that has the plugin. A repo keeps no copy: its `CLAUDE.md` holds only what is true of that app, its own rules included. The exact text is in `hooks/rules.md`.
+The plugin's [hook](../reference/rules-hook.md) prints them into every Claude Code session and subagent, and every conversation of the Antigravity CLI, in every repo on a machine that has the plugin. A repo keeps no copy: its `AGENTS.md` holds only what is true of that app, its own rules included, and its `CLAUDE.md` holds `@AGENTS.md` and what Claude Code alone reads. The exact text is in `hooks/rules.md`.
 
 ## The ten lines
 
@@ -28,7 +28,7 @@ A session that skips a line is stopped by nothing. `Git` and `Data` are the two 
 ## Waive or change a line
 
 - **For one session**, say so in chat: "push without asking in this session".
-- **For one repo, for good**, write it in that repo's `CLAUDE.md`, under `## Rules for this app only`: "In this repo, push without asking." A session reads that file beside the rules, and the rules give way to it.
+- **For one repo, for good**, write it in that repo's `AGENTS.md`, under `## Rules for this app only`: "In this repo, push without asking." A session reads that file beside the rules, and the rules give way to it.
 - **All ten, in one repo**: an empty `.kaizen-rules-off` at its root. See [Rules hook](../reference/rules-hook.md#turn-it-off-in-one-repo).
 
 ## After a plugin update
@@ -45,7 +45,7 @@ A rule an agent reads loses to the code it copies, so a correction you make is w
 4. **A test.**
 5. **Prose**, only for a judgment call nothing can check.
 
-Each rule and what enforces it is a row of a `| Rule | Enforced by |` table under `## Rules for this app only` in `CLAUDE.md`. How a check is kept — where the table sits, the proof, the exception, when a row leaves — is in [logic-build](../reference/logic-build.md#checks-from-corrections).
+Each rule and what enforces it is a row of a `| Rule | Enforced by |` table under `## Rules for this app only` in `AGENTS.md`. How a check is kept — where the table sits, the proof, the exception, when a row leaves — is in [logic-build](../reference/logic-build.md#checks-from-corrections).
 
 Nothing is preset: a repo gets a check only from a correction you made in it.
 

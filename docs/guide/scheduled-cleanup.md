@@ -6,7 +6,7 @@ A run on request or on a schedule reports the dead code, duplication and oversiz
 
 | You need | Where it comes from |
 |---|---|
-| A lint floor with a baseline | A session asks for it once, by `logic-build`, and records it as a row of the Stack table in `CLAUDE.md` |
+| A lint floor with a baseline | A session asks for it once, by `logic-build`, and records it as a row of the Stack table in `AGENTS.md` |
 | A detector for what a linter cannot see: unused exports and files, duplicated blocks | Your choice, such as `fallow` or `knip` for TypeScript, or PHPStan with a dead-code extension for PHP. Record it in the same row |
 
 ## Steps

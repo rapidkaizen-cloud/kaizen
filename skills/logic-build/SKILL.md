@@ -57,7 +57,7 @@ description: Rules for the logic layer of an app — which key goes where, where
 
 ## Libraries and reuse
 
-- **A need with no recorded choice — cache, validator, dates, where errors go, background jobs, property-based tests, the lint floor — is asked once, with a recommendation**, then recorded as a row of the Stack table in `CLAUDE.md`. A recorded `none` is a decision.
+- **A need with no recorded choice — cache, validator, dates, where errors go, background jobs, property-based tests, the lint floor — is asked once, with a recommendation**, then recorded as a row of the Stack table in `AGENTS.md`. A recorded `none` is a decision.
 - **Keep a library's defaults until a recorded reason changes one.**
 - **Before writing a query, a handler or error handling, find how the repo already does it and do it that way**; a second way is a finding in the closing report, never new code.
 - **Extract a query or a rule the second time it appears.**
@@ -72,12 +72,12 @@ description: Rules for the logic layer of an app — which key goes where, where
 ## Data layer
 
 - **Every database call lives in one folder, and nothing outside it holds the database client.** Split it by domain, never by page.
-- **The folder is the `Data layer` row of the Stack table in `CLAUDE.md`.** No row → write the query beside the ones that exist.
+- **The folder is the `Data layer` row of the Stack table in `AGENTS.md`.** No row → write the query beside the ones that exist.
 
 ## Rule test
 
 - **Every rule implemented leaves one test whose title quotes the rule's name**, and a bug fix leaves the test that fails without it.
-- **Where `CLAUDE.md` keeps a `Rule | Enforced by` table, name a bug fix's test in the row of the mistake it fixed.**
+- **Where `AGENTS.md` keeps a `Rule | Enforced by` table, name a bug fix's test in the row of the mistake it fixed.**
 - **The test attacks the enforcement point**: a constraint, trigger or RPC → attempt the forbidden write, a forbidden status transition included, as the bound role and expect the refusal, then the permitted one. A computation → call it with the rule's value, the value just inside and the value just outside.
 - **A rule that computes money, stock or pay also gets a property-based test that checks its invariant over generated input** — a total always equals the sum of its lines — with fast-check in TypeScript or its counterpart in the stack.
 - **Never mock the call under test, and never fix a failing rule test by editing the test.**
@@ -85,7 +85,7 @@ description: Rules for the logic layer of an app — which key goes where, where
 
 ## Checks from corrections
 
-- **Keep the `| Rule | Enforced by |` table under `## Rules for this app only` in the app's `CLAUDE.md`.**
+- **Keep the `| Rule | Enforced by |` table under `## Rules for this app only` in the app's `AGENTS.md`.**
 - **Where the pattern is already common, fail a new check only on new additions.**
 - **Prove a new check fails on the old mistake before keeping it.**
 - **Allow an exception only on the offending line itself, with its reason, an expiry date and the user's yes.**

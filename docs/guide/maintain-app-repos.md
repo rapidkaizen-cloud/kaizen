@@ -14,7 +14,8 @@ Nothing to run: the next session gets the new rules from the hook. A version's c
 | `switches.json`, the marker `onboarded-output` | The plugin's data folder on the machine | Nothing reads them. Delete them or leave them |
 | `.claude/destructive-gate.off` | The repo | Nothing reads it. Delete it |
 | An output folder set through the old `norms-config` | `switches.json` | Nothing reads it. Set `KAIZEN_OUTPUT_DIR` instead: the hook prints one folder per repo, worktree and workspace under it, as in [Rules hook](../reference/rules-hook.md#the-output-folder). Delete a `CLAUDE.md` line that sends files to `<output>\<topic>\`, or make it name the same folders, so it does not contradict the hook |
-| Sections an older `app-settle` wrote | `CLAUDE.md` | Kept as they are. `app-settle` adds only what the file lacks |
+| Sections an older `app-settle` wrote, and any rule of the repo's own | `CLAUDE.md` without `@AGENTS.md` | Move them into `AGENTS.md`, merged with what it holds, and leave `@AGENTS.md` in `CLAUDE.md` with only what Claude Code alone reads. `app-settle` does this, and asks where two lines contradict. Until then Antigravity never reads them |
+| `CLAUDE.md` as a symlink to `AGENTS.md` | The repo | Replace it with a plain file holding `@AGENTS.md`: on Windows Git checks a symlink out as a text holding the path, and Claude Code reads nothing from it |
 | A root `PRD.md` or `docs/PRD.md` | The repo | Read as it is. It no longer marks a repo as settled, and no skill moves it unless you ask |
 | Lint floors and rule tests | The repo's lint config and tests | They are the repo's own and keep running. No skill maintains them |
 | Documents beyond `product.md`, `rules.md`, `queue.md`, `changelog.md` | `docs/` | Kept, and kept true. No skill writes a new one unless you ask |
@@ -23,7 +24,7 @@ Nothing to run: the next session gets the new rules from the hook. A version's c
 ## What is gone, with nothing in its place
 
 - **The audit and the modes `migrate`, `align`, `rework` and `seed`** of `app-settle`. It has two modes: `Bootstrap` and `Document`.
-- **`logic-settle`.** A need with no recorded choice — a cache, a validator, where errors go — is asked once by the session that first meets it, and recorded in the Stack table of `CLAUDE.md`.
+- **`logic-settle`.** A need with no recorded choice — a cache, a validator, where errors go — is asked once by the session that first meets it, and recorded in the Stack table of `AGENTS.md`.
 - **Every guard.** See [How it works](../concepts/how-it-works.md) for what holds a push or a destructive statement now.
 
 ## Related

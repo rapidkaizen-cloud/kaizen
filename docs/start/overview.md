@@ -8,7 +8,7 @@ Nothing in it is enforced. A skill is text a session reads when the work calls f
 
 | Part | What it does | When it runs |
 |---|---|---|
-| `app-settle` | Interviews you about the problem, the roles and the business rules, then writes the repo's `CLAUDE.md` and its core documents | When you invoke it |
+| `app-settle` | Interviews you about the problem, the roles and the business rules, then writes the repo's `AGENTS.md` and its core documents | When you invoke it |
 | `design-settle` | Settles the look: two direction frames you pick from on screen, then `DESIGN.md` and one proving page | When you invoke it |
 | `build-flow`, `docs-format`, `ui-build`, `db-ops`, `logic-build` | Carry the rules for building a page, a document, UI, SQL and application logic | By themselves, when the work matches the working rules' last line or their description |
 | Rules hook | Prints the ten working rules into each session and subagent | When one starts, in every repo |
@@ -16,7 +16,7 @@ Nothing in it is enforced. A skill is text a session reads when the work calls f
 
 ## Every skill stands alone
 
-No skill requires another, and none starts another when it ends. Each one reads `CLAUDE.md`, `docs/` and `DESIGN.md` where the repo has them, and runs where it does not. Which skill to run, and in which order, is yours to choose; [Quickstart](quickstart.md) gives an order that suits a new app.
+No skill requires another, and none starts another when it ends. Each one reads `AGENTS.md`, `docs/` and `DESIGN.md` where the repo has them, and runs where it does not. Which skill to run, and in which order, is yours to choose; [Quickstart](quickstart.md) gives an order that suits a new app.
 
 ## What it adds to a session
 

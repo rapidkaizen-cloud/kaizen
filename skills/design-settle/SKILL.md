@@ -20,7 +20,7 @@ One session settles the direction and proves it on one page. Every other page is
 
 ## Step 0 — read, print, read back
 
-Read in one round: `CLAUDE.md`, `docs/README.md` and the files it links, `DESIGN.md`, the styling files, the listing of the component folder, the routes. A file that is absent is a row that says so, never a stop.
+Read in one round: `AGENTS.md`, `docs/README.md` and the files it links, `DESIGN.md`, the styling files, the listing of the component folder, the routes. A file that is absent is a row that says so, never a stop.
 
 Print the block whole:
 

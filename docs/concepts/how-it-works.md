@@ -6,7 +6,7 @@
 
 | When | What the session gets | From |
 |---|---|---|
-| A session starts | The repo's `CLAUDE.md` | The repo; the host reads it |
+| A session starts | The repo's `AGENTS.md` | The repo; Antigravity reads it, Claude Code through the `@AGENTS.md` line of `CLAUDE.md` |
 | A session or subagent starts | The [working rules](working-rules.md) | The plugin's [hook](../reference/rules-hook.md) |
 | A session starts | The plugin's skills in the host's skill list | The plugin |
 | The work matches a skill, or you run its command | That skill's one file | The plugin |
@@ -15,7 +15,7 @@ Beyond the working rules the plugin prints nothing when a session starts, and a 
 
 ## Every skill stands alone
 
-A skill reads `CLAUDE.md`, `docs/` and `DESIGN.md` where the repo has them, and runs where it does not: the page a skill would have read simply binds nothing. No skill sends the session to another, so the order is yours. [Quickstart](../start/quickstart.md) gives one that suits a new app.
+A skill reads `AGENTS.md`, `docs/` and `DESIGN.md` where the repo has them, and runs where it does not: the page a skill would have read simply binds nothing. No skill sends the session to another, so the order is yours. [Quickstart](../start/quickstart.md) gives one that suits a new app.
 
 ## Why nothing is enforced
 

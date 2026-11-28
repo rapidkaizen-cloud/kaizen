@@ -40,7 +40,7 @@ A policy that exists is not a policy that works, and the default connection is t
 ## Indexes and keys
 
 - **An index for every column a query filters, joins or sorts on**, in the same migration: several columns share one index, equality first; text search gets a trigram or full-text index; an indexed column is never wrapped in a function where the query filters.
-- **A test that fails on a foreign key with no index**, kept in the repo and named in the `| Rule | Enforced by |` table of `CLAUDE.md`.
+- **A test that fails on a foreign key with no index**, kept in the repo and named in the `| Rule | Enforced by |` table of `AGENTS.md`.
 - **The columns an RLS policy filters on are indexed too**, and a per-user function in a policy runs once per query, not once per row.
 - **A table that will grow large** gets a key that increases in order — never a random UUIDv4 — and a decision on how long its rows are kept.
 

@@ -5,7 +5,7 @@ Pick the case that matches your repo, run the commands, and answer what the sess
 ## A new app
 
 1. **Open Claude Code in an empty directory.**
-2. **Run `/kaizen:app-settle`.** It finds no app code, interviews you, asks one round about the stack, shows what it will write and waits for your yes. It then writes `CLAUDE.md` and the documents, and commits.
+2. **Run `/kaizen:app-settle`.** It finds no app code, interviews you, asks one round about the stack, shows what it will write and waits for your yes. It then writes `AGENTS.md` and the documents, and commits.
 3. **Run `/kaizen:design-settle`**, where the app has a UI.
 4. **Ask for the first page.**
 
