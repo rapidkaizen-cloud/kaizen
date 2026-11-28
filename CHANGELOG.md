@@ -2,6 +2,16 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 2.4.1] - 2026-11-28
+
+### Changed
+
+- The author in both manifests and the copyright line of `LICENSE` read `rapidkaizen`, on the maintainer's direct word. The author link still points to the GitHub account.
+
+To act on:
+
+- Nothing.
+
 ## [kaizen 2.4.0] - 2026-11-28
 
 Ready for Antigravity's partner catalog, on the maintainer's direct word: `agy plugin validate --strict` passes with no finding. The plugin is not listed yet; `agy` cannot add a catalog of its own, so the listing waits on Google's review.
