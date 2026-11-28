@@ -2,6 +2,24 @@
 
 All notable changes to the `kaizen` plugin, newest first. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). Versions before 1.0.0 are in `git log`.
 
+## [kaizen 2.4.0] - 2026-11-28
+
+Ready for Antigravity's partner catalog, on the maintainer's direct word: `agy plugin validate --strict` passes with no finding. The plugin is not listed yet; `agy` cannot add a catalog of its own, so the listing waits on Google's review.
+
+### Added
+
+- `plugin.json` at the root carries what the Antigravity marketplace lists: `version`, `displayName`, a 149-character `description`, `logo`, `author`, `homepage`, `repository`, `license`, `keywords` and three `suggestedPrompts`. Its version matches `.claude-plugin/plugin.json`, and `.githooks/pre-commit` refuses a commit where the two differ.
+- `assets/logo.svg`: a red `|<` on a black tile, legible on light and dark themes.
+- `LICENSE`: MIT. Both manifests name it.
+
+### Changed
+
+- Claude Code's hook file moved from `hooks/hooks.json` to `hooks/claude-code.json`, named in `.claude-plugin/plugin.json`, because Antigravity flags the old name as never loaded. The three hooks and what they print are unchanged.
+
+To act on:
+
+- Nothing by hand. Claude Code picks up the moved hook file with the update; on Antigravity, uninstall and install again from the URL as before.
+
 ## [kaizen 2.3.0] - 2026-11-26
 
 Performance rules in three skills, on the maintainer's direct word, so an app built under them stays fast as its tables grow, on any stack. Written in this toolkit's own words from four published catalogs; none of them is installed or required.

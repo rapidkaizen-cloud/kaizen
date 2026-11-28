@@ -22,7 +22,7 @@ Change a rule for a finding seen in two sessions or in a real app, or on the use
 
 Do not add a skill to `kaizen` without naming what would be lost if it did not exist. Every skill pays a context cost in every session through its description, including the sessions that never use it.
 
-Never add a hook that refuses, holds or blocks, because a hook cannot ask and a rule here is negotiable in chat. The plugin ships one hook script, `hooks/rules.js`, run by `hooks/hooks.json` on Claude Code and by `hooks.json` on Antigravity, which prints `hooks/rules.md` and, only where `KAIZEN_OUTPUT_DIR` is set, also prints `hooks/output.md` and names a new file written outside that folder — it writes a message and nothing more; the context reminder was removed on the user's word because its note interrupted the work.
+Never add a hook that refuses, holds or blocks, because a hook cannot ask and a rule here is negotiable in chat. The plugin ships one hook script, `hooks/rules.js`, run by `hooks/claude-code.json` on Claude Code and by `hooks.json` on Antigravity, which prints `hooks/rules.md` and, only where `KAIZEN_OUTPUT_DIR` is set, also prints `hooks/output.md` and names a new file written outside that folder — it writes a message and nothing more; the context reminder was removed on the user's word because its note interrupted the work.
 
 This plugin ships no templates. What a new app repo gets is written by `app-settle` for that repo's answers — never a stock file, which is a decision taken before its question was asked and goes stale without anyone re-reading it. Whatever a skill here tells a session to write lands in app repos that may not be private, so a rule that produces a file must never produce a secret in it: name the variable, never its value.
 
@@ -54,7 +54,9 @@ Keep `CHANGELOG.md` at the root and the commands a user runs in `docs/reference/
 
 Commit, push and merge by the `Git` line of `hooks/rules.md`, as an app repo does.
 
-A commit that changes the plugin — `skills/`, `scripts/`, `hooks/` or a manifest — bumps its `version` in the same commit, because `/plugin update` compares version numbers only; `.githooks/pre-commit` refuses it otherwise, so run `git config core.hooksPath .githooks` once per clone.
+A commit that changes the plugin — `skills/`, `scripts/`, `hooks/` or a manifest — bumps its `version` in `.claude-plugin/plugin.json` and `plugin.json` alike in the same commit, because `/plugin update` and Antigravity's marketplace compare version numbers only; `.githooks/pre-commit` refuses it otherwise, so run `git config core.hooksPath .githooks` once per clone.
+
+Never name a file `hooks/hooks.json`, because `agy plugin validate --strict` fails on it and Antigravity's marketplace lists only a plugin that passes.
 
 A commit that bumps the version adds that version's entry to `CHANGELOG.md`, in English and in Keep a Changelog form, naming every rename or removal an installed app must act on; `.githooks/pre-commit` refuses the bump without it, and warns when the plugin changed and no page under `docs/` did.
 

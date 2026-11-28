@@ -4,9 +4,10 @@ The same eight skills install on Claude Code and on Antigravity; the working rul
 
 | | Claude Code | Antigravity |
 |---|---|---|
-| Manifest | `.claude-plugin/plugin.json` | `plugin.json` at the repo root |
-| Install | `/plugin marketplace add`, then `/plugin install` | `agy plugin install <URL>` |
-| Update | By itself with `autoUpdate` on | Uninstall, then install again: the install is a copy |
+| Manifest | `.claude-plugin/plugin.json` | `plugin.json` at the repo root, with the same version and the logo |
+| Hook file | `hooks/claude-code.json` | `hooks.json` at the repo root |
+| Install | `/plugin marketplace add`, then `/plugin install` | `agy plugin install <URL>`; not in Antigravity's marketplace yet |
+| Update | By itself with `autoUpdate` on | Uninstall, then install again: an install from a URL is a copy. A marketplace install updates by itself, once `kaizen` is listed |
 | Skills | All eight | All eight |
 | Working rules | Printed by the plugin's hook into every session and subagent | Printed once per conversation, before its first model call, by a `PreInvocation` hook in `hooks.json` at the repo root — on the `agy` CLI |
 | `Quota` row of `design-settle` | Read from `claude -p "/usage"` | Printed as `not read` |

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Self-check rules.js and both hooks.json files: the rules are printed in every project,
+"""Self-check rules.js, hooks.json and hooks/claude-code.json: the rules are printed in every project,
 whatever its CLAUDE.md holds, once per conversation on Antigravity, and nothing is printed,
 with exit 0, where the repo turned the hook off or where Node is missing. Every folder name
 holds a space.
@@ -87,11 +87,11 @@ def main():
         # The commands as the host runs them, from a plugin folder whose path holds a space.
         bash = shutil.which("bash")
         if not bash:
-            print("skipped: the hooks.json commands, no bash on PATH")
+            print("skipped: the Claude Code hook commands, no bash on PATH")
         else:
             plugin = t / "plugin root"
             shutil.copytree(HOOKS, plugin / "hooks")
-            hooks = json.loads((HOOKS / "hooks.json").read_text(encoding="utf-8"))["hooks"]
+            hooks = json.loads((HOOKS / "claude-code.json").read_text(encoding="utf-8"))["hooks"]
             assert hooks["SessionStart"][0]["matcher"] == "startup|resume|clear|compact"
             for event in ("SessionStart", "SubagentStart"):
                 cmd = hooks[event][0]["hooks"][0]["command"]

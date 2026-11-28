@@ -30,3 +30,7 @@ An app that already exists: [Quickstart](docs/start/quickstart.md). Every comman
 ## Documentation
 
 <https://rapidkaizen-cloud.github.io/kaizen/>, or the same pages under [`docs/`](docs/README.md). What changed: [CHANGELOG.md](CHANGELOG.md). In a session: `/kaizen:norms-help`.
+
+## License
+
+[MIT](LICENSE)
