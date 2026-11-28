@@ -21,7 +21,7 @@ agy plugin uninstall kaizen
 agy plugin install https://github.com/rapidkaizen-cloud/kaizen
 ```
 
-An install from the URL is a copy, and nothing refreshes it. `kaizen` is not in Antigravity's marketplace yet; a copy installed from there, once it is listed, updates by itself.
+The install is a copy, and nothing refreshes it.
 
 ## Moving to 1.0.0
 

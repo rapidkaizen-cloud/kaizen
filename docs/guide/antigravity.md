@@ -20,7 +20,7 @@ agy plugin install https://github.com/rapidkaizen-cloud/kaizen
 
 The copy lands in `~/.gemini/config/plugins/kaizen`.
 
-`kaizen` is not in Antigravity's marketplace yet. `agy` lists only Google's two catalogs and cannot add another, so the URL is the way in until the plugin is listed in the partner catalog.
+`kaizen` is not in Antigravity's marketplace: `agy` lists only Google's two catalogs and cannot add another, so the URL is the way in.
 
 > [!WARNING]
 > Install it for the machine, never through a repo's `.agents/plugins.json`. Registered per folder, the plugin loaded a minute after an interactive conversation began.
@@ -62,7 +62,7 @@ agy plugin uninstall kaizen
 agy plugin install https://github.com/rapidkaizen-cloud/kaizen
 ```
 
-An install from the URL is a copy, and nothing refreshes it. A plugin installed from Antigravity's marketplace updates by itself; that holds for `kaizen` only once it is listed there.
+The install is a copy, and nothing refreshes it.
 
 ## Headless runs
 
