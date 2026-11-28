@@ -1,4 +1,20 @@
 {
   "name": "kaizen",
-  "description": "Eight standalone skills for building an app with an agent: app-settle and design-settle decide what the app is and how it looks; build-flow, docs-format, ui-build, db-ops and logic-build carry the build rules; norms-help prints help. On Claude Code and the Antigravity CLI a hook prints ten working rules into every session; it never refuses or blocks, and a repo's CLAUDE.md waives or adds to them."
+  "displayName": "Kaizen",
+  "version": "2.4.1",
+  "description": "Skills for building an app with an agent: two interviews settle its docs and design, five rule sets guide the build, and a hook prints working rules.",
+  "logo": "assets/logo.svg",
+  "author": {
+    "name": "rapidkaizen",
+    "url": "https://github.com/rapidkaizen-cloud"
+  },
+  "homepage": "https://rapidkaizen-cloud.github.io/kaizen/",
+  "repository": "https://github.com/rapidkaizen-cloud/kaizen",
+  "license": "MIT",
+  "keywords": ["skills", "app-building", "docs", "design-system", "rls", "working-rules"],
+  "suggestedPrompts": [
+    "Run app-settle to decide what this app is and write its docs",
+    "Run design-settle to settle how this app looks",
+    "Build the next page of this app with build-flow"
+  ]
 }

@@ -8,7 +8,7 @@ Prints the ten working rules into every Claude Code session and subagent, and ev
 | Prints | `hooks/rules.md`, about 1,700 characters. With `KAIZEN_OUTPUT_DIR` set, `hooks/output.md` after it, about 700 characters |
 | Refuses | Nothing. It never holds, asks or blocks, and ends without an error on every path |
 | Needs | Node on `PATH`. Without it the hook prints nothing |
-| Source | `hooks/hooks.json` (Claude Code), `hooks.json` (Antigravity), `hooks/rules.js`; self-check `hooks/test_rules.py` |
+| Source | `hooks/claude-code.json` (Claude Code), `hooks.json` (Antigravity), `hooks/rules.js`; self-check `hooks/test_rules.py` |
 
 ## When it prints
 
