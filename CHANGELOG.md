@@ -19,7 +19,7 @@ Ready for Antigravity's partner catalog, on the maintainer's direct word: `agy p
 ### Added
 
 - `plugin.json` at the root carries what the Antigravity marketplace lists: `version`, `displayName`, a 149-character `description`, `logo`, `author`, `homepage`, `repository`, `license`, `keywords` and three `suggestedPrompts`. Its version matches `.claude-plugin/plugin.json`, and `.githooks/pre-commit` refuses a commit where the two differ.
-- `assets/logo.svg`: a red `|<` on a black tile, legible on light and dark themes.
+- `assets/logo.svg`: a crimson `|<` on a white tile, legible on light and dark themes.
 - `LICENSE`: MIT. Both manifests name it.
 
 ### Changed
